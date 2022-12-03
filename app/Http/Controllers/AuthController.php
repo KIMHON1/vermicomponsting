@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades;
 
 
 class AuthController extends Controller
@@ -53,54 +54,94 @@ class AuthController extends Controller
             'token'=>$token
         ];
  
-        return response($response, 201);
+        // return response($response, 201);
+        return response();
+
     }
 
 
 
 
+
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/bins');
+        }
+        // else if(Auth::attempt($credentials))
+        //   {
+        //     return redirect()->intended('/');
+        //     }
+      else{
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     
-    public function login(Request $request){
+    }
+}
+
+
+    
+    //public function login(Request $request){
 
 
         // validating  body request
 
 
-        $fields = $request->validate([
+        // $fields = $request->validate([
             
-            'email'     => 'required|string|',
-            'password'  => 'required|string|'
-        ]);
+        //     'email'     => 'required|string|',
+        //     'password'  => 'required|string|'
+        // ]);
 
 
 
 // check email
-        $user = User::where('email', $fields['email'])->first();
+    //    $user = User::where('email', $fields['email'])->first();
     
 
 //check password
 
-        if(!$user || !Hash::check($fields['password'], $user->password)){
-            return response(['message' => 'Bad creds'], 401);
-        }
+    //    if(!$user || !Hash::check($fields['password'], $user->password)){
+    //        return response(['message' => 'Bad creds'], 401);
+      //  }
 // user taking key token
-        $token = $user->createToken('myapptoken')->plainTextToken;
+     //   $token = $user->createToken('myapptoken')->plainTextToken;
         
 // user information in response        
 
-        $response = [
-            'user'=>$user,
-            'token'=>$token
-        ];
+    //     $response = [
+    //         'user'=>$user,
+    //         'token'=>$token
+    //     ];
  
-        return response($response, 201);
-    }
+    //     // return response($response, 201);
+
+    //     return view('Auth.login');
+    // }
+
+
+
+
+    // public function logout(Request $request){
+    //      auth()->user()->tokens()->delete();
+
+    //     return [
+    //         'message' => 'Loged out'
+    //     ];
+    // }
 
     public function logout(Request $request){
-        auth()->user()->tokens()->delete();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return [
-            'message' => 'Loged out'
-        ];
-    }
+       return redirect('/login');
+   }
 }

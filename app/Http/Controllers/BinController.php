@@ -15,7 +15,8 @@ class BinController extends Controller
      */
     public function index()
     {
-        return Bin::all();
+        $bins = Bin::all();
+        return view('Normal.bins')->with('bins',$bins);
     }
 
     /**
@@ -25,7 +26,7 @@ class BinController extends Controller
      */
     public function create()
     {
-        //
+        return view('Normal.create_bin');
     }
 
     /**
@@ -37,14 +38,14 @@ class BinController extends Controller
     public function store(Request $request)
     {   
         $request->validate(
-            [
+             [
                 'number'=> 'required|unique:bins',
                 'microcontroller_type'=>'required',
                 'location' => 'required'
-            ]
-            );
-
-        return Bin::create( $request->all());
+             ]
+             );
+        $bin = Bin::create($request->all());
+        return view('Normal.create_bin')->with('bin',$bin);
     }
 
     /**
@@ -54,8 +55,8 @@ class BinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Bin $id)
-    {
-        //
+    {       $bin = Bin::find($id);
+            return view('Normal.singleBin')->with('bin',$bin);
     }
 
     /**
@@ -79,6 +80,7 @@ class BinController extends Controller
     public function update(UpdateBinRequest $request, Bin $bin)
     {
         //
+        
     }
 
     /**

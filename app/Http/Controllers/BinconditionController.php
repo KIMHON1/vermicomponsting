@@ -16,6 +16,8 @@ class BinconditionController extends Controller
     public function index()
     {
         //
+        $bincondition = Bincondition::all();
+        return view('')->with('bincondition',$bincondition);
     }
 
     /**
@@ -26,6 +28,7 @@ class BinconditionController extends Controller
     public function create()
     {
         //
+        return view('');
     }
 
     /**
@@ -34,9 +37,18 @@ class BinconditionController extends Controller
      * @param  \App\Http\Requests\StoreBinconditionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBinconditionRequest $request)
+    public function stor(StoreBinconditionRequest $request)
     {
         //
+        $request->validate(
+            [
+               'temperature'=> 'required',
+               'humidity'=>'required',
+               'acidity' => 'required',
+               'watercondition' => 'required'
+               
+            ]);
+        
     }
 
     /**
@@ -45,7 +57,7 @@ class BinconditionController extends Controller
      * @param  \App\Models\Bincondition  $bincondition
      * @return \Illuminate\Http\Response
      */
-    public function show(Bincondition $bincondition)
+    public function show(Bincondition $id)
     {
         //
     }

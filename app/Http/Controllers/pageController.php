@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-class vermuserController extends Controller
+
+class pageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class vermuserController extends Controller
     public function index()
     {
         //
-        //return User::all();  
-        $user =User::all();
-        return view('Dashboard.users')->with('user',$user);
+
+        return view('Normal.defau');
     }
 
     /**
@@ -38,9 +37,6 @@ class vermuserController extends Controller
     public function store(Request $request)
     {
         //
-
-        $user=User::create($request->all());
-        return $user;
     }
 
     /**
@@ -52,8 +48,6 @@ class vermuserController extends Controller
     public function show($id)
     {
         //
-
-        return User::find($id);
     }
 
     /**
@@ -65,8 +59,6 @@ class vermuserController extends Controller
     public function edit($id)
     {
         //
-        $User=User::find($id);
-        return $user;
     }
 
     /**
@@ -79,11 +71,6 @@ class vermuserController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $user=User::find($id);
-        $input =$request->all();
-        $user->update($input);
-        return $user;
     }
 
     /**
@@ -95,20 +82,5 @@ class vermuserController extends Controller
     public function destroy($id)
     {
         //
-        User::destroy($id);
-    }
-
-
-      /**
-     * search the specified resource from storage.
-     *
-     * @param  int  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function search($name)
-    {
-        //
-        
-    return User::where('name','like','%'.$name.'%')->get();
     }
 }
