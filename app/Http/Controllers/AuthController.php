@@ -75,14 +75,21 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials) && Auth()->user()->role=='Admin'){
+        if (Auth::attempt($credentials)){
+            if(auth()->user()->hasRole('Admin')){
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
+        } else {
+            
+                return redirect()->intended('/bins');
+            
         }
-        else if(Auth::attempt($credentials))
-          {
-           return redirect()->intended('/bins');
-            }
+    
+    }
+        // else if(Auth::attempt($credentials))
+        //   {
+        //    return redirect()->intended('/bins');
+        //     }
       else{
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
