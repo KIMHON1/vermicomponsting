@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 */
 
 //public routes
-Route::post('/register',[AuthController::class,'register']);
+Route::post('/regis',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::get('/bins',[BinController::class,'index']);
 Route::get('/bins/{id}',[BinController::class,'show']);

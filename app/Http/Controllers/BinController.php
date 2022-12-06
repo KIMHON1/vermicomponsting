@@ -37,15 +37,18 @@ class BinController extends Controller
      */
     public function store(Request $request)
     {   
-        $request->validate(
-             [
-                'number'=> 'required|unique:bins',
-                'microcontroller_type'=>'required',
-                'location' => 'required'
-             ]
-             );
+        // $request->validate(
+        //      [
+        //         'number'=> 'required|unique:bins',
+        //         'microcontroller_type'=>'required',
+        //         'location' => 'required'
+        //      ]
+        //      );
+
         $bin = Bin::create($request->all());
-        return view('Normal.create_bin')->with('bin',$bin);
+        // $bin->user_id = auth()->user()->id;
+
+      return redirect('/bins');
     }
 
     /**
@@ -89,8 +92,18 @@ class BinController extends Controller
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bin $bin)
+    public function destroy($id)
     {
-        //
+
+        if(auth()->user()->hasRole('Admin')){
+        
+        Bin::destroy($id);
+        return redirect('/bins');
+    } else{
+        echo"you are not authorised";
+    }
+
+
+
     }
 }

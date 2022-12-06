@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{url('/create_vermuser')}}">
+                    <form method="POST" action="{{url('/regis')}}">
                         @csrf
                          {{-- //@method('GET') --}}
                         <div class="row mb-3">

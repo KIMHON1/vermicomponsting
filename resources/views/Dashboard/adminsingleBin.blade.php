@@ -1,4 +1,4 @@
-@extends('Normal.navbar')
+@extends('Dashboard/DashBoard')
 @section('content')
 
 

@@ -15,8 +15,8 @@ class vermuserController extends Controller
     {
         //
         //return User::all();  
-        $user =User::all();
-        return view('Dashboard.users')->with('user',$user);
+        $users =User::all();
+        return view('Dashboard.users')->with('users',$users);
     }
 
     /**
@@ -40,7 +40,7 @@ class vermuserController extends Controller
         //
 
         $user=User::create($request->all());
-        return $user;
+        return view('Auth.login');
     }
 
     /**
@@ -96,6 +96,7 @@ class vermuserController extends Controller
     {
         //
         User::destroy($id);
+        return redirect('');
     }
 
 

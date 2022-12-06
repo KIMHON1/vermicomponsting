@@ -26,13 +26,26 @@ use Illuminate\Http\Request;
 //public routes
 
 Route::get('/',[pageController::class, 'index']);
-// Route::post('/regis',[AuthController::class,'register']);
+
+
+
+Route::get('/dashboard',[pageController::class, 'dashbord']);
+
+Route::get('/adminbins',[pageController::class, 'adminbin']);
+
+Route::get('/admsinglebin',[pageController::class, 'admsinglebin']);
+
+
+
+
+Route::post('/regis',[AuthController::class,'register']);
 Route::post('/log',[AuthController::class,'login']);
 Route::get('/bins',[BinController::class,'index']);
 Route::get('/bin/{id}',[BinController::class,'show']);
 Route::get('/vermusers',[vermuserController::class, 'index']);
 Route::get('/vermuser/search/{name}',[vermuserController::class, 'search']);
 Route::get('/vermuser/{id}',[vermuserController::class, 'show']);
+
 
 //Route::get('/bins',[BinController::class,'index']);
 
@@ -67,7 +80,7 @@ Route::get('/register',function(){
     Route::get('/create_bin',[BinController::class,'create']);
     Route::post('/create_bi',[BinController::class,'store']);
     Route::post('/bins/id',[BinController::class,'update']);
-    Route::post('/bins/id',[BinController::class,'destroy']);
+    Route::get('/delete/{id}',[BinController::class,'destroy']);
 
 
 
@@ -75,7 +88,7 @@ Route::get('/register',function(){
 
     Route::post('/create_vermuser',[vermuserController::class, 'store']);
     Route::put('/update_vermuser',[vermuserController::class, 'update']);
-    Route::delete('/delete_vermuser/{id}',[vermuserController::class, 'destroy']);
+    Route::get('/delete_vermuser/{id}',[vermuserController::class, 'destroy']);
     Route::get('/logout',[AuthController::class,'logout']);
   
 });

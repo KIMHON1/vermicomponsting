@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Bin;
 class pageController extends Controller
 {
     /**
@@ -18,16 +18,38 @@ class pageController extends Controller
         return view('Normal.defau');
     }
 
+
+
+    public function dashbord()
+    {
+        
+        return view('Dashboard.DashBoard');
+    }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function adminbin()
+    {   
+        $bins = Bin::all();
+        return view('Dashboard.adminBins')->with('bins',$bins);
     }
 
+    public function admsinglebin( $id)
+    {   
+        $bins = Bin::all();
+        $bin = Bin::find($id);
+        return view('Dashboard.adminsingleBin')->with('bins',$bins);
+    }
+
+
+
+    
     /**
      * Store a newly created resource in storage.
      *

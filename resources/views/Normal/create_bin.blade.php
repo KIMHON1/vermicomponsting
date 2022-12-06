@@ -9,22 +9,29 @@
             <div class="card-header">
                 <h1>create Bin</h1>
             </div>
-
-                <form action="{{url('/create_bi')}}" method="POST" >
+          {{-- @if(!Auth::guest())
+            @if(Auth::user()->id == $bin->user_id) --}}
+                <form action="create_bi" method="POST" >
                     @csrf 
                     <div class="form-group">
                       <label for="BinNumber">BinNumber</label>
-                      <input type="number" class="form-control" name="BinNumber" id="BinNumber" aria-describedby="BinNumberHelp" placeholder="Enter BinNumber">
+                      <input type="number" class="form-control" name="number" id="BinNumber" aria-describedby="BinNumberHelp" placeholder="Enter BinNumber">
                  
                     </div>
                     <div class="form-group">
                       <label for="BinLocation">BinLocation</label>
-                      <input type="text" class="form-control" name="BinLocation"   id="BinLocation" placeholder="Enter BinLocation">
+                      <input type="text" class="form-control" name="location"   id="BinLocation" placeholder="Enter BinLocation">
                     </div>
+
+                       <div class="form-group">
+                        <label for="UserId">UserId</label>
+                        <input type="number" class="form-control" name="user_id"   id="UserId" placeholder="Enter UserId">
+                      </div> 
+
 
                     <div class="form-group">
                       <label for="MicrocontrollerType">MicrocontrollerType</label>
-                      <input type="text" class="form-control" name="microcontroler_type"   id="MicrocontrollerType" placeholder="Enter MicrocontrollerType">
+                      <input type="text" class="form-control" name="microcontroller_type"   id="MicrocontrollerType" placeholder="Enter MicrocontrollerType">
                     </div>
 
                
@@ -36,6 +43,8 @@
                   
                     </div>
                   </form>
+                {{-- @endif
+                @endif --}}
             </div>
           </div>
       

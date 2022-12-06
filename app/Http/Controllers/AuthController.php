@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-
+use Illuminate\Auth\RequestGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -43,6 +43,11 @@ class AuthController extends Controller
 
         ]);
 
+
+        $user = User::first();
+        $user->assignRole('Admin');
+
+        
        // $user->assignRole('Admin');
 // user taking key token
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -54,8 +59,8 @@ class AuthController extends Controller
             'token'=>$token
         ];
  
-        // return response($response, 201);
-        return response();
+         return redirect('/login');
+       
 
     }
 
@@ -70,14 +75,14 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials) && Auth()->user()->role=='Admin'){
             $request->session()->regenerate();
-            return redirect()->intended('/bins');
+            return redirect()->intended('/dashboard');
         }
-        // else if(Auth::attempt($credentials))
-        //   {
-        //     return redirect()->intended('/');
-        //     }
+        else if(Auth::attempt($credentials))
+          {
+           return redirect()->intended('/bins');
+            }
       else{
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -138,10 +143,10 @@ class AuthController extends Controller
     // }
 
     public function logout(Request $request){
-        Auth::logout();
+        //Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-       return redirect('/login');
+       return redirect('/');
    }
 }

@@ -1,5 +1,5 @@
 
-   @extends('Dashboard')
+   @extends('Dashboard/DashBoard')
 
 
    @section('content')
@@ -23,11 +23,8 @@
         <thead class="thead-dark">
           <tr>
            
-            <th scope="col">UserNumber</th>
+            <th scope="col">Username</th>
             <th scope="col">UserEmail</th>
-            <th scope="col">BIn</th>
-            <th scope="col">Created_at</th>
-            <th scope="col">update_at</th>
             <th scope="col">Action</th>
            
           </tr>
@@ -36,19 +33,21 @@
           
           {{-- @if(!Auth::guest())  
           @if(Auth::user()->id==$bin->user_id) --}}
-        @foreach ($bin as $bin)
+        @foreach ($users as $user)
           <tr>
-            <td>{{$bin->number}}</td>
-            <td>{{$bin->location}}</td>
-            <td>{{$bin->created_at}}</td>
-            <td>{{$bin->updated_at}}</td>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+          
             <td>
-             <a href={{"/singleBin/".$bin->id}}> <button class="btn btn-primary">view</button>
-              
-             
-              <a href={{"/updatebin/".$bin->id}}> <button class="btn btn-primary">update</button></a>
 
-              <a href={{"/delete/".$bin->id}}><button class="btn btn-danger">delete</button></a>
+              {{-- {{"/singleBin/".$bin->id}} --}}
+
+             <a href=""> <button class="btn btn-primary">view</button>
+              {{-- {{"/updatebin/".$bin->id}} --}}
+             
+              <a href="#"> <button class="btn btn-primary">update</button></a>
+              {{-- {{"/delete/".$bin->id}} --}}
+              <a href="{{"/delete_vermuser/".$user->id}} "><button class="btn btn-danger">delete</button></a>
 
 
             </td>

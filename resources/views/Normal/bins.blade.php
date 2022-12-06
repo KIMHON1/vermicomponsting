@@ -47,7 +47,7 @@
              
               <a href={{"/updatebin/".$bin->id}}> <button class="btn btn-primary">update</button></a>
 
-              <a href={{"/delete/".$bin->id}}><button class="btn btn-danger">delete</button></a>
+              <a href="{{"/delete/".$bin->id}}"><button class="btn btn-danger">delete</button></a>
 
 
             </td>
