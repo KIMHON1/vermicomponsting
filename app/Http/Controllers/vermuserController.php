@@ -56,6 +56,16 @@ class vermuserController extends Controller
         return User::find($id);
     }
 
+
+    public function showadmin($id)
+    {
+        //
+
+        $user= User::find($id);
+        
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

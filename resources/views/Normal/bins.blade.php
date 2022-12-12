@@ -3,23 +3,15 @@
 
 
    @section('content')
+
+   
    {{auth()->user()->username}}
-        {{-- <table>
-            <tr>
-                <td>number</td>
-                <td>location</td>
-            </tr>
-            @foreach ($bin as $bin)
-            <tr>
-                <td>{{$bin->number}}</td>
-                <td>{{$bin->location}}</td>
-            
-            </tr>
-        @endforeach
-    </table> --}}
 
+  
+     
+          
 
-    <table class="table">
+    <table class="table" style="color:#ffffff">
         <thead class="thead-dark">
           <tr>
            
@@ -33,33 +25,33 @@
         </thead>
         <tbody>
           
-          {{-- @if(!Auth::guest())  
-          @if(Auth::user()->id==$bin->user_id) --}}
         @foreach ($bins as $bin)
+        @if(auth()->user()->id == $bin->user_id)
           <tr>
             <td>{{$bin->number}}</td>
             <td>{{$bin->location}}</td>
             <td>{{$bin->microcontroller_type}}</td>
           
             <td>
-             <a href={{"/bin/".$bin->id}}> <button class="btn btn-primary">view</button>
+             <a href={{"/bin/".$bin->id}}> <button class="btn btn-primary" >view</button>
               
              
-              <a href={{"/updatebin/".$bin->id}}> <button class="btn btn-primary">update</button></a>
+              <a href={{"/update_bin/".$bin->id}}> <button class="btn btn-success">update</button></a>
 
-              <a href="{{"/delete/".$bin->id}}"><button class="btn btn-danger">delete</button></a>
-
+              <a href={{"/delete/".$bin->id}}><button class="btn btn-danger">delete</button></a>
+              <a href={{"/create_condition"}}><button class="btn" style="background: yellow; color:#fff">Add conditions</button></a>
 
             </td>
 
           </tr>
+          @endif
         @endforeach
          
        
         </tbody>
       </table>
       
-  
+     
      
       </table>
     {{-- @endif

@@ -25,10 +25,10 @@ class BinconditionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_condition()
     {
         //
-        return view('');
+        return view('Normal.create_conditions');
     }
 
     /**
@@ -37,17 +37,20 @@ class BinconditionController extends Controller
      * @param  \App\Http\Requests\StoreBinconditionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function stor(StoreBinconditionRequest $request)
+    public function store_cond(StoreBinconditionRequest $request)
     {
         //
-        $request->validate(
-            [
-               'temperature'=> 'required',
-               'humidity'=>'required',
-               'acidity' => 'required',
-               'watercondition' => 'required'
+        // $request->validate(
+        //     [
+        //        'temperature'=> 'required',
+        //        'humidity'=>'required',
+        //        'acidity' => 'required',
+        //        'watercondition' => 'required'
                
-            ]);
+        //     ]);
+
+        $bin_cond = Bincondition::create($request->all());
+        return redirect('/bins');
         
     }
 

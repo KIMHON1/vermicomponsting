@@ -1,50 +1,82 @@
 
-   @extends('Dashboard/DashBoard')
+
+    @extends('Dashboard/DashBoard')
 
 
-   @section('content')
-   
-   <table class="table">
-    <thead class="thead-dark">
-      <tr>
-       
-        <th scope="col">Bin_number</th>
-        <th scope="col">Bin_location</th>
-        <th scope="col">microcontroller_type</th>
-      
-        <th scope="col">action</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      
-      {{-- @if(!Auth::guest())  
-      @if(Auth::user()->id==$bin->user_id) --}}
-    @foreach ($bins as $bin)
-      <tr>
-        <td>{{$bin->number}}</td>
-        <td>{{$bin->location}}</td>
-        <td>{{$bin->microcontroller_type}}</td>
-      
-        <td>
-         <a href={{"/bin/".$bin->id}}> <button class="btn btn-primary">view</button>
+    @section('content')
+    <div ></div>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" >
+     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+       <h1 class="h2">Dashboard</h1>
+       <div class="btn-toolbar mb-2 mb-md-0">
+         <div class="btn-group me-2">
+           <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+           <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+         </div>
+         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+           <span data-feather="calendar" class="align-text-bottom"></span>
+           This week
+         </button>
+       </div>
+     </div>
+ 
+ 
+  
+     <table class="table">
+      <thead class="thead-dark">
+        <tr>
+         
+        
+        
+          <th scope="col">email</th>
+          <th scope="col">username</th>
+          <th scope="col">email</th>
+          <th scope="col">roles</th>
+        
           
          
-          <a href={{"/updatebin/".$bin->id}}> <button class="btn btn-primary">update</button></a>
-
-          <a href="{{"/delete/".$bin->id}}"><button class="btn btn-danger">delete</button></a>
-
-
-        </td>
-
-      </tr>
-    @endforeach
-     
-   
-    </tbody>
-  </table>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {{-- @if(!Auth::guest())  
+        @if(Auth::user()->id==$bin->user_id) --}}
+      
+        <tr>
+          <td>{{$user->name}}</td>
+          <td>{{$user->name}}</td>
+          <td>{{$user->email}}</td>
+          <td>{{$user->getRoleNames()}}</td>
   
-
+        </tr>
+    
+       
+     
+      </tbody>
+    </table>
+    <div style="margin-left:270px">
+    <form action="{{ url('/manage/role/permissions/'.$user->id) }}" method="POST">
+      {{csrf_field()}}
+      @method('PATCH')
+  @forEach($opermissions as $permission)
+  <input type="checkbox" value="{{$permission->name}}" name="permission {{$loop->iteration}}">  &nbsp;{{$permission->name}}<br/>
+   @endforeach
+   <button type="submit" class="btn btn-primary">Revoke</button>
+    </table>
+  </div>
+  @endsection('content')
+    
  
-  </table>
-    @endsection('content')
+ 
+         
+ 
+ 
+ 
+    
+      
+  
+     
+
+
+
+

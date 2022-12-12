@@ -61,16 +61,17 @@ class BinController extends Controller
     {       $bin = Bin::find($id);
             return view('Normal.singleBin')->with('bin',$bin);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bin $id)
+    public function update_bin()
     {
         //
+        return view('Normal.update_bin');
     }
 
     /**
@@ -83,7 +84,10 @@ class BinController extends Controller
     public function update(UpdateBinRequest $request, Bin $bin)
     {
         //
-        
+        $bin=Bin::find($id);
+        $bin =$request->all();
+        $bin->update($input);
+        return view('Normal.update_bin')->with('bin',$bin);
     }
 
     /**

@@ -10,6 +10,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades;
+// use Spatie\Permission\Models\Role;
+// use Spatie\Permission\Models\Permission;
 
 
 class AuthController extends Controller
@@ -43,10 +45,15 @@ class AuthController extends Controller
 
         ]);
 
+        if($user == User::first()){
+            $user->assignRole('Admin');
 
-        $user = User::first();
-        $user->assignRole('Admin');
-
+        }
+        else{
+            $user->assignRole('vermiculturist');
+        }
+        
+        
         
        // $user->assignRole('Admin');
 // user taking key token
@@ -151,9 +158,29 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         //Auth::logout();
+        session_start();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        session_destroy();
 
        return redirect('/');
    }
+
+   //change user role
+
+   public function changeRole(Request $request){
+    
+   }
+//    public function revokePermission(Request $request,$id)
+//    {
+//        $input=$request->all();
+//        $permissions=array_values($input);
+//        unset($permissions[0]);
+//        unset($permissions[1]);
+//        $permissions=array_values($permissions);
+//        $user=User::find($id);
+//        $role = Role::where('name',$user->role)->first();
+//        $role->revokePermissionTo($permissions);
+//        return redirect('/management/roles/'.$id.'/edit');
+//    }
 }

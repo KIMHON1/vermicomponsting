@@ -110,10 +110,10 @@
 {{-- </svg> --}} 
 
 <div>
-  <footer class="d-flex flex-wrap justify-content-between align-items-center navbar-light bg-primary">
+  <footer class="navbar navbar-expand-lg navbar-light" style="background-color:#2A3549;color:#ffffff">
     
-    <p class="col-md-4 mb-0 text-muted">&copy; 2022 vermicomposting, </p>
-    <p class="col-md-4 mb-0 text-muted">&copy; 2022 IshBell, KimHon</p>
+    <p class="col-md-4 mb-0 text-muted"  >&copy; 2022 vermicomposting, </p>
+    <p class="col-md-4 mb-0 text-muted" style="color:#ffffff">&copy; 2022 IshBell, KimHon</p>
 
 
     {{-- <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">

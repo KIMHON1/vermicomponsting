@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer("temperature");
             $table->string("humidity");
             $table->string("acidity");
-            $table->integer("watercondition");
             $table->timestamps();
             $table->foreign("bin_id")->references('id')->on("bins")->onDelete("cascade");
         });

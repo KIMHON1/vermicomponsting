@@ -13,7 +13,7 @@ class Bincondition extends Model
         "temperature",
         "humidity",
         "acidity",
-        "watercondition"
+        "bin_id"
 
     ];
 

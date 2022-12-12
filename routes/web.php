@@ -5,7 +5,9 @@ use App\Http\Controllers\BinController;
 use App\Http\Controllers\vermuserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\pageController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BinconditionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,22 +31,14 @@ Route::get('/',[pageController::class, 'index']);
 
 
 
-Route::get('/dashboard',[pageController::class, 'dashbord']);
-
-Route::get('/adminbins',[pageController::class, 'adminbin']);
-
-Route::get('/admsinglebin',[pageController::class, 'admsinglebin']);
 
 
 
 
 Route::post('/regis',[AuthController::class,'register']);
 Route::post('/log',[AuthController::class,'login']);
-Route::get('/bins',[BinController::class,'index']);
-Route::get('/bin/{id}',[BinController::class,'show']);
-Route::get('/vermusers',[vermuserController::class, 'index']);
-Route::get('/vermuser/search/{name}',[vermuserController::class, 'search']);
-Route::get('/vermuser/{id}',[vermuserController::class, 'show']);
+
+
 
 
 //Route::get('/bins',[BinController::class,'index']);
@@ -75,12 +69,31 @@ Route::get('/register',function(){
 
 //protected routes
 
-    Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
+//dashboard
+
+Route::get('/dashboard',[pageController::class, 'dashbord']);
+
+Route::get('/adminbins',[pageController::class, 'adminbin']);
+        
+Route::get('/admsinglebin',[pageController::class, 'admsinglebin']);
+Route::get('/useradmin/{id}',[AdminController::class, 'show']);
+
+//assign roles
+Route::get('/roles',[AdminController::class,'index']);
+// Route::patch('/manage/role/permissions/{id}',[AuthController::class,'RevokePermission']);
+Route::post('/changeRole',[AuthController::class,'changeRole']);
+
+
+
+
 //bins 
     Route::get('/create_bin',[BinController::class,'create']);
     Route::post('/create_bi',[BinController::class,'store']);
-    Route::post('/bins/id',[BinController::class,'update']);
+    Route::get('/update_bin',[BinController::class,'update_bin']);
     Route::get('/delete/{id}',[BinController::class,'destroy']);
+    Route::get('/bins',[BinController::class,'index']);
+    Route::get('/bin/{id}',[BinController::class,'show']);
 
 
 
@@ -90,5 +103,15 @@ Route::get('/register',function(){
     Route::put('/update_vermuser',[vermuserController::class, 'update']);
     Route::get('/delete_vermuser/{id}',[vermuserController::class, 'destroy']);
     Route::get('/logout',[AuthController::class,'logout']);
+    Route::get('/vermusers',[vermuserController::class, 'index']);
+    Route::get('/vermuser/search/{name}',[vermuserController::class, 'search']);
+    Route::get('/vermuser/{id}',[vermuserController::class, 'show']);
+
+
+
+  
   
 });
+
+Route::get('/create_condition',[BinconditionController::class,'create_condition']);
+Route::post('/create_cond',[BinconditionController::class,'store_cond']);

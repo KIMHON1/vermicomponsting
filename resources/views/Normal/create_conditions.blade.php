@@ -5,19 +5,42 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Create-condition') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{url('/regis')}}">
+
+
+                    {{-- @if(auth()->bin()->id == $bin->id) --}}
+                    <form method="POST" action="{{url('/create_cond')}}">
                         @csrf
                          {{-- //@method('GET') --}}
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="bin_id" class="col-md-4 col-form-label text-md-end">{{ __('bin_id') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="bin_id" type="number" class="form-control @error('bin_id') is-invalid @enderror" name="bin_id" required autocomplete="bin_id" autofocus>
 
-                                @error('name')
+                                @error('temperature')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+
+
+
+
+
+
+                            
+                            <label for="temperature" class="col-md-4 col-form-label text-md-end">{{ __('Temperature') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="temperature" type="text" class="form-control @error('temperature') is-invalid @enderror" name="temperature" value="{{ old('temperature') }}" required autocomplete="temperature" autofocus>
+
+                                @error('temperature')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,12 +49,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="humidity" class="col-md-4 col-form-label text-md-end">{{ __('Humidity') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="humidity" type="text" class="form-control @error('humidity') is-invalid @enderror" name="humidity" value="{{ old('humidity') }}" required autocomplete="humidity">
 
-                                @error('email')
+                                @error('humidity')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,12 +63,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="acidity" class="col-md-4 col-form-label text-md-end">{{ __('Acidity-PH') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="acidity" type="number" class="form-control @error('acidity') is-invalid @enderror" name="acidity" required autocomplete="new-acidity">
+                        
 
-                                @error('password')
+                                @error('acidity')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,22 +77,17 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+                    
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn " style="background: yellow; color:white">
-                                    {{ __('Register') }}
+                                    {{ __('Add Conditions') }}
                                 </button>
                             </div>
                         </div>
                     </form>
+                    {{-- @endif --}}
                 </div>
             </div>
         </div>

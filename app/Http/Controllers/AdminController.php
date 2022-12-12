@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bin;
-class pageController extends Controller
+use App\Models\User;
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,23 +12,12 @@ class pageController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     // default page
     public function index()
     {
-        //
-
-        return view('Normal.defau');
+        $users =User::all();
+        return view('Dashboard.assignRoles')->with('users',$users);
+       
     }
-
-
-//dashboard page
-    public function dashbord()
-    {
-        
-        return view('Dashboard.DashBoard');
-    }
-
-
 
 
     /**
@@ -36,28 +25,11 @@ class pageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//return bins in admin dashboard
-    public function adminbin()
-    {   
-        $bins = Bin::all();
-        return view('Dashboard.adminBins')->with('bins',$bins);
-    }
-// return single bin in admin dashboard
-    public function admsinglebin( $id)
-    {   
-        $bins = Bin::all();
-        $bin = Bin::find($id);
-        return view('Dashboard.adminsingleBin')->with('bins',$bins);
-    }
-//show single bin in admin pannel
-
-    public function showadminbin($id)
+    public function create()
     {
-        $bin = Bin::find($id);
-        return view('Normal.singleBin')->with('bin',$bin);
+        //
     }
 
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -78,6 +50,10 @@ class pageController extends Controller
     public function show($id)
     {
         //
+
+        $user = User::find($id);
+        $permissions=$user->getAllPermissions();
+        return view('Dashboard/sigleuser')->with('user',$user)->with('opermissions',$permissions);
     }
 
     /**
