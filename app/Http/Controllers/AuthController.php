@@ -49,9 +49,9 @@ class AuthController extends Controller
             $user->assignRole('Admin');
 
         }
-        else{
-            $user->assignRole('vermiculturist');
-        }
+        // else{
+        //     $user->assignRole('vermiculturist');
+        // }
         
         
         
