@@ -17,7 +17,7 @@ class pageController extends Controller
     {
         //
 
-        return view('Normal.defau');
+        return view('Normal.main-layout');
     }
 
 

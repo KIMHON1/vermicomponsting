@@ -44,7 +44,7 @@ Route::post('/log',[AuthController::class,'login']);
 //Route::get('/bins',[BinController::class,'index']);
 
 Route::get('/login',function(){
-    return view('Auth.login');
+    return view('Auth.login1');
 });
 
 Route::get('/register',function(){
