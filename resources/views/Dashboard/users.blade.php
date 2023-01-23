@@ -1,5 +1,5 @@
 
-    @extends('Dashboard/DashBoard')
+    @extends('Dashboard.index')
 
 
     @section('content')
@@ -62,6 +62,9 @@
            
    
             {{-- {{"/delete/".$bin->id}} --}}
+            <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        </a>
             <a href="{{"/delete_vermuser/".$user->id}} "><button class="btn btn-danger">delete</button></a>
 
 

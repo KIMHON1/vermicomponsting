@@ -48,7 +48,7 @@ Route::get('/login',function(){
 });
 
 Route::get('/register',function(){
-     return view('Auth.register');
+     return view('Auth.register1');
  });
 
 //  Route::get('/create_bin',function(){
