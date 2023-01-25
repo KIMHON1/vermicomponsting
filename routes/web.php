@@ -20,12 +20,14 @@ use App\Http\Controllers\BinconditionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Route::get('/send',[AuthController::class,'sendnotification']
+//  );
 
 
 //public routes
+
+
+Route::get('/vermusers/{user}/edit',[vermuserController::class, 'edit']);
 
 Route::get('/',[pageController::class, 'index']);
 
@@ -72,6 +74,9 @@ Route::get('/register',function(){
 Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
 
+
+
+
 Route::get('/dashboard',[pageController::class, 'dashbord']);
 
 Route::get('/adminbins',[pageController::class, 'adminbin']);
@@ -100,7 +105,9 @@ Route::post('/changeRole',[AuthController::class,'changeRole']);
 //user
 
     Route::post('/create_vermuser',[vermuserController::class, 'store']);
+ 
     Route::put('/update_vermuser',[vermuserController::class, 'update']);
+
     Route::get('/delete_vermuser/{id}',[vermuserController::class, 'destroy']);
     Route::get('/logout',[AuthController::class,'logout']);
     Route::get('/vermusers',[vermuserController::class, 'index']);

@@ -13,7 +13,7 @@
                         <h2 class="text-2xl font-bold uppercase mb-1">
                             Register
                         </h2>
-                        <p class="mb-4">Create an account to post gigs</p>
+                        <p class="mb-4">Create an account to join our system</p>
                     </header>
 
                     <form method="POST" action="{{url('/regis')}}">
@@ -63,7 +63,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-6 ">
                             <label
                                 for="password2"
                                 class="inline-block text-lg mb-2"
@@ -89,10 +89,10 @@
                             </button>
                         </div>
 
-                        <div class="mt-8">
+                        <div class="mt-8 text-white">
                             <p>
                                 Already have an account?
-                                <a href="/login" class="text-laravel"
+                                <a href="/login" class="text-black"
                                     >Login</a
                                 >
                             </p>

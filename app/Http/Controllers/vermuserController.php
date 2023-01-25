@@ -16,7 +16,9 @@ class vermuserController extends Controller
         //
         //return User::all();  
         $users =User::all();
-        return view('Dashboard.users')->with('users',$users);
+        $count = collect($users)->count();
+      
+        return view('Dashboard.users1',compact('users'))->with('i');
     }
 
     /**
@@ -72,11 +74,11 @@ class vermuserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
-        $User=User::find($id);
-        return $user;
+        // dd($user);
+        // $User=User::find($id);
+        return view('Dashboard.updateuser',['vermuser'=>$user]);
     }
 
     /**
@@ -106,7 +108,7 @@ class vermuserController extends Controller
     {
         //
         User::destroy($id);
-        return redirect('');
+        return redirect('/vermusers');
     }
 
 

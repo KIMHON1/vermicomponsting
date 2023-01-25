@@ -10,6 +10,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades;
+use Notification;
+use App\Notifications\EmailNotification;
 // use Spatie\Permission\Models\Role;
 // use Spatie\Permission\Models\Permission;
 
@@ -17,6 +19,25 @@ use Illuminate\Support\Facades;
 class AuthController extends Controller
 {
     //
+
+    // public function sendnotification(){
+    //     $user = User::all();
+    //     $user = [
+    //         'greeting'=>'Hi'.$this->user->name,
+    //         'body'=>'You have created any acount in vermicomposting system contact vermicomposting styem manager in your location to validate your acount ',
+    //         'actiontext'=>'Account created siccess fully',
+    //         'actionurl'=>'/regis',
+    //         'lastline'=>'Vermicomposting stysem',
+    
+    
+    
+    //     ];
+    
+    //     Notification::send($user, new EmailNotification($user));
+        
+    // }
+
+
 
 
     public function register(Request $request){
@@ -60,12 +81,13 @@ class AuthController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         
 // user information in response        
-
+        
         $response = [
             'user'=>$user,
             'token'=>$token
         ];
- 
+       
+        $user->notify(new EmailNotification($user));
          return redirect('/login');
        
 
@@ -183,4 +205,7 @@ class AuthController extends Controller
 //        $role->revokePermissionTo($permissions);
 //        return redirect('/management/roles/'.$id.'/edit');
 //    }
+
+
+
 }

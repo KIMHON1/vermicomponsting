@@ -1,113 +1,79 @@
 
  
 @extends('Dashboard.index')
-@content
-            <form action="/">
-                <div class="relative border-2 border-gray-100 m-4 rounded-lg">
-                    <div class="absolute top-4 left-3">
-                        <i
-                            class="fa fa-search text-gray-400 z-20 hover:text-gray-500"
-                        ></i>
-                    </div>
-                    <input
-                        type="text"
-                        name="search"
-                        class="h-14 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
-                        placeholder="Search Laravel Gigs..."
-                    />
-                    <div class="absolute top-2 right-2">
-                        <button
-                            type="submit"
-                            class="h-10 w-20 text-white rounded-lg bg-red-500 hover:bg-red-600"
-                        >
-                            Search
-                        </button>
-                    </div>
+@section('content')
+          
+             <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="page-titles">
+					<h4>Manage</h4>
+					<ol class="breadcrumb">
+						
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">User</a></li>
+					</ol>
                 </div>
-            </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0 table-responsive-lg text-black">
+                                        <thead>
+                                            <tr>
+                                             
+                                                <th class="align-middle">#</th>
+                                                <th class="align-middle pr-7">Name</th>
+                                                <th class="align-middle minw200">Email</th>
+                                                <th class="align-middle">Role</th>
+                                                <th class="align-middle text-right">Action</th>
+                                                <th class="no-sort"></th>
+                                            </tr>
+                                        </thead>
 
-            <div class="mx-4">
-                <div class="bg-gray-50 border border-gray-200 p-10 rounded">
-                    <header>
-                        <h1
-                            class="text-3xl text-center font-bold my-6 uppercase"
-                        >
-                            Manage Gigs
-                        </h1>
-                    </header>
 
-                    <table class="w-full table-auto rounded-sm">
-                        <tbody>
-                            <tr class="border-gray-300">
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <a href="show.html">
-                                        Laravel Senior Developer
-                                    </a>
-                                </td>
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <a
-                                        href="edit.html"
-                                        class="text-blue-400 px-6 py-2 rounded-xl"
-                                        ><i
-                                            class="fa-solid fa-pen-to-square"
-                                        ></i>
-                                        Edit</a
-                                    >
-                                </td>
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <form action="">
-                                        <button class="text-red-600">
-                                            <i
-                                                class="fa-solid fa-trash-can"
-                                            ></i>
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr class="border-gray-300">
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <a href="show.html">
-                                        Junior Developer Opening
-                                    </a>
-                                </td>
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <a
-                                        href="edit.html"
-                                        class="text-blue-400 px-6 py-2 rounded-xl"
-                                        ><i
-                                            class="fa-solid fa-pen-to-square"
-                                        ></i>
-                                        Edit</a
-                                    >
-                                </td>
-                                <td
-                                    class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-                                >
-                                    <form action="">
-                                        <button class="text-red-600">
-                                            <i
-                                                class="fa-solid fa-trash-can"
-                                            ></i>
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                        @foreach ($users as $user)
+                                        <tbody id="orders">
+                                           
+                                            <tr class="btn-reveal-trigger">
+                                                <td class="py-2">
+                                            
+                                                {{++$i}}
+                                                </td>
+                                                <td class="py-2">
+                                                    <a href="#">
+                                                    {{$user->name}}
+                                                <td class="py-2">{{$user->email}}</td>
+                                            
+                                                <td class="py-2">{{$user->getRoleNames()}}
+                                                    <p class="mb-0 text-500"></p>
+                                                </td>
+                                              
+                                               
+                                                <td class="py-2 text-right">
+                                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span></button>
+                                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
+                                                            <div class="py-2"><a class="dropdown-item" href="#!">View</a><a class="dropdown-item" href="/vermusers/{{$user->id}}/edit">Edit</a>
+                                                                <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="{{"/delete_vermuser/".$user->id}}">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
         
-@endcontent
+@endsection
