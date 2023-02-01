@@ -55,7 +55,7 @@
                         <div class="mt-8">
                             <p>
                                 Don't have an account?
-                                <a href="register.html" class="text-white"
+                                <a href="/register" class="text-white"
                                     >Register</a
                                     class="text-white"
                                 >

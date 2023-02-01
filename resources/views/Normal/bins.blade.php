@@ -1,8 +1,7 @@
+@extends('Dashboard.master')
 
-   @extends('Normal.navbar')
 
-
-   @section('content')
+@section('content')
 
    
    {{auth()->user()->username}}
@@ -36,7 +35,7 @@
              <a href={{"/bin/".$bin->id}}> <button class="btn btn-primary" >view</button>
               
              
-              <a href={{"/update_bin/".$bin->id}}> <button class="btn btn-success">update</button></a>
+              <a href="/bins/{{$bin->$id}}/edit"> <button class="btn btn-success">update</button></a>
 
               <a href={{"/delete/".$bin->id}}><button class="btn btn-danger">delete</button></a>
               <a href={{"/create_condition"}}><button class="btn" style="background: yellow; color:#fff">Add conditions</button></a>

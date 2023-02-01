@@ -46,33 +46,20 @@ class AuthController extends Controller
         // validating  body request
 
 
-        $fields = $request->validate([
+        $formFields = $request->validate([
          
-            'name'  => 'required|string',
-            'email'     => 'required|string|unique:users,email',
-            'password'  => 'required|string|confirmed'
+            'name'  => ['required','min:3'],
+            'email'     => 'required|unique:users,email',
+            'password'  => 'required|confirmed'
         ]);
 
 
 
 // this create user
+        $formFields['password']=bcrypt($formFields['password']);
 
-        $user = User::create([
+        $user = User::create($formFields);
 
-           
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password'])
-
-        ]);
-
-        if($user == User::first()){
-            $user->assignRole('Admin');
-
-        }
-        else{
-            $user->assignRole('vermiculturist');
-        }
         
         
         
@@ -174,12 +161,14 @@ class AuthController extends Controller
     //      auth()->user()->tokens()->delete();
 
     //     return [
-    //         'message' => 'Loged out'
+    //         'message' => 'Loged out' 
     //     ];
     // }
 
     public function logout(Request $request){
-        //Auth::logout();
+        // auth()->logout();
+ 
+       // Auth::logout();
         session_start();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

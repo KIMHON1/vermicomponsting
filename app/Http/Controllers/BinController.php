@@ -16,7 +16,8 @@ class BinController extends Controller
     public function index()
     {
         $bins = Bin::all();
-        return view('Normal.bins')->with('bins',$bins);
+  
+        return view('Normal.bins1',compact('bins'))->with('i');
     }
 
     /**
@@ -26,7 +27,7 @@ class BinController extends Controller
      */
     public function create()
     {
-        return view('Normal.create_bin');
+        return view('Normal.create_bin1');
     }
 
     /**
@@ -37,15 +38,16 @@ class BinController extends Controller
      */
     public function store(Request $request)
     {   
-        // $request->validate(
-        //      [
-        //         'number'=> 'required|unique:bins',
-        //         'microcontroller_type'=>'required',
-        //         'location' => 'required'
-        //      ]
-        //      );
+            $formfields=$request->validate(
+             [
+                 'number'=> 'required|unique:bins',
+            'microcontroller_type'=>'required',
+                 'location' => 'required'
+             ]
+              );
+            $formfields['user_id']=auth()->user()->id;
 
-        $bin = Bin::create($request->all());
+        $bin = Bin::create($formfields);
         // $bin->user_id = auth()->user()->id;
 
       return redirect('/bins');
@@ -68,10 +70,11 @@ class BinController extends Controller
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function update_bin()
+    public function edit(Bin $bin)
     {
         //
-        return view('Normal.update_bin');
+       
+        return view('Normal.edit_bin',['bin' => $bin]);
     }
 
     /**
@@ -84,10 +87,8 @@ class BinController extends Controller
     public function update(UpdateBinRequest $request, Bin $bin)
     {
         //
-        $bin=Bin::find($id);
-        $bin =$request->all();
-        $bin->update($input);
-        return view('Normal.update_bin')->with('bin',$bin);
+       $bin->create($request->all());
+        return view('/bins');
     }
 
     /**

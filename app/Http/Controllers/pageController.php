@@ -25,7 +25,7 @@ class pageController extends Controller
     public function dashbord()
     {
         
-        return view('Dashboard.index');
+        return view('Dashboard.master');
     }
 
 
