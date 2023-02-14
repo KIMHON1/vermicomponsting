@@ -14,13 +14,12 @@ class Bincondition extends Model
         "humidity",
         "acidity",
         "bin_id"
-
     ];
 
     public function bin(){
         return $this->belongsTo(Bin::class, 'Bin_id');
     }
-  
 
-  
+
+
 }

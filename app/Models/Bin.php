@@ -19,7 +19,7 @@ class Bin extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public function binconditions(){
-        
-        return $this->hasMany(Bincondition::class, 'binconditions_id');
+
+        return $this->hasOne(Bincondition::class, 'binconditions_id');
     }
 }

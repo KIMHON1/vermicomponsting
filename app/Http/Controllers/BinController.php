@@ -41,7 +41,7 @@ class BinController extends Controller
             $formfields=$request->validate(
              [
                  'number'=> 'required|unique:bins',
-            'microcontroller_type'=>'required',
+                'microcontroller_type'=>'required',
                  'location' => 'required'
              ]
               );

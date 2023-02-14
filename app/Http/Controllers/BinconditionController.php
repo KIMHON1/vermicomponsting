@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBinconditionRequest;
 use App\Http\Requests\UpdateBinconditionRequest;
 use App\Models\Bincondition;
+use App\Models\Bin;
+use Illuminate\Http\Request;
 
 class BinconditionController extends Controller
 {
@@ -25,10 +27,12 @@ class BinconditionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create_condition()
+    public function create(Request $request, Bin $bin)
     {
         //
-        return view('Normal.create_conditions');
+
+
+        return view('Normal.create_conditions')->with('bin',$bin);
     }
 
     /**
@@ -37,21 +41,22 @@ class BinconditionController extends Controller
      * @param  \App\Http\Requests\StoreBinconditionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_cond(StoreBinconditionRequest $request)
+    public function store(StoreBinconditionRequest $request, Bin $bin)
     {
-        //
-        // $request->validate(
-        //     [
-        //        'temperature'=> 'required',
-        //        'humidity'=>'required',
-        //        'acidity' => 'required',
-        //        'watercondition' => 'required'
-               
-        //     ]);
 
-        $bin_cond = Bincondition::create($request->all());
-        return redirect('/bins');
-        
+        $formFields=$request->validate(
+            [   'bin_id' => 'required',
+               'temperature'=> 'required',
+               'humidity'=>'required',
+               'acidity' => 'required',
+
+
+            ]);
+
+
+        $bin_condition = Bincondition::create($formFields);
+
+         return redirect('/bins');
     }
 
     /**

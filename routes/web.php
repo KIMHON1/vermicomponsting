@@ -79,7 +79,7 @@ Route::resource('roles', RoleController::class);
 Route::get('/dashboard',[pageController::class, 'dashbord']);
 
 Route::get('/adminbins',[pageController::class, 'adminbin']);
-        
+
 Route::get('/admsinglebin',[pageController::class, 'admsinglebin']);
 Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
@@ -91,15 +91,15 @@ Route::post('/changeRole',[UserController::class,'changeRole']);
 
 
 
-//bins 
+//bins
     Route::get('/create_bin',[BinController::class,'create']);
     Route::post('/create_bi',[BinController::class,'store']);
 
 
     Route::get('/bins/{bin}/edit',[BinController::class,'edit']);
     Route::put('/bins/{bin}',[BinController::class,'update']);
-    
-    
+
+
 
 
 
@@ -112,26 +112,35 @@ Route::post('/changeRole',[UserController::class,'changeRole']);
 //user
 
     Route::post('/create_vermuser',[UserController::class, 'store']);
- 
+
     Route::get('/users/{user}/edit',[UserController::class, 'edit']);
     Route::get('/users/{user}/update',[UserController::class, 'update']);
 
 
     Route::get('/delete_vermuser/{id}',[UserController::class, 'destroy']);
     Route::get('/logout',[UserController::class,'logout']);
-    
+
     Route::get('/vermuser/search/{name}',[UserController::class, 'search']);
     Route::get('/vermuser/{id}',[UserController::class, 'show']);
-    Route::get('/create_condition',[BinconditionController::class,'create_condition']);
-    Route::post('/create_cond',[BinconditionController::class,'store_cond']);
+
+
+
+    Route::get('/conditions/{bin}/create',[BinconditionController::class,'create']);
+
+
+
+    Route::post('/create_cond',[BinconditionController::class,'store']);
+
+
+
     Route::get('/vermusers',[UserController::class, 'index']);
     Route::get('/vermusers/{user}/edit',[UserController::class, 'edit']);
 
     Route::resource('/roles', RoleController::class);
 
 
-  
-  
+
+
 });
 
 

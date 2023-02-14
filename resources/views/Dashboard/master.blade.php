@@ -57,7 +57,7 @@
         <!--**********************************
             Nav header end
         ***********************************-->
-		
+
 		<!--**********************************
             Chat box start
         ***********************************-->
@@ -284,7 +284,7 @@
 								<div>
 									<h6 class="mb-1">Chat with Khelesh</h6>
 									<p class="mb-0 text-success">Online</p>
-								</div>							
+								</div>
 								<div class="dropdown">
 									<a href="javascript:void(0)" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -559,7 +559,7 @@
 		<!--**********************************
             Chat box End
         ***********************************-->
-		
+
 		<!--**********************************
             Header start
         ***********************************-->
@@ -780,7 +780,7 @@
 							<li><a href="#">Accounts</a></li>
 							<li><a href="#">UserReport</a></li>
 							<li><a href="#">UsersNotification</a></li>
-							
+
 						</ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -908,7 +908,7 @@
                         </ul>
                     </li>
                 </ul>
-				
+
 				<div class="copyright">
 				<p><strong>vermicomposting Admin Dashboard</strong> © 2023 All Rights Reserved</p>
 				</div>
@@ -917,7 +917,7 @@
         <!--**********************************
             Sidebar end
         ***********************************-->
-		
+
 		@yield('content')
 
         <!--**********************************
@@ -959,10 +959,10 @@
 	<script src="/dashboard_themes/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<!-- Chart piety plugin files -->
     <script src="/dashboard_themes/vendor/peity/jquery.peity.min.js"></script>
-	
+
 	<!-- Apex Chart -->
 	<script src="/dashboard_themes/vendor/apexchart/apexchart.js"></script>
-	
+
 	<!-- Dashboard 1 -->
 	<script src="/dashboard_themes/js/dashboard/dashboard-1.js"></script>
 	<script>
