@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\User;
 
-class EmailNotification extends Notification
+class Vermicomposting extends Notification
 {
     use Queueable;
     private $user;
@@ -42,8 +42,8 @@ class EmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi'.$this->user->name)
-                    ->line('You have created any acount in vermicomposting system contact vermicomposting styem manager in your location to validate your acount ')
+                    ->greeting('Hi    '.$this->user->name)
+                    ->line(' Welcome to Vermicomposting Sytem .You have created an acount in vermicomposting system Please Wait for Account Verification or contact vermicomposting styem manager in your location to validate your acount directly')
                     ->action('Explore', url('/'))
                     ->line('Thank you for using our application!');
     }

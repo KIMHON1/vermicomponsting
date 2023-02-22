@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades;
 use Notification;
-use App\Notifications\EmailNotification;
+use App\Notifications\Vermicomposting;
 
 
 use App\Http\Controllers\Controller;
@@ -263,7 +263,7 @@ return redirect('/vermusers')->with('success','user Created success full');
             'token'=>$token
         ];
 
-        $user->notify(new EmailNotification($user));
+        $user->notify(new Vermicomposting($user));
          return redirect('/login');
 
 
