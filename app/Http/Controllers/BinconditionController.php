@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBinconditionRequest;
 use App\Http\Requests\UpdateBinconditionRequest;
+use Illuminate\Http\Request;
 use App\Models\Bincondition;
 use App\Models\Bin;
 use Illuminate\Http\Request;
@@ -43,20 +44,19 @@ class BinconditionController extends Controller
      */
     public function store(StoreBinconditionRequest $request, Bin $bin)
     {
+        //
+        // $request->validate(
+        //     [
+        //        'temperature'=> 'required',
+        //        'humidity'=>'required',
+        //        'acidity' => 'required',
+        //        'watercondition' => 'required'
 
-        $formFields=$request->validate(
-            [   'bin_id' => 'required',
-               'temperature'=> 'required',
-               'humidity'=>'required',
-               'acidity' => 'required',
+        //     ]);
 
+        $bin_cond = Bincondition::create($request->all());
+        return redirect('/bins');
 
-            ]);
-
-
-        $bin_condition = Bincondition::create($formFields);
-
-         return redirect('/bins');
     }
 
     /**

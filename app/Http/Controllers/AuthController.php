@@ -28,13 +28,13 @@ class AuthController extends Controller
     //         'actiontext'=>'Account created siccess fully',
     //         'actionurl'=>'/regis',
     //         'lastline'=>'Vermicomposting stysem',
-    
-    
-    
+
+
+
     //     ];
-    
+
     //     Notification::send($user, new EmailNotification($user));
-        
+
     // }
 
 
@@ -47,7 +47,7 @@ class AuthController extends Controller
 
 
         $formFields = $request->validate([
-         
+
             'name'  => ['required','min:3'],
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed'
@@ -60,23 +60,23 @@ class AuthController extends Controller
 
         $user = User::create($formFields);
 
-        
-        
-        
+
+
+
        // $user->assignRole('Admin');
 // user taking key token
         $token = $user->createToken('myapptoken')->plainTextToken;
-        
-// user information in response        
-        
+
+// user information in response
+
         $response = [
             'user'=>$user,
             'token'=>$token
         ];
-       
+
         $user->notify(new EmailNotification($user));
          return redirect('/login');
-       
+
 
     }
 
@@ -92,30 +92,32 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)){
-            if(auth()->user()->hasRole('Admin')){
+
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        } else {
-            
+
+
                 return redirect()->intended('/dashboard');
-            
+
         }
-    
+
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+
+
     }
         // else if(Auth::attempt($credentials))
         //   {
         //    return redirect()->intended('/bins');
         //     }
-      else{
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    
-    }
-}
 
 
-    
+
+
+
+
+
     //public function login(Request $request){
 
 
@@ -123,7 +125,7 @@ class AuthController extends Controller
 
 
         // $fields = $request->validate([
-            
+
         //     'email'     => 'required|string|',
         //     'password'  => 'required|string|'
         // ]);
@@ -132,7 +134,7 @@ class AuthController extends Controller
 
 // check email
     //    $user = User::where('email', $fields['email'])->first();
-    
+
 
 //check password
 
@@ -141,14 +143,14 @@ class AuthController extends Controller
       //  }
 // user taking key token
      //   $token = $user->createToken('myapptoken')->plainTextToken;
-        
-// user information in response        
+
+// user information in response
 
     //     $response = [
     //         'user'=>$user,
     //         'token'=>$token
     //     ];
- 
+
     //     // return response($response, 201);
 
     //     return view('Auth.login');
@@ -161,13 +163,13 @@ class AuthController extends Controller
     //      auth()->user()->tokens()->delete();
 
     //     return [
-    //         'message' => 'Loged out' 
+    //         'message' => 'Loged out'
     //     ];
     // }
 
     public function logout(Request $request){
         // auth()->logout();
- 
+
        // Auth::logout();
         session_start();
         $request->session()->invalidate();
@@ -179,9 +181,9 @@ class AuthController extends Controller
 
    //change user role
 
-   public function changeRole(Request $request){
-    
-   }
+//    public function changeRole(Request $request){
+
+//    }
 //    public function revokePermission(Request $request,$id)
 //    {
 //        $input=$request->all();

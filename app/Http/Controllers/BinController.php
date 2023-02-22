@@ -16,7 +16,6 @@ class BinController extends Controller
     public function index()
     {
         $bins = Bin::all();
-  
         return view('Normal.bins1',compact('bins'))->with('i');
     }
 

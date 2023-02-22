@@ -7,6 +7,9 @@ use App\Http\Controllers\pageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BinconditionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,7 @@ use App\Http\Controllers\RoleController;
 
 
 Route::get('/',[pageController::class, 'index']);
+Route::get('/invalidateError',[pageController::class,'InvalidError']);
 
 
 
@@ -72,8 +76,8 @@ Route::get('/register',function(){
 Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
 
-Route::get('user/admin_create/',[UserController::class,'create_Admin_User']);
-Route::resource('roles', RoleController::class);
+
+
 
 
 Route::get('/dashboard',[pageController::class, 'dashbord']);
@@ -86,7 +90,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 // //assign roles
 // Route::get('/roles',[AdminController::class,'index']);
 // Route::patch('/manage/role/permissions/{id}',[UserController::class,'RevokePermission']);
-Route::post('/changeRole',[UserController::class,'changeRole']);
+//Route::post('/changeRole',[UserController::class,'changeRole']);
 
 
 
@@ -114,7 +118,7 @@ Route::post('/changeRole',[UserController::class,'changeRole']);
     Route::post('/create_vermuser',[UserController::class, 'store']);
 
     Route::get('/users/{user}/edit',[UserController::class, 'edit']);
-    Route::get('/users/{user}/update',[UserController::class, 'update']);
+    Route::put('/users/{user}/update',[UserController::class, 'update']);
 
 
     Route::get('/delete_vermuser/{id}',[UserController::class, 'destroy']);
@@ -135,8 +139,16 @@ Route::post('/changeRole',[UserController::class,'changeRole']);
 
     Route::get('/vermusers',[UserController::class, 'index']);
     Route::get('/vermusers/{user}/edit',[UserController::class, 'edit']);
+   Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status');
 
-    Route::resource('/roles', RoleController::class);
+    Route::get('/Profile/create', [ProfileController::class, 'create']);
+    Route::post('/Profile/store', [ProfileController::class, 'store']);
+    Route::resource('roles', RoleController::class);
+
+
+
+
+
 
 
 

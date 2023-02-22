@@ -1,6 +1,7 @@
 @extends('Dashboard.master')
 
 @section('content')
+<<<<<<< HEAD
 <div class="content-body">
     <div class="container-fluid">
         <div class="page-titles">
@@ -27,18 +28,73 @@
 
                             <div class="col-md-6">
                                 <input id="bin_id" type="hidden" class="form-control @error('bin_id') is-invalid @enderror" name="bin_id" value="{{$bin->id}}" required autocomplete="bin_id" autofocus>
+=======
 
-                                @error('temperature')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+
+
+ <div class="content-body">
+    <div class="container-fluid">
+    
+        <!-- row -->
+        <div class="row">
+           
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Create BinConditions</h4>
+                        @if(Session::get('success'))
+                        <div class="alert alert-seccess">
+                          {{Session::get('success')}}
+                          @php
+                              Session::forget('success')
+                          @endphp
+
+>>>>>>> b614455 (validating user accounts)
+
                         </div>
-                        <div class="row mb-3">
+                        @endif
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <form class="form-valide-with-icon" method="POST" action="{{url('/conditions/store')}}">
+                              @csrf
+                              
+                       
+                              </div>
+                              <div class="form-group">
+                                <label class="text-label">Temperature</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa-solid fa-temperature-half"></i><i class="fa-solid fa-temperature-half"></i> </span>
+                                    </div>
+                                    <input type="number" class="form-control" id="val-username1" name="temperature" placeholder="Enter temperature..">
+                                   
+                                </div>
+                                @if($errors->has('temperature'))
+                                <span class="text-danger">
+                                  {{$errors->first('temperature')}}
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                              <label class="text-label">Humidity</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">  </span>
+                                  </div>
+                                  <input type="text" class="form-control" id="val-username1" name="humidity" placeholder="Enter Hummidity">
+                                 
+                              </div>
+                              @if($errors->has('humidity'))
+                              <span class="text-danger">
+                                {{$errors->first('humidity')}}
+                              </span>
+                              @endif
+                          </div>
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -53,22 +109,33 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+=======
+                          <div class="form-group">
+                            <label class="text-label">Acidity *</label>
+                            <div class="input-group transparent-append">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> 
+                                </div>
+                                <input type="text" class="form-control" id="val-password1" name="acidity" placeholder="Enter acidity..">
+                                
+                              
+                                @if($errors->has('acidity'))
+                                <span class="text-danger">
+                                  {{$errors->first('acidity')}}
+                                </span>
+                                @endif
+>>>>>>> b614455 (validating user accounts)
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="humidity" class="col-md-4 col-form-label text-md-end">{{ __('Humidity') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="humidity" type="text" class="form-control @error('humidity') is-invalid @enderror" name="humidity" value="{{ old('humidity') }}" required autocomplete="humidity">
 
-                                @error('humidity')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+
+                      <button type="submit" class="btn mr-2 btn-primary">Submit</button>
+                               
+                            </form>
                         </div>
+<<<<<<< HEAD
 
                         <div class="row mb-3">
                             <label for="acidity" class="col-md-4 col-form-label text-md-end">{{ __('Acidity-PH') }}</label>
@@ -96,6 +163,9 @@
                         </div>
                     </form>
                     {{-- @endif --}}
+=======
+                    </div>
+>>>>>>> b614455 (validating user accounts)
                 </div>
             </div>
         </div>

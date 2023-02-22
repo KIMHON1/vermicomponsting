@@ -774,10 +774,12 @@
 							<span class="nav-text">Manage Users</span>
 						</a>
                         <ul aria-expanded="false">
-						<li><a href="/vermusers">Manage Users</a></li>
+							<li><a href="/users/create/">Create User</a></li>
+							<li><a href="/vermusers">System Users</a></li>
+							<li><a href="{{ route('roles.create') }}">create Role</a></li>
 							<li><a href="/roles">Roles</a></li>
-							<li><a href="/roles/Permiss">Permissions</a></li>
-							<li><a href="#">Accounts</a></li>
+					
+							<li><a href="/Profile/create">Accounts</a></li>
 							<li><a href="#">UserReport</a></li>
 							<li><a href="#">UsersNotification</a></li>
 
@@ -788,24 +790,24 @@
 							<span class="nav-text">Manage Bins</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="/bins">Bins</a></li>
+                         
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"> Bin</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="/create_bin">Create_bins</a></li>
-                                    <li><a href="email-inbox.html">Inbox</a></li>
+                                    <li><a href="/create_bin">Create_Bin</a></li>
+									<li><a href="/bins">Bins</a></li>
                                     <li><a href="email-read.html">Read</a></li>
                                 </ul>
                             </li>
-                            <li><a href="app-calender.html">Calendar</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
+                           
+							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">BinCondition</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="ecom-product-grid.html">Product Grid</a></li>
-									<li><a href="ecom-product-list.html">Product List</a></li>
+                                    <li><a href="/conditions/create">CreateCondition</a></li>
+									{{-- <li><a href="ecom-product-list.html">Product List</a></li>
 									<li><a href="ecom-product-detail.html">Product Details</a></li>
 									<li><a href="ecom-product-order.html">Order</a></li>
 									<li><a href="ecom-checkout.html">Checkout</a></li>
 									<li><a href="ecom-invoice.html">Invoice</a></li>
-									<li><a href="ecom-customers.html">Customers</a></li>
+									<li><a href="ecom-customers.html">Customers</a></li> --}}
                                 </ul>
                             </li>
                         </ul>
@@ -923,11 +925,11 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer fixed-bottom">
+        {{-- <div class="footer fixed-bottom">
             <div class="copyright">
 			<p>Copyright © All right Reserved 2023</p>
             </div>
-        </div>
+        </div> --}}
         <!--**********************************
             Footer end
         ***********************************-->

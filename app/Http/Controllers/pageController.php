@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bin;
+use App\Models\User;
+
 class pageController extends Controller
 {
     /**
@@ -24,7 +26,7 @@ class pageController extends Controller
 //dashboard page
     public function dashbord()
     {
-        
+
         return view('Dashboard.master');
     }
 
@@ -37,14 +39,14 @@ class pageController extends Controller
      * @return \Illuminate\Http\Response
      */
 //return bins in admin dashboard
-    public function adminbin()
-    {   
-        $bins = Bin::all();
-        return view('Dashboard.adminBins')->with('bins',$bins);
+    public function InvalidError(Request $request, User $user)
+    {
+
+        return view('Dashboard.erro403')->with('user',$user);
     }
 // return single bin in admin dashboard
     public function admsinglebin( $id)
-    {   
+    {
         $bins = Bin::all();
         $bin = Bin::find($id);
         return view('Dashboard.adminsingleBin')->with('bins',$bins);
@@ -57,7 +59,7 @@ class pageController extends Controller
         return view('Normal.singleBin')->with('bin',$bin);
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *

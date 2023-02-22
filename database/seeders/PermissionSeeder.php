@@ -56,8 +56,8 @@ $permissions =[
     //crud for roles
     'view-roles',
     'create-roles',
-    'delete-roles',
     'update-roles',
+    'delete-roles',
 
 
 
@@ -66,7 +66,7 @@ $permissions =[
 ]
 
 ;
-       
+
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
@@ -93,7 +93,7 @@ $permissions =[
 
 // $adminRole->givePermissionTo([
 
-// users 
+// users
     // 'create-users',
     // 'edit-users',
     // 'delete-users',
@@ -119,11 +119,11 @@ $permissions =[
 
 
 //worm types permisions
-    
+
 //     'create-worm_types',
 //     'edit-worm_types',
 //     'delete-worm_types',
-  
+
 // ]);
 
 
@@ -153,11 +153,11 @@ $permissions =[
 
 
 //worm types permisions
-    
+
 //     'create-worm_types',
 //     'edit-worm_types',
 //     'delete-worm_types',
-  
-    
+
+
 // ]);
 

@@ -32,21 +32,27 @@ class UserController extends Controller
     public function index()
     {
         //
-        //return User::all();  
+        //return User::all();
         $users =User::all();
         $count = collect($users)->count();
-      
+
         return view('Dashboard.users1',compact('users'))->with('i');
     }
 
 
-
-
-    public function create_Admin_User(){
-
-        return view('Dashboard.Adimn_create_User');
+    public function create_Admin_User(Request $request, User $user){
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('Dashboard.Adimn_create_User',['roles'=>$roles,'userRole'=>$userRole]);
 
     }
+
+    // public function create_Admin_User(Request $request, User $user ){
+    //     $roles = Role::pluck('name','name')->all();
+    //     $userRole = $user->roles->pluck('name','name')->all();
+    //     return view('Dashboard.Adimn_create_User',['roles'=>$roles,'userRole'=>$userRole]);
+
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,10 +72,54 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
-        $user=User::create($request->all());
-        return view('Auth.login');
+        $request->validate([
+
+            'name'  => ['required','min:3'],
+            'email'     => 'required|unique:users,email',
+            'password'  => 'required|confirmed',
+            'Role' => 'nullable'
+        ],
+    [
+        'name.required'=>'Name is required',
+        'email.required'=>'email is required',
+        'password.required'=>'password is required',
+
+    ]
+);
+
+
+
+// this create user
+        $input = $request->all();
+
+        $input['password']=bcrypt($input['password']);
+
+        $user = User::create($input);
+
+        $user->assignRole($request->input('roles'));
+
+
+
+
+
+       // $user->assignRole('Admin');
+// user taking key token
+        // $token = $user->createToken('myapptoken')->plainTextToken;
+
+// user information in response
+
+        // $response = [
+        //     'user'=>$user,
+        //     'token'=>$token
+        // ];
+return redirect('/vermusers')->with('success','user Created success full');
+
+
+
+
+        // $user=User::create($request->all());
+        // return view('Auth.login');
     }
 
     /**
@@ -91,7 +141,7 @@ class UserController extends Controller
         //
 
         $user= User::find($id);
-        
+
 
     }
 
@@ -119,25 +169,27 @@ class UserController extends Controller
     {
         //
 
-       
+
         $formFields = $request->validate([
-         
+
             'name'  => ['required','min:3'],
-            'email'     => 'required,email',
+            'email'     => 'required',
             'password'  => 'required|confirmed',
-            'Role' => 'nullable'
+            'Roles' => 'required'
         ]);
-        $formFields['password']=bcrypt($formFields['password']);
+//$formFields['password']=bcrypt($formFields['password']);
+
+        $user = User::find($id);
         $user = $user->create($formFields);
 
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
 
-       
 
-        return redirect();
-    
+
+        return redirect('/vermusers');
+
 
     }
 
@@ -164,7 +216,7 @@ class UserController extends Controller
     public function search($name)
     {
         //
-        
+
     return User::where('name','like','%'.$name.'%')->get();
     }
 
@@ -181,7 +233,7 @@ class UserController extends Controller
 
 
         $formFields = $request->validate([
-         
+
             'name'  => ['required','min:3'],
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed',
@@ -195,30 +247,27 @@ class UserController extends Controller
 
         $user = User::create($formFields);
         $user->assignRole($request->input('roles'));
-    
 
-        
-        
-        
+
+
+
+
        // $user->assignRole('Admin');
 // user taking key token
         $token = $user->createToken('myapptoken')->plainTextToken;
-        
-// user information in response        
-        
+
+// user information in response
+
         $response = [
             'user'=>$user,
             'token'=>$token
         ];
-       
+
         $user->notify(new EmailNotification($user));
          return redirect('/login');
-       
+
 
     }
-
-
-
 
 
 
@@ -229,27 +278,51 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)){
-            if(auth()->user()->hasRole('Admin')){
+
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        } else {
-            
+
+
                 return redirect()->intended('/dashboard');
-            
+
         }
-    
+
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+
+
     }
+
+
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //     ]);
+    //     if (Auth::attempt($credentials)){
+    //         if(auth()->user()->hasRole('Admin')){
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/dashboard');
+    //     } else {
+
+    //             return redirect()->intended('/dashboard');
+
+    //     }
+
+    // }
         // else if(Auth::attempt($credentials))
         //   {
         //    return redirect()->intended('/bins');
         //     }
-      else{
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    
-    }
-}
+//       else{
+//         return back()->withErrors([
+//             'email' => 'The provided credentials do not match our records.',
+//         ])->onlyInput('email');
+
+//     }
+// }
 
 public function logout(Request $request){
     // auth()->logout();
@@ -264,4 +337,22 @@ public function logout(Request $request){
 }
 
 
+
+
+public function updateStatus($user_id,$status_code){
+    try{
+        $update_user = User::whereId($user_id)->update(['status'=>$status_code]);
+
+        if($update_user){
+            return redirect('/vermusers')->with('success','User Updated success full');
+        }
+
+        return redirect('/vermusers')->with('error','failed to  Updated the status');
+
+    }
+     catch(\Throwable $th){
+         throw $th;
+     }
+
+}
 }

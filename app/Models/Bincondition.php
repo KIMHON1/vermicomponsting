@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bincondition extends Model
 {
     use HasFactory;
+    protected $table = 'binconditions';
 
     protected $fillable=[
         "temperature",
@@ -17,7 +18,7 @@ class Bincondition extends Model
     ];
 
     public function bin(){
-        return $this->belongsTo(Bin::class, 'Bin_id');
+        return $this->belongsTo(Bin::class, 'bin_id');
     }
 
 

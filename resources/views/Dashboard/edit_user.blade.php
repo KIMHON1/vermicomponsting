@@ -3,16 +3,16 @@
 
 
   @section('content')
-  
+
           <!--**********************************
               Content body start
           ***********************************-->
           <div class="content-body">
             <div class="container-fluid">
-            
+
                 <!-- row -->
                 <div class="row">
-                   
+
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
@@ -20,9 +20,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form class="form-valide-with-icon" method="POST" action="'/users/{{$user->id}}'">
+                 <form class="form-valide-with-icon" method="POST" action="/users/{{$user->id}}/update">
                                       @csrf
-                                      @method('PUT')  
+                                      @method('PUT')
                                       </div>
                                       <div class="form-group">
                                         <label class="text-label">Name</label>
@@ -30,7 +30,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                             </div>
-                                            <input type="text" class="form-control" id="val-username1" name="val-username" value="{{$user->name}}">
+                                            <input type="text" class="form-control" id="val-username1" name="name" value="{{$user->name}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -47,20 +47,20 @@
                                     <strong>Role:</strong>
                                     {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
                                 </div>
-  
-  
-  
-                        
-  
-  
-  
-                       
-  
-  
-                              
-                         
+
+
+
+
+
+
+
+
+
+
+
+
                               <button type="submit" class="btn mr-2 btn-primary">Submit</button>
-                                       
+
                                     </form>
                                 </div>
                             </div>

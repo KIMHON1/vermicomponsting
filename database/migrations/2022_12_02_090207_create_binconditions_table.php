@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+
+
+        if(!Schema::hasTable('binconditions')){
         Schema::create('binconditions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("bin_id");
+            $table->unsignedinteger('bin_id');
             $table->integer("temperature");
             $table->string("humidity");
             $table->string("acidity");
             $table->timestamps();
-            $table->foreign("bin_id")->references('id')->on("bins")->onDelete("cascade");
-        });
+            $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
+        });}
     }
 
     /**

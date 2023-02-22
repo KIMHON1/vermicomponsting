@@ -45,8 +45,8 @@ class User extends Authenticatable
     ];
 
 
-    public function bin(){
-        
-        return $this->hasMany(Bin::class, 'Bin_id');
-    }
+    // public function bin(){
+
+    //     return $this->hasMany(Bin::class, 'Bin_id');
+    // }
 }
