@@ -134,10 +134,29 @@
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
                                             <input type="email" name="email" class="form-control">
+
+                                            @if ($errors->has('email'))
+
+                                            <span class="text-danger">
+
+
+                                            {{$errors->first('email')}}
+                                            </span>
+
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
                                             <input type="password" name="password" class="form-control">
+                                            @if ($errors->has('password'))
+
+                                            <span class="text-danger">
+
+
+                                            {{$errors->first('password')}}
+                                            </span>
+
+                                            @endif
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
