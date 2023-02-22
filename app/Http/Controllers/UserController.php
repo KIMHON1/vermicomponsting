@@ -165,30 +165,28 @@ return redirect('/vermusers')->with('success','user Created success full');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user )
+    public function update(Request $request, $id)
     {
         //
 
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
 
-        $formFields = $request->validate([
-
-            'name'  => ['required','min:3'],
-            'email'     => 'required',
-            'password'  => 'required|confirmed',
-            'Roles' => 'required'
+            'roles' => 'required'
         ]);
 //$formFields['password']=bcrypt($formFields['password']);
-
+        $input = $request->all();
         $user = User::find($id);
-        $user = $user->create($formFields);
+        $user->update($input);
 
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
 
+        return redirect('/vermusers')->with('success','User updated successfully');
 
 
-        return redirect('/vermusers');
 
 
     }
@@ -237,7 +235,7 @@ return redirect('/vermusers')->with('success','user Created success full');
             'name'  => ['required','min:3'],
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed',
-            'Role' => 'nullable'
+
         ]);
 
 
