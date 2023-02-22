@@ -114,6 +114,8 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 //user
+    Route::get('users/create/',[UserController::class,'create_Admin_User']);
+    Route::post('/users/store',[UserController::class, 'store']);
 
     Route::post('/create_vermuser',[UserController::class, 'store']);
 
@@ -144,6 +146,8 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
     Route::resource('roles', RoleController::class);
+
+
 
 
 
