@@ -117,6 +117,17 @@
 										<p>verlmicomposting</p>
 									</div>
                                     <h4 class="text-center mb-4 text-white">Sign in your account</h4>
+                                    @if (Session::get('success'))
+
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}}
+
+                                        @php
+                                            Session::forget('success')
+                                        @endphp
+                                    </div>
+
+                                    @endif
                                     <form method="POST" action="{{url('/log')}}">
 
                                         @csrf

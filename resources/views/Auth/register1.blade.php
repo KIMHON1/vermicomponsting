@@ -131,6 +131,17 @@
 										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
 									</div>
                                     <h4 class="text-center mb-4 text-white">Sign Up to Vermicomposting System</h4>
+                                    @if (Session::get('success'))
+
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}}
+
+                                        @php
+                                            Session::forget('success')
+                                        @endphp
+                                    </div>
+
+                                    @endif
                                     <form method="POST" action="{{url('/regis')}}">
 
                                     @csrf
@@ -139,14 +150,44 @@
                                             <label class="mb-1 text-white"><strong>Username</strong></label>
 
                                             <input type="text" class="form-control" name="name" placeholder="username">
+
+                                            @if ($errors->has('name'))
+
+                                            <span class="text-danger">
+
+
+                                            {{$errors->first('name')}}
+                                            </span>
+
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Email</strong></label>
                                             <input type="email" class="form-control" name="email" placeholder="hello@example.com">
+
+                                            @if ($errors->has('email'))
+
+                                            <span class="text-danger">
+
+
+                                            {{$errors->first('email')}}
+                                            </span>
+
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password*</strong></label>
                                             <input type="password" name="password" class="form-control" >
+
+                                            @if ($errors->has('password'))
+
+                                            <span class="text-danger">
+
+
+                                            {{$errors->first('password')}}
+                                            </span>
+
+                                            @endif
                                         </div>
 
 
@@ -154,6 +195,7 @@
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>confirm YourPassword*</strong></label>
                                             <input type="password" name="password_confirmation" class="form-control" >
+                                            
                                         </div>
                                         <div class="text-center mt-4">
                                             <button type="submit" class="btn bg-white text-primary btn-block">Sign me up</button>
