@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from welly.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Dec 2020 16:38:13 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -778,19 +778,51 @@
 							<li><a href="/vermusers">System Users</a></li>
 							<li><a href="{{ route('roles.create') }}">create Role</a></li>
 							<li><a href="/roles">Roles</a></li>
-					
-							<li><a href="/Profile/create">Accounts</a></li>
+
+
 							<li><a href="#">UserReport</a></li>
 							<li><a href="#">UsersNotification</a></li>
 
 						</ul>
                     </li>
+
+
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+
+                        <i class="fa fa-user"></i>
+                        <span class="nav-text">Account</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/Profile/show">Profile</a></li>
+                        <li><a href="/Profile/create">CreateProfile</a></li>
+
+                        <li><a href="ui-badge.html">Badge</a></li>
+                        <li><a href="ui-button.html">Button</a></li>
+                        <li><a href="ui-modal.html">Modal</a></li>
+                        <li><a href="ui-button-group.html">Button Group</a></li>
+                        <li><a href="ui-list-group.html">List Group</a></li>
+                        <li><a href="ui-media-object.html">Media Object</a></li>
+                        <li><a href="ui-card.html">Cards</a></li>
+                        <li><a href="ui-carousel.html">Carousel</a></li>
+                        <li><a href="ui-dropdown.html">Dropdown</a></li>
+                        <li><a href="ui-popover.html">Popover</a></li>
+                        <li><a href="ui-progressbar.html">Progressbar</a></li>
+                        <li><a href="ui-tab.html">Tab</a></li>
+                        <li><a href="ui-typography.html">Typography</a></li>
+                        <li><a href="ui-pagination.html">Pagination</a></li>
+                        <li><a href="ui-grid.html">Grid</a></li>
+
+                    </ul>
+                </li>
+
+
+
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-television"></i>
 							<span class="nav-text">Manage Bins</span>
 						</a>
                         <ul aria-expanded="false">
-                         
+
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"> Bin</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/create_bin">Create_Bin</a></li>
@@ -798,7 +830,7 @@
                                     <li><a href="email-read.html">Read</a></li>
                                 </ul>
                             </li>
-                           
+
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">BinCondition</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/conditions/create">CreateCondition</a></li>
@@ -825,8 +857,17 @@
                             <li><a href="chart-peity.html">Peity</a></li>
                         </ul>
                     </li>
+
+
+
+
+
+
+
+
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-internet"></i>
+
 							<span class="nav-text">Bootstrap</span>
 						</a>
                         <ul aria-expanded="false">
@@ -976,5 +1017,4 @@
 	</script>
 </body>
 
-<!-- Mirrored from welly.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Dec 2020 16:38:41 GMT -->
 </html>

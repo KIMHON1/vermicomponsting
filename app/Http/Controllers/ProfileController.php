@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -24,7 +27,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.User_profile');
+        return view('Dashboard.profile.create');
     }
 
     /**
@@ -37,7 +40,7 @@ class ProfileController extends Controller
     {
 
 
-       //dd($request->all());
+       //dd(auth()->user()->id);
         $formFields = $request->validate([
             'firstName'=>'required',
             'secondName'=>'required',
@@ -54,6 +57,9 @@ class ProfileController extends Controller
             $formFields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
         }
 
+
+        $formFields['user_id']=auth()->user()->id;
+
         Profile::create($formFields);
         return redirect('/vermusers');
 
@@ -66,9 +72,9 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Profile $profile, User $user)
     {
-        //
+        return view('Dashboard.profile.show',['profile'=>$profile,'user'=>$user]);
     }
 
     /**

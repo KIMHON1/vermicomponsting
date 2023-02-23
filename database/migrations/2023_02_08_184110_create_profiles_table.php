@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("user_id");
             $table->string('firstName');
             $table->string('secondName');
             $table->string('profilePic')->nullable();
             $table->integer('phoneNumber');
             $table->string('gender');
             $table->string('Description');
+            $table->foreign("user_id")->references('id')->on("users")->onDelete("cascade");
             $table->timestamps();
         });
     }

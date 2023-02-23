@@ -19,6 +19,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     public $guard_name = 'web';
+
     protected $fillable = [
         'name',
         'email',
@@ -45,8 +48,19 @@ class User extends Authenticatable
     ];
 
 
-    // public function bin(){
+     public function bin(){
 
-    //     return $this->hasMany(Bin::class, 'Bin_id');
-    // }
+        return $this->hasMany(Bin::class, 'Bin_id');
+ }
+
+
+ /**
+  * Get the profile associated with the User
+  *
+  * @return \Illuminate\Database\Eloquent\Relations\HasOne
+  */
+ public function profile(): HasOne
+ {
+     return $this->hasOne(Profile::class, 'user_id', 'local_key');
+ }
 }

@@ -11,6 +11,16 @@ class Profile extends Model
 
 
 protected $fillable = [
-    'firstName','secondName', 'phoneNumber','gender', 'Description'
+    'firstName','secondName', 'phoneNumber','gender', 'Description','user_id'
 ];
+
+/**
+ * Get the user that owns the Profile
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+public function user(): BelongsTo
+{
+    return $this->belongsTo(User::class, 'user_id', 'id');
+}
 }

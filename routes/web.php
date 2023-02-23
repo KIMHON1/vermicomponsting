@@ -145,6 +145,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
+    Route::get('/Profile/show/{user}', [ProfileController::class, 'show']);
 
 
 
