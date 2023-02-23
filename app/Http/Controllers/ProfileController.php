@@ -35,21 +35,29 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+
+
+       //dd($request->all());
         $formFields = $request->validate([
             'firstName'=>'required',
             'secondName'=>'required',
-      
-            'email'=>'required',
+
+
             'phoneNumber'=>'required',
             'gender'=>'required',
-            
+
             'Description'=>'required'
 
         ]);
+
+        if($request->hasFile('profilePic')){
+            $formFields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
+        }
+
         Profile::create($formFields);
         return redirect('/vermusers');
 
-        
+
     }
 
     /**

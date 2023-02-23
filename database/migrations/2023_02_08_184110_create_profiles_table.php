@@ -18,10 +18,8 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('secondName');
             $table->string('profilePic')->nullable();
-            $table->string('email');
             $table->integer('phoneNumber');
             $table->string('gender');
-            $table->string('Role')->nullable();
             $table->string('Description');
             $table->timestamps();
         });

@@ -145,7 +145,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
-    Route::resource('roles', RoleController::class);
+
 
 
 
@@ -160,3 +160,8 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 });
 
 
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+
+});
