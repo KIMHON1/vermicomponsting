@@ -24,10 +24,10 @@ class pageController extends Controller
 
 
 //dashboard page
-    public function dashbord()
+    public function dashbord(User $user)
     {
 
-        return view('Dashboard.master');
+        return view('Dashboard.master',['user'=>$user]);
     }
 
 

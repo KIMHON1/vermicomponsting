@@ -793,7 +793,8 @@
                         <span class="nav-text">Account</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/Profile/show">Profile</a></li>
+                        {{-- <li><a href="/Profile/show/{{$user->id}}">Profile</a></li> --}}
+                        <li><a href="/Profile/show/{{$user->id}}">Profile</a></li>
                         <li><a href="/Profile/create">CreateProfile</a></li>
 
                         <li><a href="ui-badge.html">Badge</a></li>
