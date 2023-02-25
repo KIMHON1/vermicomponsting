@@ -42,7 +42,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="/dashboard" class="brand-logo">
                 <img class="logo-abbr" src="/images/logo.png" alt="">
                 <img class="logo-compact" src="/images/logo-text.png" alt="">
                 <img class="brand-title" src="/images/logo-text.png" alt="">
@@ -794,7 +794,7 @@
                     </a>
                     <ul aria-expanded="false">
                         {{-- <li><a href="/Profile/show/{{$user->id}}">Profile</a></li> --}}
-                        <li><a href="/Profile/show/{{$user->id}}">Profile</a></li>
+                        {{-- <li><a href="/Profile/show/{{$user->id}}">Profile</a></li> --}}
                         <li><a href="/Profile/create">CreateProfile</a></li>
 
                         <li><a href="ui-badge.html">Badge</a></li>

@@ -1,4 +1,8 @@
-<!--**********************************
+@extends('Dashboard.master')
+
+@section('content')
+
+		<!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
@@ -7,9 +11,9 @@
 				<div class="form-head d-flex align-items-center mb-sm-4 mb-3">
 					<div class="mr-auto">
 						<h2 class="text-black font-w600">Dashboard</h2>
-						<p class="mb-0">Hospital Admin Dashboard Template</p>
+						<p class="mb-0">Vermicomposting Admin Dashboard</p>
 					</div>
-					<a href="javascript:void(0)" class="btn btn-outline-primary"><i class="las la-cog scale5 mr-3"></i>Customize Layout</a>
+					
 				</div>
 				<div class="row">
 					<div class="col-xl-3 col-sm-6">
@@ -106,7 +110,7 @@
 				<div class="row">
 					<div class="col-xl-6">
 						<div class="row">
-							<div class="col-xl-12">	
+							<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header d-sm-flex d-block pb-0 border-0">
 										<div class="mr-auto pr-3">
@@ -300,7 +304,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-xxl-12 col-md-6">	
+							<div class="col-xl-6 col-xxl-12 col-md-6">
 								<div class="card">
 									<div class="card-header d-block border-0 pb-0">
 										<div class="d-flex mb-3">
@@ -345,7 +349,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-xxl-12 col-md-6">	
+							<div class="col-xl-6 col-xxl-12 col-md-6">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
 										<h3 class="fs-20 text-black mb-0">Visitors</h3>
@@ -384,7 +388,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-12">	
+							<div class="col-xl-12">
 								<div class="card rated-doctors">
 									<div class="card-header border-0 pb-0">
 										<h3 class="fs-20 text-black mb-0 mr-auto">Top Rated Doctors</h3>
@@ -518,7 +522,7 @@
 					</div>
 					<div class="col-xl-6">
 						<div class="row">
-							<div class="col-xl-12">	
+							<div class="col-xl-12">
 								<div class="card appointment-schedule">
 									<div class="card-header pb-0 border-0">
 										<h3 class="fs-20 text-black mb-0">Appointment Schedule</h3>
@@ -609,7 +613,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-12">	
+							<div class="col-xl-12">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
 										<h3 class="fs-20 text-black mb-0 mr-2">Revenue Summary</h3>
@@ -629,7 +633,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-12">	
+							<div class="col-xl-12">
 								<div class="card patient-activity">
 									<div class="card-header border-0 pb-0">
 										<h3 class="fs-20 text-black mb-0">Recent Patient Activity</h3>
@@ -884,3 +888,5 @@
         <!--**********************************
             Content body end
         ***********************************-->
+
+@endsection

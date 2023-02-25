@@ -27,7 +27,7 @@ class pageController extends Controller
     public function dashbord(User $user)
     {
 
-        return view('Dashboard.master',['user'=>$user]);
+        return view('Dashboard.adminlanding',['user'=>$user]);
     }
 
 
