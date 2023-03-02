@@ -52,36 +52,41 @@
         <div class="container" data-aos="fade-up">
 
           <div class="section-header">
-            <h2>About Us</h2>
-            <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat sunt id nobis omnis tiledo stran delop</p>
+            <h2>About Vermicomposting</h2>
+            <p>Vermicomposting is a natural process whereby earthworms convert waste material with rigid structures into compost. </p>
           </div>
 
           <div class="row gy-4">
             <div class="col-lg-6">
-              <h3>Voluptatem dignissimos provident quasi corporis</h3>
-              <img src="images/main.jpeg" class="img-fluid rounded-4 mb-4" alt="">
-              <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-              <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque deleniti repellendus.</p>
+              <h3>Why vermicompost?</h3>
+              <img src="images/main.jpeg" class="img-fluid rounded-4 mb-4" alt="vermicomposting worms">
+              <p>Vermicompost is the product of earthworm digestion and aerobic decomposition using the activities of micro- and macroorganisms at room temperature. Vermicomposting, or worm composting, produces a rich organic soil amendment containing a diversity of plant nutrients and beneficial microorganisms.
+
+                There are several benefits for vermicomposting but the two most popular are (1) diverting organic residuals from the landfill and reducing trash collection fees and (2) creating resources from waste materials.
+
+                </p>
+              <p>Vermicomposting can be a fun activity for school children, and vermicompost can be utilized in gardens to promote plant growth. Vermicompost can be mixed with potting media at a rate of 10% by volume or else added directly into your soil; both options will provide plants with valuable organic matter, nutrients, and a diversity of beneficial microbes.</p>
             </div>
             <div class="col-lg-6">
               <div class="content ps-0 ps-lg-5">
                 <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                    Vermicomposting Conditions
+
                 </p>
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  <li><i class="bi bi-check-circle-fill"></i> The moisture content must be maintained between 30-40%.</li>
+                  <li><i class="bi bi-check-circle-fill"></i> For better results, the growth or multiplication of worms takes place between 20-30 °C.</li>
+                  <li><i class="bi bi-check-circle-fill"></i> pH of the substrate would be between 6.8-7.5.</li>
                 </ul>
                 <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                    The shape or size of the containers depends upon the amount of waste to be composted and the number of earthworms which we want to culture
+
+                    In 1m × 1m × 0.5 m high container 2000 adult earthworms can be maintained which can convert 200 kg wastes into composting material per month. In 2.23 sq. metre con­tainer 10 kg earthworms can be maintained which can convert about 1 ton waste per month. The selected container should be cleaned before use.
                 </p>
 
                 <div class="position-relative mt-4">
-                  <img src="images/main.jpeg" class="img-fluid rounded-4" alt="">
-                 
+                  <img src="images/Vermi.jpg" class="img-fluid rounded-4" alt="vermicomposting box">
+
                 </div>
               </div>
             </div>

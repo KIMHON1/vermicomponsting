@@ -114,7 +114,7 @@
 								<div class="card">
 									<div class="card-header d-sm-flex d-block pb-0 border-0">
 										<div class="mr-auto pr-3">
-											<h4 class="text-black fs-20 mb-0">Patient Percentage</h4>
+											<h4 class="text-black fs-20 mb-0">BinConditions Percentage</h4>
 										</div>
 										<div class="card-action card-tabs mt-3 mt-sm-0 mt-3 mb-sm-0 mb-3 mt-sm-0">
 											<ul class="nav nav-tabs" role="tablist">
