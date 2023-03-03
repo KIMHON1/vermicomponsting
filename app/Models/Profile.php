@@ -11,7 +11,7 @@ class Profile extends Model
 
 
 protected $fillable = [
-    'firstName','secondName', 'phoneNumber','gender', 'Description','user_id'
+    'firstName','secondName', 'profilePic','phoneNumber','gender', 'Description','user_id'
 ];
 
 /**
@@ -21,6 +21,6 @@ protected $fillable = [
  */
 public function user(): BelongsTo
 {
-    return $this->belongsTo(User::class, 'user_id', 'id');
+    return $this->belongsTo(User::class, 'user_id');
 }
 }

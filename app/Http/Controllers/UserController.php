@@ -35,6 +35,7 @@ class UserController extends Controller
         //return User::all();
         $users =User::all();
         $count = collect($users)->count();
+    
 
         return view('Dashboard.users1',compact('users'))->with('i');
     }

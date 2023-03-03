@@ -26,8 +26,16 @@ class pageController extends Controller
 //dashboard page
     public function dashbord(User $user)
     {
+        $users =User::all();
+        $count = collect($users)->count();
+        $bins =Bin::all();
+        $bins_number = collect($bins)->count();
 
-        return view('Dashboard.adminlanding',['user'=>$user]);
+        $inactive_accounts = User::where('status',0)->count();
+        $active_accounts = User::where('status',1)->count();
+
+
+        return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts]);
     }
 
 

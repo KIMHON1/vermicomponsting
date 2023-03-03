@@ -48,6 +48,7 @@ class ProfileController extends Controller
 
             'phoneNumber'=>'required',
             'gender'=>'required',
+            'profilePic'=>'required|nullable',
 
             'Description'=>'required'
 
@@ -56,6 +57,7 @@ class ProfileController extends Controller
         if($request->hasFile('profilePic')){
             $formFields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
         }
+        
 
 
         $formFields['user_id']=auth()->user()->id;
@@ -74,7 +76,17 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile, User $user)
     {
-        return view('Dashboard.profile.show',['profile'=>$profile,'user'=>$user]);
+
+
+        $auth_user=auth()->user()->id;
+        $user = User::find($auth_user);
+        $user_profile = $user->profile;
+        // if(auth()->user()->id=$user->user_id){
+            return view('Dashboard.profile.show',['user_profile'=>$user_profile,'user'=>$user]);
+        // }
+        // return'dfghjryt';
+
+
     }
 
     /**

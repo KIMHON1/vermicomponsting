@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->string('firstName');
             $table->string('secondName');
-            $table->string('profilePic')->nullable();
+            $table->string('profilePic');
             $table->integer('phoneNumber');
             $table->string('gender');
             $table->string('Description');

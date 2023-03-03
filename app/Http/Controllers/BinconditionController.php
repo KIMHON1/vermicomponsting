@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateBinconditionRequest;
 use Illuminate\Http\Request;
 use App\Models\Bincondition;
 use App\Models\Bin;
-use Illuminate\Http\Request;
+
 
 class BinconditionController extends Controller
 {
