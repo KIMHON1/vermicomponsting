@@ -166,7 +166,7 @@
 												</div>
                                             </div>
                                             <div class="form-group">
-                                                <a class="text-white" href="page-forgot-password.html">Forgot Password?</a>
+                                         <a class="text-white" href="password-reset/">Forgot Password?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">

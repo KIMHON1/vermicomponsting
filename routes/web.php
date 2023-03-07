@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BinconditionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
 
 
 
@@ -54,6 +55,10 @@ Route::get('/login',function(){
 Route::get('/register',function(){
      return view('Auth.register1');
  });
+
+
+ Route::get('password-reset/', [AuthController::class, 'passwordEmail']);
+
 
 //  Route::get('/create_bin',function(){
 //     return view('Normal.create_bin');
@@ -146,6 +151,10 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
     Route::get('/Profile/show/{user}', [ProfileController::class, 'show']);
+
+
+
+
 
 
 

@@ -9,13 +9,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Vermicomposting Admin Dashboard</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.ico>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.ico">
     <link href="/dashboard_themes/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/dashboard_themes/vendor/chartist/css/chartist.min.css">
     <link href="/dashboard_themes/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 	<link href="/dashboard_themes/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/dashboard_themes/css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -585,9 +587,9 @@
 									</svg>
 									<span class="badge light text-white bg-primary">0</span>
                                 </a>
-                                {{-- <div class="dropdown-menu dropdown-menu-right">
-                                    <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380"> --}}
-										{{-- 1<ul class="timeline">
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
+										<ul class="timeline">
 											<li>
 												<div class="timeline-panel">
 													<div class="media mr-2">
@@ -654,11 +656,11 @@
 													</div>
 												</div>
 											</li>
-										</ul> --}}
-									{{-- </div> --}}
-                                    {{-- <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a> --}}
-                                {{-- </div> --}}
-                           {{-- 1 </li> --}}
+										</ul>
+								</div>
+                                     <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a>
+                                </div>
+                           </li>
 							{{-- <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link bell bell-link" href="javascript:void(0)">
                                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -769,6 +771,8 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
+
+                    @can('view-users')
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Manage Users</span>
@@ -776,15 +780,13 @@
                         <ul aria-expanded="false">
 							<li><a href="/users/create/">Create User</a></li>
 							<li><a href="/vermusers">System Users</a></li>
-							<li><a href="{{ route('roles.create') }}">create Role</a></li>
-							<li><a href="/roles">Roles</a></li>
-
-
 							<li><a href="#">UserReport</a></li>
 							<li><a href="#">UsersNotification</a></li>
 
 						</ul>
                     </li>
+                    @endcan
+
 
 
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -818,36 +820,35 @@
 
 
 
+
+
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-television"></i>
-							<span class="nav-text">Manage Bins</span>
+                        <i class="fas fa-box"></i>
+                                <span class="nav-text">Manage Bins</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/create_bin">Create_Bin</a></li>
+                                <li><a href="/bins">Bins</a></li>
+
+                            </ul>
+                        </li>
+
+
+                @can('view-roles')
+
+
+                   <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+							<span class="nav-text">Role</span>
 						</a>
                         <ul aria-expanded="false">
-
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"> Bin</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="/create_bin">Create_Bin</a></li>
-									<li><a href="/bins">Bins</a></li>
-                                    
-                                </ul>
-                            </li>
-
+                            <li><a href="{{ route('roles.create') }}">AddRole</a></li>
+                            <li><a href="/roles">Roles</a></li>
 
                         </ul>
                     </li>
-                    {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-controls-3"></i>
-							<span class="nav-text">Charts</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">Flot</a></li>
-                            <li><a href="chart-morris.html">Morris</a></li>
-                            <li><a href="chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="chart-chartist.html">Chartist</a></li>
-                            <li><a href="chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="chart-peity.html">Peity</a></li>
-                        </ul>
-                    </li> --}}
+
+                    @endcan
 
 
 
