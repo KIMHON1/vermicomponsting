@@ -18,7 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->integer("number")->unique();
             $table->string("microcontroller_type");
-            $table->string("location");
+            $table->string("worm_type");
+            $table->string("country");
+            $table->string("province");
+            $table->string("district");
+            $table->string("sector");
+            $table->string("village");
+            $table->string("description");
             $table->timestamps();
             $table->foreign("user_id")->references('id')->on("users")->onDelete("cascade");
         });

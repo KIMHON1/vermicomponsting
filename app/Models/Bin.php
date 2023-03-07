@@ -11,7 +11,17 @@ class Bin extends Model
     protected $fillable=[
         "number",
         "microcontroller_type",
-        "location",
+        "worm_type",
+        "country",
+        "province",
+        "district",
+        "sector",
+        "village",
+        "description",
+
+
+
+
         "user_id"
     ];
 

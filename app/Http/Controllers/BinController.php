@@ -36,12 +36,21 @@ class BinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
             $formfields=$request->validate(
              [
-                 'number'=> 'required|unique:bins',
+                'number'=> 'required|unique:bins',
                 'microcontroller_type'=>'required',
-                 'location' => 'required'
+                'worm_type' => 'required',
+                'country' => 'required',
+                'province' => 'required',
+                'district' => 'required',
+                'sector' => 'required',
+                'village' => 'required',
+                'description' => 'required'
+
+
+
              ]
               );
             $formfields['user_id']=auth()->user()->id;
@@ -62,7 +71,7 @@ class BinController extends Controller
     {       $bin = Bin::find($id);
             return view('Normal.singleBin')->with('bin',$bin);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,7 +81,7 @@ class BinController extends Controller
     public function edit(Bin $bin)
     {
         //
-       
+
         return view('Normal.edit_bin',['bin' => $bin]);
     }
 
@@ -100,7 +109,7 @@ class BinController extends Controller
     {
 
         if(auth()->user()->hasRole('Admin')){
-        
+
         Bin::destroy($id);
         return redirect('/bins');
     } else{
