@@ -219,6 +219,37 @@
                                                     @endif
                                                 </div>
 
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4 col-form-label" for="val-digits">Cell <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" id="val-digits" name="cell" placeholder="Gatare">
+                                                    </div>
+
+
+                                                    @if($errors->has('cell'))
+                                                    <span class="text-danger">
+                                                      {{$errors->first('cell')}}
+                                                    </span>
+                                                    @endif
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4 col-form-label" for="val-digits">R
+                                                    oad <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" id="val-digits" name="road" placeholder="NY234">
+                                                    </div>
+
+
+
+                                                </div>
+
+
 
 
 

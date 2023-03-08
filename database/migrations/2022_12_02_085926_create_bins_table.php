@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string("district");
             $table->string("sector");
             $table->string("village");
+            $table->string("cell");
+            $table->string("road");
             $table->string("description");
             $table->timestamps();
             $table->foreign("user_id")->references('id')->on("users")->onDelete("cascade");

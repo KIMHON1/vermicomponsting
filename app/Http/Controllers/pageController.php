@@ -53,19 +53,18 @@ class pageController extends Controller
         return view('Dashboard.erro403')->with('user',$user);
     }
 // return single bin in admin dashboard
-    public function admsinglebin( $id)
+    public function showSingleBin(Bin $bin)
     {
-        $bins = Bin::all();
-        $bin = Bin::find($id);
-        return view('Dashboard.adminsingleBin')->with('bins',$bins);
+
+        return view('Normal.singleBin')->with('bin',$bin);
     }
 //show single bin in admin pannel
 
-    public function showadminbin($id)
-    {
-        $bin = Bin::find($id);
-        return view('Normal.singleBin')->with('bin',$bin);
-    }
+    // public function showadminbin($id)
+    // {
+    //     $bin = Bin::find($id);
+    //     return view('Normal.singleBin')->with('bin',$bin);
+    // }
 
 
     /**

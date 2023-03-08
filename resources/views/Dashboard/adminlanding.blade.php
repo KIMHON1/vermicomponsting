@@ -17,7 +17,11 @@
 				</div>
 				<div class="row">
 					<div class="col-xl-3 col-sm-6">
+                        @can('view-inactive-Acount')
 						<div class="card">
+
+
+
 							<div class="card-body">
 								<div class="media align-items-center">
 									<div class="media-body mr-3">
@@ -32,12 +36,16 @@
 
 								</div>
 							</div>
+
+
+
 							<div class="progress  rounded-0" style="height:4px;">
 								<div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
 									<span class="sr-only">50% Complete</span>
 								</div>
 							</div>
 						</div>
+                        @endcan
 					</div>
                     <div class="col-xl-3 col-sm-6">
 						<div class="card">

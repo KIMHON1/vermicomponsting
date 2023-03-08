@@ -46,7 +46,9 @@ class BinController extends Controller
                 'province' => 'required',
                 'district' => 'required',
                 'sector' => 'required',
+                'cell' => 'required',
                 'village' => 'required',
+                'road' => 'required|nullable',
                 'description' => 'required'
 
 

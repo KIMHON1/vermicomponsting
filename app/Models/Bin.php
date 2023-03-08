@@ -16,7 +16,9 @@ class Bin extends Model
         "province",
         "district",
         "sector",
+        "cell",
         "village",
+        "road",
         "description",
 
 

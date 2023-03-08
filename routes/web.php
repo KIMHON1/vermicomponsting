@@ -89,7 +89,7 @@ Route::get('/dashboard',[pageController::class, 'dashbord']);
 
 Route::get('/adminbins',[pageController::class, 'adminbin']);
 
-Route::get('/admsinglebin',[pageController::class, 'admsinglebin']);
+Route::get('/admsinglebin/{bin}',[pageController::class, 'showSingleBin']);
 Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 // //assign roles
