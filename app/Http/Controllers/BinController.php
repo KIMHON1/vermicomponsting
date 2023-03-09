@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBinRequest;
 use App\Http\Requests\UpdateBinRequest;
 use App\Models\Bin;
-
+use App\Models\Bincondition;
 class BinController extends Controller
 {
     /**
@@ -13,9 +13,10 @@ class BinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Bin $bin)
     {
         $bins = Bin::all();
+        
         return view('Normal.bins1',compact('bins'))->with('i');
     }
 

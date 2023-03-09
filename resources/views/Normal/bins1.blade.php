@@ -10,6 +10,11 @@
 
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Bins</a></li>
 					</ol>
+
+                    <div class="mt-4">
+
+                        <a href="/create_bin" class="btn btn-primary mb-1">CreateBin</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -61,7 +66,7 @@
 
                                                                 <a class="dropdown-item" href="/bins/{{$bin->id}}/edit">Edit</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/conditions/{{$bin->id}}/create">CreateCondition</a>
+
                                                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="{{"/delete/".$bin->id}}">Delete</a>
                                                                 <div class="dropdown-divider"></div>
                                                             </div>

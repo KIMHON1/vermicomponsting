@@ -162,55 +162,62 @@
 
                                                 <div class="profile-personal-info">
                                                     <h4 class="text-primary mb-4">binConditions</h4>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Temperature <span class="pull-right">:</span>
-                                                            </h5>
+
+                                                        @if(!empty($conditions))
+                                                        <div class="row mb-2">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Temperature <span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-9"><span>{{$conditions->temperature}}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-9"><span>{{$conditions->temperature}}</span>
+
+
+
+                                                        <div class="row mb-2">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">PH <span class="pull-right">:</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-9"><span>{{$conditions->acidity}}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">PH <span class="pull-right">:</span>
-                                                            </h5>
+
+
+
+                                                        <div class="row mb-2">
+                                                            <div class="col-3">
+                                                                <h5 class="f-w-500">Humidity<span class="pull-right">:</span></h5>
+                                                            </div>
+                                                            <div class="col-9"><span>{{$conditions->humidity}}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-9"><span>{{$conditions->acidity}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Humidity<span class="pull-right">:</span></h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$conditions->humidity}}</span>
-                                                        </div>
-                                                    </div>
+
+
+                                                        @else
+
+                                                            <h3>opps there is no Current condition for bin {{$bin->number}} </h3>
+
+
+                                                            <div class="mt-4">
+
+                                                                <a href="/conditions/{{$bin->id}}/create" class="btn btn-primary mb-1">Create conditions</a>
+                                                            </div>
+
+                                                        @endif
+
+
+
+
 
                                                 </div>
+
                                             </div>
 
                                         </div>
                                     </div>
-									<!-- Modal -->
-									<div class="modal fade" id="replyModal">
-										<div class="modal-dialog modal-dialog-centered" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Post Reply</h5>
-													<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-												</div>
-												<div class="modal-body">
-													<form>
-														<textarea class="form-control" rows="4">Message</textarea>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-													<button type="button" class="btn btn-primary">Reply</button>
-												</div>
-											</div>
-										</div>
-									</div>
+
                                 </div>
                             </div>
                         </div>

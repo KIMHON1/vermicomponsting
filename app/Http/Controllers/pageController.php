@@ -59,6 +59,8 @@ class pageController extends Controller
 
 
         $conditions=$bin->binconditions;
+       // $condition_count = $conditions->count();
+
 
 
 

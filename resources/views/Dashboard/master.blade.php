@@ -827,7 +827,7 @@
                                 <span class="nav-text">Manage Bins</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="/create_bin">Create_Bin</a></li>
+                                
                                 <li><a href="/bins">Bins</a></li>
 
                             </ul>
