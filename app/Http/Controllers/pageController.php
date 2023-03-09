@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bin;
 use App\Models\User;
+use App\Models\Bincondition;
 
 class pageController extends Controller
 {
@@ -56,7 +57,12 @@ class pageController extends Controller
     public function showSingleBin(Bin $bin)
     {
 
-        return view('Normal.singleBin')->with('bin',$bin);
+
+        $conditions=$bin->binconditions;
+
+
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions]);
     }
 //show single bin in admin pannel
 

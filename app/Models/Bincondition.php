@@ -11,7 +11,7 @@ class Bincondition extends Model
     protected $table = 'binconditions';
 
     protected $fillable=[
-        "temperature",
+        'temperature',
         "humidity",
         "acidity",
         "bin_id"

@@ -20,10 +20,6 @@ class Bin extends Model
         "village",
         "road",
         "description",
-
-
-
-
         "user_id"
     ];
 
@@ -32,6 +28,6 @@ class Bin extends Model
     // }
     public function binconditions(){
 
-        return $this->hasOne(Bincondition::class, 'binconditions_id');
+        return $this->hasOne(Bincondition::class,'bin_id','id');
     }
 }

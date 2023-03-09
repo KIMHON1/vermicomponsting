@@ -87,6 +87,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <input id="acidity" type="hidden" class="form-control @error('acidity') is-invalid @enderror" name="bin_id"   value={{$bin->id}} autocomplete="new-acidity">
+
+
+
+                            </div>
+                        </div>
+
                         </div>
 
 
@@ -107,7 +117,7 @@
 
 
 
-               
+
                 </div>
             </div>
         </div>

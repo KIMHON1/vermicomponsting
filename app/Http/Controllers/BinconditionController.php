@@ -44,17 +44,18 @@ class BinconditionController extends Controller
      */
     public function store(StoreBinconditionRequest $request, Bin $bin)
     {
-        //
-        // $request->validate(
-        //     [
-        //        'temperature'=> 'required',
-        //        'humidity'=>'required',
-        //        'acidity' => 'required',
-        //        'watercondition' => 'required'
+       $formFields = $request->validate([
 
-        //     ]);
+        'temperature' => 'required',
+        'humidity' => 'required',
+        'acidity' => 'required',
+        'bin_id' => 'required',
 
-        $bin_cond = Bincondition::create($request->all());
+       ]);
+
+    //    $formFields['bin_id'] = $bin->id;
+
+        Bincondition::create($formFields);
         return redirect('/bins');
 
     }
