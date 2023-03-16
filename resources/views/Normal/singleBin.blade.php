@@ -164,35 +164,81 @@
                                                     <h4 class="text-primary mb-4">binConditions</h4>
 
                                                         @if(!empty($conditions))
-                                                        <div class="row mb-2">
-                                                            <div class="col-3">
-                                                                <h5 class="f-w-500">Temperature <span class="pull-right">:</span>
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-9"><span>{{$conditions->temperature}}</span>
-                                                            </div>
-                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+
+
+                                                                <div class="d-flex">
+                                                                    <a href="/conditions/{{$bin->id}}/edit" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pen"></i></a>
+                                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                                </div>
 
 
 
-                                                        <div class="row mb-2">
-                                                            <div class="col-3">
-                                                                <h5 class="f-w-500">PH <span class="pull-right">:</span>
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-9"><span>{{$conditions->acidity}}</span>
-                                                            </div>
-                                                        </div>
+
+                                                                <table class="table table-responsive-md">
+                                                                    <thead>
+                                                                        <tr>
+
+
+                                                                            <th><strong>Conditions</strong></th>
+                                                                            <th><strong>Values</strong></th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+
+                                                                            <td><strong>
+                                                                                <ul>
+                                                                                    <li>Temperature</li>
+
+                                                                                </ul>
+                                                                                </strong></td>
 
 
 
-                                                        <div class="row mb-2">
-                                                            <div class="col-3">
-                                                                <h5 class="f-w-500">Humidity<span class="pull-right">:</span></h5>
+                                                                            <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->temperature}}</div></td>
+
+
+
+                                                                            <td>
+
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <td><strong>
+                                                                            <ul>
+
+                                                                                <li>PH </li>
+
+                                                                            </ul>
+                                                                            </strong></td>
+
+
+
+                                                                        <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->acidity}}</div></td>
+                                                                    </tr>
+                                                                    <td><strong>
+                                                                        <ul>
+                                                                            <li>Humidity </li>
+                                                                        </ul>
+                                                                        </strong></td>
+
+
+
+                                                                    <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->temperature}}</div></td>
+
+
+
+                                                                </tr>
+
+
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
-                                                            <div class="col-9"><span>{{$conditions->humidity}}</span>
-                                                            </div>
-                                                        </div>
+                                                       </div>
 
 
                                                         @else

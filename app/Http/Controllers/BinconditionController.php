@@ -7,6 +7,10 @@ use App\Http\Requests\UpdateBinconditionRequest;
 use Illuminate\Http\Request;
 use App\Models\Bincondition;
 use App\Models\Bin;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\BinConditionChanged;
+
 
 
 class BinconditionController extends Controller
@@ -16,12 +20,12 @@ class BinconditionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-        $bincondition = Bincondition::all();
-        return view('')->with('bincondition',$bincondition);
-    }
+    // public function index()
+    // {
+    //     //
+    //     $bincondition = Bincondition::all();
+    //     // return view('')->with('bincondition',$bincondition);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -66,9 +70,18 @@ class BinconditionController extends Controller
      * @param  \App\Models\Bincondition  $bincondition
      * @return \Illuminate\Http\Response
      */
-    public function show(Bincondition $id)
+    public function show(Bin $bin)
     {
-        //
+
+
+
+        $conditions=$bin->binconditions;
+       // $condition_count = $conditions->count();
+
+
+
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions]);
     }
 
     /**
@@ -77,9 +90,14 @@ class BinconditionController extends Controller
      * @param  \App\Models\Bincondition  $bincondition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bincondition $bincondition)
+    public function edit(Bin $bin)
     {
-        //
+
+
+
+
+         $conditions=$bin->binconditions;
+        return view('Normal.update_condition',['bin'=>$bin,'conditions'=>$conditions]);
     }
 
     /**
@@ -89,9 +107,31 @@ class BinconditionController extends Controller
      * @param  \App\Models\Bincondition  $bincondition
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBinconditionRequest $request, Bincondition $bincondition)
+    public function update(UpdateBinconditionRequest $request, Bin $bin)
     {
         //
+
+
+
+        $formFields = $request->validate([
+
+            'temperature' => 'required',
+            'humidity' => 'required',
+            'acidity' => 'required',
+            'bin_id' => 'required',
+
+           ]);
+           $user= User::find(auth()->user()->id);
+
+           $conditions=$bin->binconditions;
+
+          $conditions->update($formFields);
+
+          Notification::send($user, new BinConditionChanged($conditions));
+
+
+
+            return redirect('/bins');
     }
 
     /**

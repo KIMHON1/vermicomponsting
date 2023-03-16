@@ -6,20 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\User;
 
-class Vermicomposting extends Notification
+class BinConditionChanged extends Notification
 {
     use Queueable;
-    private $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($conditions)
     {
-        $this->user = $user;
+        $this->$conditions = $conditions;
     }
 
     /**
@@ -30,7 +29,7 @@ class Vermicomposting extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -42,9 +41,8 @@ class Vermicomposting extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi    '.$this->user->name)
-                    ->line(' Welcome to Vermicomposting Sytem .You have created an acount in vermicomposting system Please Wait for Account Verification or contact vermicomposting styem manager in your location to validate your acount directly')
-                    ->action('Explore', url('/'))
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
 
@@ -57,7 +55,12 @@ class Vermicomposting extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+
+            "temperature"=>$this->conditions->temperature,
+            "humidity"=>$this->conditions->humidity,
+
+            "acidity"=>$this->conditions->acidity,
+
+    ];
     }
 }

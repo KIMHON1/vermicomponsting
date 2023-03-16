@@ -16,7 +16,7 @@ class BinController extends Controller
     public function index(Bin $bin)
     {
         $bins = Bin::all();
-        
+
         return view('Normal.bins1',compact('bins'))->with('i');
     }
 
@@ -81,25 +81,55 @@ class BinController extends Controller
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bin $bin)
+    public function edit(Request $request, Bin $bin)
     {
-        //
 
-        return view('Normal.edit_bin',['bin' => $bin]);
+
+
+
+        return view('Normal.edit_bin',['bin'=>$bin]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBinRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBinRequest $request, Bin $bin)
+    public function update(Request $request, Bin $bin)
     {
-        //
-       $bin->create($request->all());
-        return view('/bins');
+
+
+
+        $formfields=$request->validate(
+            [
+                'user_id'=>'required',
+               'number'=> 'required',
+               'microcontroller_type'=>'required',
+               'worm_type' => 'required',
+               'country' => 'required',
+               'province' => 'required',
+               'district' => 'required',
+               'sector' => 'required',
+               'cell' => 'required',
+               'village' => 'required',
+               'road' => 'required',
+               'description' => 'required'
+
+
+
+            ]
+             );
+        $formfields['user_id']=auth()->user()->id;
+
+        $bin->update($formfields);
+
+
+
+
+       return view('Normal.singleBin');
     }
 
     /**
@@ -111,13 +141,13 @@ class BinController extends Controller
     public function destroy($id)
     {
 
-        if(auth()->user()->hasRole('Admin')){
+        // if(auth()->user()->hasRole('Admin')){
 
         Bin::destroy($id);
         return redirect('/bins');
-    } else{
-        echo"you are not authorised";
-    }
+    // } else{
+    //     echo"you are not authorised";
+    // }
 
 
 

@@ -89,13 +89,10 @@ Route::get('/dashboard',[pageController::class, 'dashbord']);
 
 Route::get('/adminbins',[pageController::class, 'adminbin']);
 
-Route::get('/admsinglebin/{bin}',[pageController::class, 'showSingleBin']);
+Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
-// //assign roles
-// Route::get('/roles',[AdminController::class,'index']);
-// Route::patch('/manage/role/permissions/{id}',[UserController::class,'RevokePermission']);
-//Route::post('/changeRole',[UserController::class,'changeRole']);
+
 
 
 
@@ -106,7 +103,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
     Route::get('/bins/{bin}/edit',[BinController::class,'edit']);
-    Route::put('/bins/{bin}',[BinController::class,'update']);
+    Route::put('/bins/{bin}/update',[BinController::class,'update']);
 
 
 
@@ -138,6 +135,9 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
     Route::get('/conditions/{bin}/create',[BinconditionController::class,'create']);
 
+    Route::get('/conditions/{bin}/edit',[BinconditionController::class,'edit']);
+    Route::put('/conditions/{bin}/update',[BinconditionController::class,'update']);
+
 
 
     Route::post('/create_cond',[BinconditionController::class,'store']);
@@ -146,7 +146,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
     Route::get('/vermusers',[UserController::class, 'index']);
     Route::get('/vermusers/{user}/edit',[UserController::class, 'edit']);
-   Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status');
+    Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status');
 
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
