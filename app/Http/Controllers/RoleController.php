@@ -18,7 +18,7 @@ class RoleController extends Controller
      */
     function __construct()
     {
-     $this->middleware('permission:view-roles|create-roles|update-roles|delete-roles', ['only' => ['index','store']]);
+     //$this->middleware('permission:view-roles|create-roles|update-roles|delete-roles', ['only' => ['index','store']]);
     // $this->middleware('permission:create-roles', ['only' => ['create','store']]);
     //       $this->middleware('permission:update-roles', ['only' => ['edit','update']]);
     //  $this->middleware('permission:delete-roles', ['only' => ['destroy']]);
@@ -92,7 +92,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        $permission = Permission::get();
+        $permission = Permission::get()->toQuery()->paginate(15);
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();

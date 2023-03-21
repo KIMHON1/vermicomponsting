@@ -30,4 +30,20 @@ class Bin extends Model
 
         return $this->hasOne(Bincondition::class,'bin_id','id');
     }
+
+
+    public function harvesting(){
+
+        return $this->hasOne(Harvesting::class,'bin_id','id');
+    }
+
+
+
+    public function planting(){
+
+        return $this->hasOne(Planting::class,'bin_id','id');
+    }
+
+
+
 }

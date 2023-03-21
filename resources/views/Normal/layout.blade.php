@@ -154,7 +154,7 @@
           </div>
         </div>
 
-        <div class="col-lg-2 col-6 footer-links">
+        <div id="i" class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
             <li><a href="https://www.sciencedirect.com/topics/earth-and-planetary-sciences/vermicomposting#:~:text=Vermicomposting%20is%20a%20natural%20process,fertilizer%20for%20enhancing%20plant%20growth.">More about vermicomposting</a></li>

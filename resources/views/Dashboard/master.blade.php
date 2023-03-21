@@ -771,8 +771,8 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-
-                    @can('view-users')
+{{-- 
+                    @can('view-users') --}}
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Manage Users</span>
@@ -785,7 +785,7 @@
 
 						</ul>
                     </li>
-                    @endcan
+                    {{-- @endcan --}}
 
 
 
@@ -834,7 +834,7 @@
                         </li>
 
 
-                @can('view-roles')
+                {{-- @can('view-roles') --}}
 
 
                    <li><a  href="javascript:void()" aria-expanded="false">
@@ -849,7 +849,7 @@
 
                     </li>
 
-                    @endcan
+                    {{-- @endcan --}}
 
 
 

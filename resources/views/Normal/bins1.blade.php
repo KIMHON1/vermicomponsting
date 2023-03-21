@@ -81,8 +81,8 @@
                                         @endforeach
 
                                     </table>
-                                    
-                                    {{$bins->links()}}
+
+                                    {{-- {{$bins->links()}} --}}
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ class BinController extends Controller
      */
     public function index(Bin $bin)
     {
-        $bins = Bin::all()->toQuery()->paginate(7);
+        $bins = Bin::all();
 
         return view('Normal.bins1',compact('bins'))->with('i');
     }
