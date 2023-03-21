@@ -16,9 +16,11 @@ class BinConditionChanged extends Notification
      *
      * @return void
      */
-    public function __construct($conditions)
+    public function __construct($conditions, $old_conditions, $bin)
     {
-        $this->$conditions = $conditions;
+        $this->conditions = $conditions;
+        $this->old_conditions = $old_conditions;
+        $this->bin = $bin;
     }
 
     /**
@@ -60,6 +62,14 @@ class BinConditionChanged extends Notification
             "humidity"=>$this->conditions->humidity,
 
             "acidity"=>$this->conditions->acidity,
+
+
+            "pre_temperature"=>$this->old_conditions['temperature'],
+            "pre_humidity"=>$this->old_conditions['humidity'],
+
+            "pre_acidity"=>$this->old_conditions['acidity'],
+            "bin_number"=>$this->old_conditions['bin_number'],
+
 
     ];
     }

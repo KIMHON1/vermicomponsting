@@ -167,6 +167,7 @@
                 {{ $value->name }}</label>
             <br/>
             @endforeach
+            {{$permission->links()}}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -174,7 +175,7 @@
     </div>
 </div>
 {!! Form::close() !!}
-<p class="text-center text-primary"><small>vermicomposting system</small></p>
+
     </div>
 </div>
 

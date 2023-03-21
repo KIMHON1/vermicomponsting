@@ -9,6 +9,10 @@ use App\Models\Bincondition;
 
 class pageController extends Controller
 {
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +60,31 @@ class pageController extends Controller
 
 
 
+
+
+
+
+
+
+    public function databaseNoIndex(){
+
+        $notifications = auth()->user()->Notifications;
+        return view('notify.database_condition', compact('notifications'));
+    }
+
+
+
+    public function markNotification(Request $request)
+    {
+        auth()->user()
+            ->Notifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request->input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
+    }
     /**
      * Store a newly created resource in storage.
      *

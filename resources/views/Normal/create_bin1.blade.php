@@ -81,6 +81,13 @@
                                                 </div>
 
 
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                                                        <a class="btn btn-primary" href="/bins">Cancel</a>
+                                                    </div>
+                                                </div>
 
 
 
@@ -212,13 +219,6 @@
 
 
 
-                                                <div class="form-group row">
-                                                    <div class="col-lg-8 ml-auto">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-
-                                                        <a class="btn btn-primary" href="/bins">Cancel</a>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </form>

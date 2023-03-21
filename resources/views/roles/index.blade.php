@@ -132,8 +132,13 @@
                         <ol class="breadcrumb">
 
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Roles</a></li>
+
                         </ol>
                     </div>
+                      <div class="mt-4">
+
+                                <a href="{{ route('roles.create') }}" class="btn btn-primary mb-1">Create  Role</a>
+                            </div>
                 </div>
                 {{-- <div class="pull-right">
                 @can('role-create')
@@ -182,6 +187,9 @@
                 </td>
             </tr>
             @endforeach
+
+            {{$roles->links()}}
+
         </table>
         {!! $roles->render() !!}
 

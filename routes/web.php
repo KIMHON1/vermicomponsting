@@ -82,7 +82,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
 
 
+Route::get('/notification',[pageController::class, 'databaseNoIndex']);
 
+
+Route::post('/mark-as-read',[AdminController::class, 'markNotification'])->name('markNotification');
 
 
 Route::get('/dashboard',[pageController::class, 'dashbord']);

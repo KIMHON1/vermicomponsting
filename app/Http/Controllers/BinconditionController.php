@@ -107,11 +107,11 @@ class BinconditionController extends Controller
      * @param  \App\Models\Bincondition  $bincondition
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBinconditionRequest $request, Bin $bin)
+    public function update(UpdateBinconditionRequest $request, Bin $bin,Bincondition $bincondition)
     {
         //
 
-
+        $pre_conditions=$bin->binconditions;;
 
         $formFields = $request->validate([
 
@@ -122,12 +122,36 @@ class BinconditionController extends Controller
 
            ]);
            $user= User::find(auth()->user()->id);
+           $model = Bincondition::find($bincondition);
 
            $conditions=$bin->binconditions;
 
+
+           $bin_number = $bin->number;
+           $OG_temperature = $conditions->getOriginal('temperature');
+           $OG_humidity = $conditions->getOriginal('humidity');
+           $OG_acidity = $conditions->getOriginal('acidity');
+           $old_conditions =array('acidity'=>$OG_acidity,'humidity'=>$OG_humidity ,'temperature'=>$OG_temperature, 'bin_number'=>$bin_number);
+
+
           $conditions->update($formFields);
 
-          Notification::send($user, new BinConditionChanged($conditions));
+
+          if($conditions->wasChanged(['temperature','humidity','acidity'])){
+
+
+
+
+
+           Notification::send($user, new BinConditionChanged($conditions,$old_conditions,$bin));
+
+
+          };
+
+
+
+
+
 
 
 

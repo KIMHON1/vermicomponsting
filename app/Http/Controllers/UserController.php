@@ -35,7 +35,7 @@ class UserController extends Controller
         //return User::all();
         $users =User::all();
         $count = collect($users)->count();
-    
+
 
         return view('Dashboard.users1',compact('users'))->with('i');
     }
@@ -184,6 +184,7 @@ return redirect('/vermusers')->with('success','user Created success full');
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
+       
 
         return redirect('/vermusers')->with('success','User updated successfully');
 

@@ -79,7 +79,10 @@
 
                                         </tbody>
                                         @endforeach
+
                                     </table>
+                                    
+                                    {{$bins->links()}}
                                 </div>
                             </div>
                         </div>
