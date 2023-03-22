@@ -12,6 +12,7 @@
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Number</a></li>
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">{{$bin->number}}</a></li>
 					</ol>
+
                 </div>
                 <!-- row -->
                 <div class="row">
@@ -41,6 +42,9 @@
                                             </li>
 
                                             <li class="nav-item"><a href="#conditions" data-toggle="tab" class="nav-link">BinConditions</a>
+                                            </li>
+
+                                            <li class="nav-item"><a href="#compost" data-toggle="tab" class="nav-link">vermicomposting Process</a>
                                             </li>
 
 
@@ -249,6 +253,44 @@
                                                             <div class="mt-4">
 
                                                                 <a href="/conditions/{{$bin->id}}/create" class="btn btn-primary mb-1">Create conditions</a>
+                                                            </div>
+
+                                                        @endif
+
+
+
+
+
+                                                </div>
+
+                                        </div>
+
+
+
+
+
+                                            <div id="compost" class="tab-pane fade">
+
+
+                                                <div class="profile-personal-info">
+                                                    <h4 class="text-primary mb-4">Compost</h4>
+
+
+
+                                                        @if(empty($initialcompost))
+
+                                                        <div class="mt-4">
+
+                                                            <a href="/planting/{{$bin->id}}" class="btn btn-primary mb-1">start Composting</a>
+                                                        </div>
+
+                                                        @else
+
+                                                            <h3>This Bin Number {{$bin->number}}  is in vermicomposting prossess</h3>
+
+                                                            <div class="mt-4">
+
+                                                                <a href="/harvesting/{{$bin->id}}/store" class="btn btn-primary mb-1">Harvest Compost</a>
                                                             </div>
 
                                                         @endif

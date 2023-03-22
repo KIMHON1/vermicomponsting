@@ -9,8 +9,14 @@ class Planting extends Model
 {
     use HasFactory;
 
-
-    public function plantingbin(){
-        return $this->belongsTo(Planting::class, 'bin_id');
+    protected $fillable=[
+        "wormQuantity",
+        "WasteQuantity",
+        "ExpectedCompostQuantity",
+        "bin_id"
+    ];
+    public function plantingBin (){
+        return $this->belongsTo(Bin::class, 'bin_id');
     }
+
 }

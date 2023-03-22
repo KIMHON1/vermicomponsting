@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePlantingRequest;
-use App\Http\Requests\UpdatePlantingRequest;
-use App\Models\Planting;
+use Illuminate\Http\Request;
+use App\Models\Bin;
+use App\Models\Harvesting;
 
-class PlantingController extends Controller
+
+class HarvestingCompostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,29 +24,42 @@ class PlantingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Bin $bin)
     {
-        //
+
+        return view('harvesting.end',['bin'=>$bin]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePlantingRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePlantingRequest $request)
+    public function store(Request $request, Bin $bin)
     {
-        //
+        $formfields = $request->validate(
+            [
+                "wormQuantity"=>"required",
+                "harvestCompostQuantity"=>"required",
+            ]
+        );
+
+        $formfields['bin_id'] = $bin->id;
+
+        Harvesting::create($formfields);
+
+        return redirect('/bins');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Planting  $planting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Planting $planting)
+    public function show($id)
     {
         //
     }
@@ -53,10 +67,10 @@ class PlantingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Planting  $planting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Planting $planting)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +78,11 @@ class PlantingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePlantingRequest  $request
-     * @param  \App\Models\Planting  $planting
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlantingRequest $request, Planting $planting)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +90,10 @@ class PlantingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Planting  $planting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Planting $planting)
+    public function destroy($id)
     {
         //
     }

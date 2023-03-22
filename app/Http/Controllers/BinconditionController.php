@@ -76,12 +76,14 @@ class BinconditionController extends Controller
 
 
         $conditions=$bin->binconditions;
-       // $condition_count = $conditions->count();
+        $initialcompost= $bin->planting;
+    
 
 
 
 
-        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions]);
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost]);
     }
 
     /**
@@ -97,6 +99,7 @@ class BinconditionController extends Controller
 
 
          $conditions=$bin->binconditions;
+
         return view('Normal.update_condition',['bin'=>$bin,'conditions'=>$conditions]);
     }
 

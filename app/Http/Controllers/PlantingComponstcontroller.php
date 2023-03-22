@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreHarvestingRequest;
-use App\Http\Requests\UpdateHarvestingRequest;
-use App\Models\Harvesting;
+use Illuminate\Http\Request;
+use App\Models\Bin;
+use App\Models\Planting;
 
-class HarvestingController extends Controller
+class PlantingComponstcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,29 +23,48 @@ class HarvestingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Bin $bin)
     {
-        //
+
+
+        return view('planting.start',['bin'=>$bin]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreHarvestingRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHarvestingRequest $request)
+    public function store(Request $request, Bin $bin)
     {
-        //
+        $formsfields = $request->validate([
+            'wormQuantity'=>'required',
+            'WasteQuantity'=>'required',
+            'ExpectedCompostQuantity'=>'required',
+
+
+
+
+
+        ]);
+
+        $formsfields['bin_id']=$bin->id;
+        Planting::create($formsfields);
+
+
+        return redirect('/bins');
+
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Harvesting  $harvesting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Harvesting $harvesting)
+    public function show($id)
     {
         //
     }
@@ -53,10 +72,10 @@ class HarvestingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Harvesting  $harvesting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Harvesting $harvesting)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +83,11 @@ class HarvestingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateHarvestingRequest  $request
-     * @param  \App\Models\Harvesting  $harvesting
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateHarvestingRequest $request, Harvesting $harvesting)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +95,10 @@ class HarvestingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Harvesting  $harvesting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Harvesting $harvesting)
+    public function destroy($id)
     {
         //
     }

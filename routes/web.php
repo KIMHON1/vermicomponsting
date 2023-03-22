@@ -9,6 +9,9 @@ use App\Http\Controllers\BinconditionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlantingComponstcontroller;
+use App\Http\Controllers\HarvestingCompostController;
+
 
 
 
@@ -80,6 +83,12 @@ Route::get('/register',function(){
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
+
+Route::get('/harvesting/{bin}',[HarvestingCompostController::class, 'create']);
+Route::post('/harvesting/{bin}/store',[HarvestingCompostController::class, 'store']);
+
+Route::get('/planting/{bin}',[PlantingComponstcontroller::class, 'create']);
+Route::post('/planting/{bin}/store',[PlantingComponstcontroller::class, 'store']);
 
 
 Route::get('/notification',[pageController::class, 'databaseNoIndex']);

@@ -9,7 +9,15 @@ class Harvesting extends Model
 {
     use HasFactory;
 
-    public function harvestbin(){
-        return $this->belongsTo(Harvesting::class, 'bin_id');
+
+    protected $fillable=[
+        "wormQuantity",
+        "harvestCompostQuantity",
+        "bin_id"
+    ];
+
+    public function harvestingBin (){
+        return $this->belongsTo(Bin::class, 'bin_id');
     }
+
 }

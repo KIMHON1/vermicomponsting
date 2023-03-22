@@ -20,6 +20,7 @@ class Bincondition extends Model
     public function bin(){
         return $this->belongsTo(Bin::class, 'bin_id');
     }
+   
 
 
 
