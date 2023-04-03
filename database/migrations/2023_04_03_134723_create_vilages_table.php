@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cells', function (Blueprint $table) {
+        Schema::create('vilages', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer("CodeVillage");
+            $table->string("VillageName");
+            $table->bigInteger("codecell")->unsigned();
+
         });
     }
 
@@ -26,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cells');
+        Schema::table('vilages', function (Blueprint $table) {
+            //
+        });
     }
 };

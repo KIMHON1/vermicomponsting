@@ -53,18 +53,35 @@
             <div class="form-group">
                 <div class="col-sm-10">
                     <label for="status">Select a Cell</label>
-                    <select class="form-control" wire:model="selectedSector">
+                    <select class="form-control" wire:model="selectedCell">
                         <option value="">Select a Cell</option>
-                        @if(!empty($sectors))
-                        @foreach ($sectors as $item)
-                        <option value="{{ $item->sectorcode }}">{{ $item->namesector}}</option>
+                        @if(!empty($cells))
+                        @foreach ($cells as $item)
+                        <option value="{{ $item->codecell }}">{{ $item->nameCell}}</option>
                         @endforeach
                         @endif
                     </select>
                 </div>
             </div>
             {{-- @endif --}}
-            {{$selectedSector}}
+            {{$selectedCell}}
+
+              {{-- @if (!is_null($sectors)) --}}
+              <div class="form-group">
+                <div class="col-sm-10">
+                    <label for="status">Select a Village</label>
+                    <select class="form-control" wire:model="selectedVillage">
+                        <option value="">Select a Village</option>
+                        @if(!empty($villages))
+                        @foreach ($villages as $item)
+                        <option value="{{ $item->CodeVillage }}">{{ $item->VillageName}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            {{-- @endif --}}
+            {{$selectedVillage}}
 
 
 

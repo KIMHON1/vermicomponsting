@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Sector;
+use App\Models\Cell;
+use App\Models\Village;
 class LocationDropdown extends Component
 {
 
@@ -39,7 +41,22 @@ class LocationDropdown extends Component
 
     public function updatedSelectedDistrict($districtcode)
     {
-       $sectors = $this->sectors = Sector::where('districtcode', $districtcode)->get();
+        $this->sectors = Sector::where('districtcode', $districtcode)->get();
+        // dd($sectors);
+        // $this->reset(['selectedSector', 'selectedCell', 'selectedVillage']);
+    }
+
+
+    public function updatedSelectedSector($sectorcode)
+    {
+       $this->cells = Cell::where('sectorcode', $sectorcode)->get();
+        // dd($sectors);
+        // $this->reset(['selectedSector', 'selectedCell', 'selectedVillage']);
+    }
+
+    public function updatedSelectedCell($codecell)
+    {
+       $this->villages = Village::where('codecell', $codecell)->get();
         // dd($sectors);
         // $this->reset(['selectedSector', 'selectedCell', 'selectedVillage']);
     }

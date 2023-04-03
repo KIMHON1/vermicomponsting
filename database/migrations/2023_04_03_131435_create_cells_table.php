@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('villages', function (Blueprint $table) {
+        Schema::create('cells', function (Blueprint $table) {
+            //
+
             $table->id();
-            $table->timestamps();
+            $table->integer("codecell");
+            $table->string("nameCell");
+            $table->bigInteger("sectorcode")->unsigned();
         });
     }
 
@@ -26,6 +30,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('villages');
+        Schema::table('cells', function (Blueprint $table) {
+            //
+        });
     }
 };
