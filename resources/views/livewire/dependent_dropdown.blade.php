@@ -8,11 +8,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">DropDownTest</h3>
+                    <h3 class="card-title">Drop</h3>
                 </div>
+                <livewire:location-dropdown/>
             </div>
 
-             <livewire:location-dropdown/>
+
 
 
         </div>

@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('sectors', function (Blueprint $table) {
 
+
             $table->id();
             $table->integer("sectorcode");
-
-
-
             $table->string("namesector");
             $table->bigInteger("districtcode")->unsigned();
-            $table->foreign('districtcode')->references('id')->on('districts')->onDelete("cascade");
+            //
         });
     }
 
@@ -33,6 +31,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sectors');
+        Schema::table('sectors', function (Blueprint $table) {
+            //
+        });
     }
 };

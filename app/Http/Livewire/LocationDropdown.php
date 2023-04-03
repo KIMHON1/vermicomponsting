@@ -24,6 +24,7 @@ class LocationDropdown extends Component
     {
 
 
+        // $sectors = Sector::all();
 
         return view('livewire.location-dropdown', [
             'provinces' => Province::all(),
@@ -38,7 +39,8 @@ class LocationDropdown extends Component
 
     public function updatedSelectedDistrict($districtcode)
     {
-        $this->sectors = Sector::where('districtcode', $districtcode)->get();
+       $sectors = $this->sectors = Sector::where('districtcode', $districtcode)->get();
+        // dd($sectors);
         // $this->reset(['selectedSector', 'selectedCell', 'selectedVillage']);
     }
 

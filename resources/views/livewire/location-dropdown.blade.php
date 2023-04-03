@@ -31,6 +31,42 @@
             @endif
             {{$selectedDistrict}}
 
+            {{-- @if (!is_null($sectors)) --}}
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for="status">Select a Sector</label>
+                    <select class="form-control" wire:model="selectedSector">
+                        <option value="">Select a District</option>
+                        @if(!empty($sectors))
+                        @foreach ($sectors as $item)
+                        <option value="{{ $item->sectorcode }}">{{ $item->namesector}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            {{-- @endif --}}
+            {{$selectedSector}}
+
+
+            {{-- @if (!is_null($sectors)) --}}
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for="status">Select a Cell</label>
+                    <select class="form-control" wire:model="selectedSector">
+                        <option value="">Select a Cell</option>
+                        @if(!empty($sectors))
+                        @foreach ($sectors as $item)
+                        <option value="{{ $item->sectorcode }}">{{ $item->namesector}}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            {{-- @endif --}}
+            {{$selectedSector}}
+
+
 
 
 
