@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBinRequest;
 use App\Http\Requests\UpdateBinRequest;
 use App\Models\Bin;
 use App\Models\Bincondition;
+use App\Models\Province;
 class BinController extends Controller
 {
     /**

@@ -63,4 +63,15 @@ class User extends Authenticatable
  {
      return $this->hasOne(Profile::class, 'user_id');
  }
+
+
+ public function location()
+ {
+     return $this->hasOne(Location::class, 'user_id');
+ }
+
+ public function cooperative()
+ {
+     return $this->hasOne(Cooperative::class, 'user_id');
+ }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bin;
 use App\Models\User;
 use App\Models\Bincondition;
+use App\Models\Location;
 
 class pageController extends Controller
 {
@@ -39,8 +40,25 @@ class pageController extends Controller
         $inactive_accounts = User::where('status',0)->count();
         $active_accounts = User::where('status',1)->count();
 
+        $locations = Location::where('user_id', auth()->user()->id)->get();
+        foreach($locations as $location)
+        {
 
-        return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts]);
+
+
+            if ($location) {
+
+                return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts]);
+                }
+
+
+
+                 }
+
+
+                 return redirect('/location');
+
+
     }
 
 

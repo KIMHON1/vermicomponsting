@@ -44,16 +44,14 @@ class UserController extends Controller
     public function create_Admin_User(Request $request, User $user){
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
+
+        // $roles=Role::all();
+
         return view('Dashboard.Adimn_create_User',['roles'=>$roles,'userRole'=>$userRole]);
 
     }
 
-    // public function create_Admin_User(Request $request, User $user ){
-    //     $roles = Role::pluck('name','name')->all();
-    //     $userRole = $user->roles->pluck('name','name')->all();
-    //     return view('Dashboard.Adimn_create_User',['roles'=>$roles,'userRole'=>$userRole]);
 
-    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -73,13 +71,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
+        $this->validate($request,[
 
             'name'  => ['required','min:3'],
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed',
-            'Role' => 'nullable'
+            'roles' => 'required'
         ],
     [
         'name.required'=>'Name is required',
@@ -89,17 +86,28 @@ class UserController extends Controller
     ]
 );
 
+$user=new User;
+$user->name=$request->name;
+$user->email=$request->email;
+$user->password=Hash::make($request->password);
+
+
+$user->Roles=implode(', ',$request->roles);
+
+if($user->save()){
+
+    $user->assignRole($request->input('roles'));
+}
+
+
 
 
 // this create user
-        $input = $request->all();
+// $input = $request->all();
+// $input['password'] = Hash::make($input['password']);
 
-        $input['password']=bcrypt($input['password']);
-
-        $user = User::create($input);
-
-        $user->assignRole($request->input('roles'));
-
+// $user = User::create($input);
+// $user->assignRole($request->input('roles'));
 
 
 
@@ -177,14 +185,30 @@ return redirect('/vermusers')->with('success','user Created success full');
             'roles' => 'required'
         ]);
 //$formFields['password']=bcrypt($formFields['password']);
-        $input = $request->all();
-        $user = User::find($id);
-        $user->update($input);
 
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        // $input = $request->all();
+        // $user = User::find($id);
+        // DB::table('model_has_roles')->where('model_id',$id)->delete();
 
-        $user->assignRole($request->input('roles'));
-       
+
+        // $user->update($input);
+        // $user->assignRole($request->input('roles'));
+        // $rol=$request->input('roles');
+
+        // dd($user);
+        $input = User::find($id);
+        $input->name=$request->input('name');
+        $input->email=$request->input('email');
+        $input->Roles=implode(', ',$request->roles);;
+
+        if($input->update()){
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $input->assignRole($input->Roles);
+
+        }
+
+
+
 
         return redirect('/vermusers')->with('success','User updated successfully');
 
@@ -238,6 +262,7 @@ return redirect('/vermusers')->with('success','user Created success full');
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed',
 
+
         ]);
 
 
@@ -246,7 +271,10 @@ return redirect('/vermusers')->with('success','user Created success full');
         $formFields['password']=bcrypt($formFields['password']);
 
         $user = User::create($formFields);
-        $user->assignRole($request->input('roles'));
+
+
+
+
 
 
 

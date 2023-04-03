@@ -11,6 +11,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlantingComponstcontroller;
 use App\Http\Controllers\HarvestingCompostController;
+use App\Http\Controllers\LocationController;
+use App\Http\Livewire\LocationDropdown;
+use App\Http\Controllers\CooperativeController;
+
 
 
 
@@ -34,6 +38,16 @@ use App\Http\Controllers\HarvestingCompostController;
 
 
 
+Route::get('/dependent_dropdown', function () {
+    return view('livewire.dependent_dropdown');
+});
+
+
+
+
+
+Route::get('/location',[LocationController::class, 'create']);
+Route::post('/location/store',[LocationController::class,'store']);
 Route::get('/',[pageController::class, 'index']);
 Route::get('/invalidateError',[pageController::class,'InvalidError']);
 
@@ -84,6 +98,23 @@ Route::get('/register',function(){
 Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
 
+
+Route::get('/cooperatives',[CooperativeController::class, 'index']);
+Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
+Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
+Route::delete('cooperatives/{{$cooperative->id}}/delete',[CooperativeController::class, 'destroy']);
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/harvesting/{bin}',[HarvestingCompostController::class, 'create']);
 Route::post('/harvesting/{bin}/store',[HarvestingCompostController::class, 'store']);
 
@@ -123,6 +154,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
     Route::get('/delete/{id}',[BinController::class,'destroy']);
     Route::get('/bins',[BinController::class,'index']);
+//    Route::get('/bins',[DistrictController::class,'index']);
     Route::get('/bin/{id}',[BinController::class,'show']);
 
 
@@ -131,7 +163,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
     Route::get('users/create/',[UserController::class,'create_Admin_User']);
     Route::post('/users/store',[UserController::class, 'store']);
 
-    Route::post('/create_vermuser',[UserController::class, 'store']);
+   // Route::post('/create_vermuser',[UserController::class, 'store']);
 
     Route::get('/users/{user}/edit',[UserController::class, 'edit']);
     Route::put('/users/{user}/update',[UserController::class, 'update']);
@@ -163,7 +195,6 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
     Route::get('/Profile/show/{user}', [ProfileController::class, 'show']);
-
 
 
 

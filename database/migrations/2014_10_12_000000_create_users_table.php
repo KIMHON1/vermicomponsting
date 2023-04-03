@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->tinyInteger('status')->default(0);
 
-            $table->string('Roles')->default('Normal_User');
+            $table->string('Roles')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
@@ -36,5 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+
+
     }
 };

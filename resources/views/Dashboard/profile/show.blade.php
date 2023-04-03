@@ -20,10 +20,10 @@
                     <div class="col-lg-12">
                         <div class="profile card card-body px-3 pt-3 pb-0">
                             <div class="profile-head">
-                                
+
                                 <div class="profile-info">
 									<div class="profile-photo">
-										<img src="{{$user_profile->profilePic ? asset('storage/'.$user_profile->profilePic) : asset('images/no-image.jpg')}}" class="img-fluid rounded-circle" alt="">
+										<img src="{{$user_profile->profilePic ? asset('storage/'.$user_profile->profilePic) : asset('images/no-image.jpg')}}" class="img-fluid rounded-circle" alt="hh">
 									</div>
 									<div class="profile-details">
 										<div class="profile-name px-3 pt-2">

@@ -57,7 +57,7 @@ class ProfileController extends Controller
         if($request->hasFile('profilePic')){
             $formFields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
         }
-        
+
 
 
         $formFields['user_id']=auth()->user()->id;
