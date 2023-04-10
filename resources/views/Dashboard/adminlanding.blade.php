@@ -17,7 +17,7 @@
 				</div>
 				<div class="row">
 					<div class="col-xl-3 col-sm-6">
-                        @can('create-users')
+                        {{-- @can('create-users') --}}
 						<div class="card">
 
 
@@ -45,7 +45,7 @@
 								</div>
 							</div>
 						</div>
-                        @endcan
+                        {{-- @endcan --}}
 					</div>
                     <div class="col-xl-3 col-sm-6">
 						<div class="card">

@@ -23,17 +23,19 @@ class PermissionSeeder extends Seeder
 //user_permisions
 $permissions =[
 //users permisions
-    'view-users',
-    'create-users',
-    'edit-users',
-    'delete-users',
+    'view-users-admin',
+    'view-users-province',
+    'view-users-districts',
+    'view-users-sector',
 
 //bins_permisions
 
-    'view-bins',
-    'create-bins',
-    'edit-bins',
-    'delete-bins',
+    'view-bins-admin',
+    'view-bins-province',
+    'view-bins-districts',
+    'view-bins-sector',
+    'view-bins-cell',
+
 
 
 //bin_conditions_permitions
@@ -45,20 +47,21 @@ $permissions =[
     'create-bin_locations',
     'edit-bin_locations',
     'delete-bin_locations',
-    //worm types permisions
 
-    'view-worm_types',
-    'create-worm_types',
-    'edit-worm_types',
-    'delete-worm_types',
+
+
 
 
     //crud for roles
-    'view-roles',
-    'create-roles',
-    'update-roles',
-    'delete-roles',
+    'view-roles-admin',
+    'view-roles-province',
+    'view-roles-districts',
+    'view-roles-sector',
+    'view-roles-cell',
+//co-operatives
 
+    'view-co-operatives',
+    'view-co-operative',
 
 
 

@@ -1,7 +1,7 @@
-@extends('Dashboard.master')
+{{-- @extends('Dashboard.master')
 
-@section('content')
-<div class="content-body">
+@section('content') --}}
+{{-- <div class="content-body">
     <div class="container-fluid">
 <div class="container">
     <div class="row mt-5">
@@ -9,9 +9,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Drop</h3>
-                </div>
+                </div> --}}
                 <livewire:location-dropdown/>
-            </div>
+            {{-- </div>
 
 
 
@@ -21,7 +21,7 @@
     </div>
 </div>
 </div>
-</div>
+</div> --}}
 
 
-@endsection
+{{-- @endsection --}}

@@ -74,13 +74,14 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile, User $user)
+    public function show(Profile $profile, User $user, Location $location)
     {
 
 
         $auth_user=auth()->user()->id;
         $user = User::find($auth_user);
-        $user_profile = $user->profile;
+       
+        dd( $user);
         // if(auth()->user()->id=$user->user_id){
             return view('Dashboard.profile.show',['user_profile'=>$user_profile,'user'=>$user]);
         // }

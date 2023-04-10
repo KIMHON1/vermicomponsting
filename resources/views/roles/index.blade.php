@@ -188,7 +188,7 @@
             </tr>
             @endforeach
 
-            {{$roles->links()}}
+            {{-- {{$roles->links()}} --}}
 
         </table>
         {!! $roles->render() !!}

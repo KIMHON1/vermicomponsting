@@ -17,9 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('co_operativename');
             $table->string('co_operativemanager');
-            $table->string('co_operativedescription');
-            $table->bigInteger("user_id")->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
+            $table->string('co_operative_email')->unique();
+            $table->integer('co_operative_telephone');
+            $table->tinyInteger('status')->default(0);
+            $table->date('starting_date');
+            $table->string('province');
+            $table->string('district');
+            $table->string('sector');
+            $table->string('cell');
             $table->timestamps();
         });
     }

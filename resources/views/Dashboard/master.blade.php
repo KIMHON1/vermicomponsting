@@ -771,8 +771,7 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-{{--
-                    @can('view-users') --}}
+                    {{-- @can('view-users-admin')
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-networking"></i>
 							<span class="nav-text">Manage Users</span>
@@ -785,19 +784,40 @@
 
 						</ul>
                     </li>
-                    {{-- @endcan --}}
+                @endcan --}}
+
+                <li><a  href="javascript:void()" aria-expanded="false">
+
+                    <a href="/Profile">
+                        <i class="fa fa-user"></i>
+
+                        <span class="nav-text">Account</span></a>
+</a>
+                    </li>
+
+                    @can('view-users-admin')
+                    <li><a  href="javascript:void()" aria-expanded="false">
+
+                        <a href="/vermusers">
+                            <i class="flaticon-381-networking"></i>
+
+                            <span class="nav-text">Manage Users</span></a>
+    </a>
+                        </li>
+
+@endcan
 
 
 
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 
                         <i class="fa fa-user"></i>
-                        <span class="nav-text">Account</span>
+                        <span class="nav-text"></span>
                     </a>
-                    <ul aria-expanded="false">
+                    <ul aria-expanded="false"> --}}
+                        {{-- <li><a href="">Profile</a></li> --}}
                         {{-- <li><a href="/Profile/show/{{$user->id}}">Profile</a></li> --}}
-                        {{-- <li><a href="/Profile/show/{{$user->id}}">Profile</a></li> --}}
-                        <li><a href="/Profile/create">CreateProfile</a></li>
+                        {{-- <li><a href="/Profile/create">CreateProfile</a></li> --}}
 
                         {{-- <li><a href="ui-badge.html">Badge</a></li>
                         <li><a href="ui-button.html">Button</a></li>
@@ -814,24 +834,34 @@
                         <li><a href="ui-typography.html">Typography</a></li>
                         <li><a href="ui-pagination.html">Pagination</a></li>
                         <li><a href="ui-grid.html">Grid</a></li> --}}
-
+{{--
                     </ul>
-                </li>
+                </li> --}}
 
 
 
+
+@can('view-co-operatives')
 
 
                 <li><a  href="javascript:void()" aria-expanded="false">
 
-                    <a href="/cooperatives"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperative</span></a>
+                    <a href="/cooperatives"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperatives</span></a>
 </a>
-
-
-
-
-
                     </li>
+ @endcan
+
+ @can('view-co-operative')
+                    <li><a  href="javascript:void()" aria-expanded="false">
+
+                        <a href="/cooperatives/show"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperative</span></a>
+    </a>
+ @endcan
+
+
+
+
+                        </li>
 
 
 
@@ -847,7 +877,7 @@
                         </li>
 
 
-                {{-- @can('view-roles') --}}
+                 @can('view-users-admin')
 
 
                    <li><a  href="javascript:void()" aria-expanded="false">
@@ -862,7 +892,7 @@
 
                     </li>
 
-                    {{-- @endcan --}}
+                    @endcan
 
 
 
@@ -1005,13 +1035,13 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer fixed-bottom">
+        {{-- <div class="footer fixed-bottom">
             <div class="copyright">
 			<p>Copyright © All right Reserved 2023</p>
             <p class="text-center text-primary"><small>vermicomposting system</small></p>
             </div>
 
-        </div>
+        </div> --}}
         <!--**********************************
             Footer end
         ***********************************-->

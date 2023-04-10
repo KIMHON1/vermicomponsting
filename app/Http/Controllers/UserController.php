@@ -24,6 +24,17 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
+
+
+
+
+    // function __construct()
+    // {
+    //  $this->middleware('permission:view-users-admin|view-roles-admin', ['only' => ['index','store']]);
+    // // $this->middleware('permission:create-roles', ['only' => ['create','store']]);
+    // //       $this->middleware('permission:update-roles', ['only' => ['edit','update']]);
+    // //  $this->middleware('permission:delete-roles', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -33,11 +44,14 @@ class UserController extends Controller
     {
         //
         //return User::all();
-        $users =User::all();
-        $count = collect($users)->count();
+        if(auth()->user()->can('view-users-admin')){
+            $users =User::all();
+            $count = collect($users)->count();
 
 
-        return view('Dashboard.users1',compact('users'))->with('i');
+            return view('Dashboard.users1',compact('users'))->with('i');
+        }
+
     }
 
 

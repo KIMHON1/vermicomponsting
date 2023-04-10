@@ -15,7 +15,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Livewire\LocationDropdown;
 use App\Http\Controllers\CooperativeController;
 
-
+use App\Http\Controllers\MemberController;
 
 
 
@@ -101,8 +101,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::get('/cooperatives',[CooperativeController::class, 'index']);
 Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
+// ->middleware('role:Sedo');
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
 Route::delete('cooperatives/{{$cooperative->id}}/delete',[CooperativeController::class, 'destroy']);
+
+
+Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
+
+Route::post('/cooperatives_member/post',[MemberController::class, 'store']);
 
 
 
@@ -160,7 +166,7 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 //user
-    Route::get('users/create/',[UserController::class,'create_Admin_User']);
+    Route::get('users/create/',[UserController::class,'create_Admin_User'])->middleware('role:Admin');
     Route::post('/users/store',[UserController::class, 'store']);
 
    // Route::post('/create_vermuser',[UserController::class, 'store']);
@@ -188,13 +194,15 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 
-    Route::get('/vermusers',[UserController::class, 'index']);
-    Route::get('/vermusers/{user}/edit',[UserController::class, 'edit']);
-    Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status');
+    Route::get('/vermusers',[UserController::class, 'index'])->middleware('role:Admin');
+    Route::get('/vermusers/{user}/edit',[UserController::class, 'edit'])->middleware('role:Admin');
+    Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status')->middleware('role:Admin');
 
     Route::get('/Profile/create', [ProfileController::class, 'create']);
     Route::post('/Profile/store', [ProfileController::class, 'store']);
-    Route::get('/Profile/show/{user}', [ProfileController::class, 'show']);
+
+
+    Route::get('/Profile', [LocationController::class, 'show']);
 
 
 

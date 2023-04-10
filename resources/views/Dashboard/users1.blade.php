@@ -14,6 +14,11 @@
 
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">User</a></li>
 					</ol>
+
+                    <div class="mt-4">
+
+                        <a href="/users/create/" class="btn btn-primary mb-1">Create  New User</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">

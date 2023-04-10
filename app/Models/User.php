@@ -70,8 +70,10 @@ class User extends Authenticatable
      return $this->hasOne(Location::class, 'user_id');
  }
 
- public function cooperative()
+ public function cooperatives()
  {
-     return $this->hasOne(Cooperative::class, 'user_id');
+
+        return $this->belongsToMany(Cooperative::class);
+
  }
 }

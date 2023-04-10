@@ -21,6 +21,8 @@
 
                  <div class="row">
                     <div class="col-lg-12 margin-tb">
+
+                        
                         <div class="pull-left">
 
                             <a class="btn btn-primary" href="/cooperatives/create"> Create New Coperative</a>
@@ -47,7 +49,7 @@
                                             </tr>
                                         </thead>
 
-                                        @foreach ($data as $item)
+                                        @foreach ($cooperatives as $cooperative)
 
                                         <tbody id="orders">
 
@@ -59,9 +61,9 @@
 
                                                 <td class="py-2">
 
-                                                    @if ($item['coop'])
-                                                    <div>{{ $item['coop']['co_operativename'] }}</div>
-                                                @endif
+
+                                                    <div>{{ $cooperative->co_operativename }}</div>
+
 
 
 
@@ -71,9 +73,9 @@
 
                                                 <td class="py-2">
 
-                                             @if ($item['manager'])
-                                                <div> {{ $item['manager']['name'] }}</div>
-                                            @endif
+
+                                                <div> {{ $cooperative->co_operativemanager}}</div>
+
 
 
 

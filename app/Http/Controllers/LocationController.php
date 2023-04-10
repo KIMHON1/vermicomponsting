@@ -85,9 +85,17 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $auth_user=auth()->user()->id;
+        $user = User::find($auth_user);
+        $userLocation = $user->location();
+
+        $user_profile = $user->location;
+
+        // dd(  $user_profile);
+        // if(auth()->user()->id=$user->user_id){
+            return view('Dashboard.profile.show',['user_profile'=>$user_profile,'user'=>$user]);
     }
 
     /**
