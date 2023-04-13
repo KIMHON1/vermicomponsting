@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('harvestings', function (Blueprint $table) {
-            $table->id();
-           $table->bigInteger('bin_id')->unsigned();
-            $table->integer("wormQuantity");
-            $table->integer("harvestCompostQuantity");
-           $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
-            $table->timestamps();
+        $table->id();
+        $table->bigInteger('planting_id')->unsigned();
+        $table->bigInteger('bin_id')->unsigned();
+        $table->integer("wormQuantity");
+        $table->integer("harvestCompostQuantity");
+        $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
+        $table->foreign('planting_id')->references('id')->on('plantings')->onDelete("cascade");
+        $table->timestamps();
         });
     }
 

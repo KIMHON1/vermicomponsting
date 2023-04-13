@@ -121,8 +121,8 @@ Route::post('/cooperatives_member/post',[MemberController::class, 'store']);
 
 
 
-Route::get('/harvesting/{bin}',[HarvestingCompostController::class, 'create']);
-Route::post('/harvesting/{bin}/store',[HarvestingCompostController::class, 'store']);
+Route::get('/harvesting/{bin}/create',[HarvestingCompostController::class, 'create']);
+Route::post('/harvesting/{bin}/post',[HarvestingCompostController::class, 'store']);
 
 Route::get('/planting/{bin}',[PlantingComponstcontroller::class, 'create']);
 Route::post('/planting/{bin}/store',[PlantingComponstcontroller::class, 'store']);

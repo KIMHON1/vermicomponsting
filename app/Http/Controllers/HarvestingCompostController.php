@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bin;
+use App\Models\Planting;
 use App\Models\Harvesting;
+use Illuminate\Support\Facades\DB;
 
 
 class HarvestingCompostController extends Controller
@@ -27,6 +29,7 @@ class HarvestingCompostController extends Controller
     public function create(Bin $bin)
     {
 
+
         return view('harvesting.end',['bin'=>$bin]);
     }
 
@@ -38,6 +41,9 @@ class HarvestingCompostController extends Controller
      */
     public function store(Request $request, Bin $bin)
     {
+
+
+
         $formfields = $request->validate(
             [
                 "wormQuantity"=>"required",
@@ -47,7 +53,17 @@ class HarvestingCompostController extends Controller
 
         $formfields['bin_id'] = $bin->id;
 
-        Harvesting::create($formfields);
+        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->value('id');
+        $plantings = Planting::find($planting_id);
+
+        $formfields['planting_id'] = $planting_id;
+
+        if(Harvesting::create($formfields)){
+
+            $planting = Planting::find( $planting_id);
+            $planting->status = 0;
+            $planting->save();
+        };
 
         return redirect('/bins');
 

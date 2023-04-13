@@ -19,4 +19,6 @@ class Planting extends Model
         return $this->belongsTo(Bin::class, 'bin_id');
     }
 
+    
+
 }

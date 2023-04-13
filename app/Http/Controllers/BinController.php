@@ -8,6 +8,7 @@ use App\Models\Bin;
 use App\Models\Bincondition;
 use App\Models\Province;
 use App\Models\Member;
+use App\Models\Planting;
 use App\Models\Cooperative;
 use Illuminate\Support\Facades\DB;
 
@@ -121,8 +122,10 @@ class BinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Bin $id)
-    {       $bin = Bin::find($id);
-            return view('Normal.singleBin')->with('bin',$bin);
+    {
+        $bin = Bin::find($id);
+
+        return view('Normal.singleBin')->with('bin',$bin);
     }
 
     /**

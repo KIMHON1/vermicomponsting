@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('plantings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('bin_id')->unsigned();
+            $table->tinyInteger('status')->default(0);
             $table->integer("wormQuantity");
             $table->integer("WasteQuantity");
             $table->integer("ExpectedCompostQuantity");

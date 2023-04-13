@@ -10,6 +10,8 @@ use App\Models\Bin;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\BinConditionChanged;
+use Illuminate\Support\Facades\DB;
+use App\Models\Planting;
 
 
 
@@ -74,16 +76,20 @@ class BinconditionController extends Controller
     {
 
 
+        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->value('id');
+
+        $plantings = Planting::find($planting_id);
+        $plantingstatus=$plantings->status;
 
         $conditions=$bin->binconditions;
         $initialcompost= $bin->planting;
-    
 
 
 
 
 
-        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost]);
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus]);
     }
 
     /**
