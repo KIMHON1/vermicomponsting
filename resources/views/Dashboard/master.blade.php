@@ -863,8 +863,7 @@
 
                         </li>
 
-
-
+ @can('view-co-operative')
                     <li><a  href="javascript:void()" aria-expanded="false">
 
                         <a href="/bins"><i class="fas fa-box"></i><span class="nav-text">Manage Bins</span></a>
@@ -875,6 +874,8 @@
 
 
                         </li>
+
+@endcan
 
 
                  @can('view-users-admin')

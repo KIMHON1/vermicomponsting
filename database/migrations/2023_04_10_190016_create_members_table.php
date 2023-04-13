@@ -17,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string("firstname");
             $table->string("secondname");
+            $table->string('email')->unique();
+            $table->integer('phonenumber');
             $table->string("province");
             $table->string("district");
             $table->string("sector");
             $table->string("cell");
-            $table->string("cooperative_id");
+            $table->unsignedinteger('cooperative_id');
+            $table->foreign("cooperative_id")->references('id')->on("cooperatives")->onDelete("cascade");
 
             $table->timestamps();
         });

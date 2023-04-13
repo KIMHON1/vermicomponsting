@@ -32,7 +32,7 @@
 						<p class="mb-0">{{$cooperativeInfo->co_operativename}} Cooperative Members </p>
 					</div>
 					<div>
-						<a href="javascript:void(0)" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addOrderModal">+New Member</a>
+						<a href="javascript:void(0)" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addOrderModal">+New member</a>
 
 					</div>
 				</div>
@@ -72,6 +72,26 @@
                                         @endif
 									</div>
 
+                                    <div class="form-group">
+										<label class="text-black font-w500"> Email</label>
+										<input type="email" name="email" class="form-control">
+                                        @if($errors->has('email'))
+                                        <span class="text-danger">
+                                          {{$errors->first('email')}}
+                                        </span>
+                                        @endif
+									</div>
+
+                                    <div class="form-group">
+										<label class="text-black font-w500">PhoneNumber</label>
+										<input type="number" name="phonenumber" class="form-control">
+                                        @if($errors->has('phonenumber'))
+                                        <span class="text-danger">
+                                          {{$errors->first('phonenumber')}}
+                                        </span>
+                                        @endif
+									</div>
+
 
 
                                     @include('livewire.dependent_dropdown')
@@ -80,10 +100,112 @@
 									</div>
 								</form>
 							</div>
+
+
+
+
+
 						</div>
 					</div>
 				</div>
 
+
+
+
+                <div class="row  mr-auto" >
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0 table-responsive-lg text-black">
+                                        <thead>
+                                            <tr>
+
+                                                <th class="align-middle">#</th>
+                                                <th class="align-middle pr-7">FirstName</th>
+                                                <th class="align-middle pr-7">SecondName</th>
+                                                <th class="align-middle minw200">Email</th>
+                                                <th class="align-middle">PhoneNumber</th>
+                                                <th class="align-middle">BinsNumber</th>
+                                                <th class="align-middle text-right">Action</th>
+                                                <th class="no-sort"></th>
+                                            </tr>
+                                        </thead>
+
+
+                                        @foreach ($Members as $member)
+                                        <tbody id="orders">
+
+                                            <tr class="btn-reveal-trigger">
+                                                <td class="py-2">
+
+                                                {{++$i}}
+                                                </td>
+                                                <td class="py-2">
+                                                    <a href="#">
+                                                     {{$member->firstname}}
+                                                <td class="py-2">
+                                                    {{$member->secondname}}
+
+                                                </td>
+                                                <td class="py-2">
+                                                    {{$member->email}}
+                                                </td>
+
+                                                <td class="py-2">
+                                                    {{$member->phonenumber}}
+                                                </td>
+
+                                                <td class="py-2">
+                                                    <?php
+                                                    $bins=\App\Models\Bin::where('member_id',$member->id)->count();
+                                                    echo $bins;
+                                                    ?>
+                                                </td>
+
+
+
+
+                                                <td class="py-2 text-right">
+                                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span></button>
+                                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
+                                                            <div class="py-2"><a class="dropdown-item" href="
+{{--
+                                                                /Profile/show/{{$user->id}} --}}
+
+
+                                                                ">View</a>
+
+
+                                                                <div class="dropdown-divider"></div>
+
+                                                                <a class="dropdown-item" href="
+
+                                                                {{-- /users/{{$user->id}}/edit --}}
+
+                                                                ">Edit</a>
+
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="
+                                                                /create_bin/{{$member->id}}/create"
+                                                                >+ Bin</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item text-danger" href="
+                                                                {{-- {{"/delete_vermuser/".$user->id}}"--}}"
+                                                                >Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                             @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 					</div>
 				</div>

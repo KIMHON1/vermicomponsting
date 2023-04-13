@@ -38,8 +38,7 @@
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link active show">About Bin</a>
                                             </li>
-                                            <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link">BinLocation</a>
-                                            </li>
+
 
                                             <li class="nav-item"><a href="#conditions" data-toggle="tab" class="nav-link">BinConditions</a>
                                             </li>
@@ -101,62 +100,7 @@
                                             <div id="about-me" class="tab-pane fade">
 
 
-                                                <div class="profile-personal-info">
-                                                    <h4 class="text-primary mb-4">LocationInformation</h4>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Country <span class="pull-right">:</span>
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->country}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Province <span class="pull-right">:</span>
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->province}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">District<span class="pull-right">:</span></h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->district}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Sector<span class="pull-right">:</span>
-                                                            </h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->sector}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">cell<span class="pull-right">:</span></h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->cell}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Village<span class="pull-right">:</span></h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->village}}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col-3">
-                                                            <h5 class="f-w-500">Road<span class="pull-right">:</span></h5>
-                                                        </div>
-                                                        <div class="col-9"><span>{{$bin->road}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                              
 
 
 

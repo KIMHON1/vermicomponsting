@@ -7,6 +7,11 @@ use App\Http\Requests\UpdateBinRequest;
 use App\Models\Bin;
 use App\Models\Bincondition;
 use App\Models\Province;
+use App\Models\Member;
+use App\Models\Cooperative;
+use Illuminate\Support\Facades\DB;
+
+
 class BinController extends Controller
 {
     /**
@@ -16,7 +21,26 @@ class BinController extends Controller
      */
     public function index(Bin $bin)
     {
-        $bins = Bin::all();
+
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+
+        $bins = Bin::all()->where('cooperative_id', $cooperative_id);
+// dd($bins);
+        // $member_bins = DB::table('bins')
+        // ->where('member_id',$member_id)
+        // ->value('cooperative_id');
+        $cooperativeInfo=Cooperative::find($cooperative_id);
+        $members=$cooperativeInfo->members;
+        // $bins=[];
+        foreach($members as $member){
+            $bin = $member->bin;
+
+        }
+
+
 
         return view('Normal.bins1',compact('bins'))->with('i');
     }
@@ -26,9 +50,28 @@ class BinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Member $member)
     {
-        return view('Normal.create_bin1');
+
+
+        $member=$member->id;
+
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+        $cooperativeInfo=Cooperative::find($cooperative_id);
+
+
+
+
+
+        $cooperativeMembers=Member::where('cooperative_id',$cooperative_id)->get();
+
+
+
+
+        return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id]);
     }
 
     /**
@@ -37,27 +80,33 @@ class BinController extends Controller
      * @param  \App\Http\Requests\StoreBinRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Member $member)
     {
+
+
+
             $formfields=$request->validate(
              [
                 'number'=> 'required|unique:bins',
                 'microcontroller_type'=>'required',
                 'worm_type' => 'required',
-                'country' => 'required',
-                'province' => 'required',
-                'district' => 'required',
-                'sector' => 'required',
-                'cell' => 'required',
-                'village' => 'required',
-                'road' => 'required|nullable',
-                'description' => 'required'
+
+                'description' => 'required',
+                'member_id'=>'required',
+                'cooperative_id'=>'required',
+
+
 
 
 
              ]
               );
-            $formfields['user_id']=auth()->user()->id;
+
+
+
+
+
+
 
         $bin = Bin::create($formfields);
         // $bin->user_id = auth()->user()->id;

@@ -12,20 +12,14 @@ class Bin extends Model
         "number",
         "microcontroller_type",
         "worm_type",
-        "country",
-        "province",
-        "district",
-        "sector",
-        "cell",
-        "village",
-        "road",
         "description",
-        "user_id"
+        "member_id",
+        "cooperative_id"
     ];
 
-    // public function user(){
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function binconditions(){
 
         return $this->hasOne(Bincondition::class,'bin_id','id');
@@ -42,6 +36,11 @@ class Bin extends Model
     public function planting(){
 
         return $this->hasOne(Planting::class,'bin_id','id');
+    }
+
+
+    public function member(){
+        return $this->belongsTo(Member::class, 'member_id', 'id');
     }
 
 

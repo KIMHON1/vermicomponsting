@@ -145,7 +145,7 @@
 
 
 
-
+{{-- 
 								<div class="card">
 									<div class="card-header d-sm-flex d-block pb-0 border-0">
 										<div class="mr-auto pr-3">
@@ -229,6 +229,7 @@
 													</div>
 												</div>
 											</div>
+
 											<div class="tab-pane fade" id="Weekly" role="tabpanel">
 												<div class="d-flex flex-wrap align-items-center px-4  bg-light">
 													<div class="mr-auto py-3 d-flex align-items-center">
@@ -339,7 +340,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 
 
 
@@ -347,7 +348,7 @@
 
 
 							</div>
-							<div class="col-xl-6 col-xxl-12 col-md-6">
+							{{-- <div class="col-xl-6 col-xxl-12 col-md-6">
 								<div class="card">
 									<div class="card-header d-block border-0 pb-0">
 										<div class="d-flex mb-3">
@@ -402,7 +403,7 @@
 					</div>
 					<div class="col-xl-6">
 						<div class="row">
-
+ --}}
 
 
 

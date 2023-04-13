@@ -32,5 +32,12 @@ class Cooperative extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function members()
+    {
+
+           return $this->hasMany(Member::class, 'cooperative_id');
+
+    }
+
 
 }

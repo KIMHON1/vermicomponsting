@@ -147,8 +147,8 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 //bins
-    Route::get('/create_bin',[BinController::class,'create']);
-    Route::post('/create_bi',[BinController::class,'store']);
+    Route::get('/create_bin/{member}/create',[BinController::class,'create']);
+    Route::post('/create_bin/post',[BinController::class,'store']);
 
 
     Route::get('/bins/{bin}/edit',[BinController::class,'edit']);

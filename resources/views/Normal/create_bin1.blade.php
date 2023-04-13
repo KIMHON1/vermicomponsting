@@ -39,15 +39,17 @@
 
                                     </div>
                                     @endif
-                                    <form class="form-valide" action="create_bi" method="POST">
+                                    <form class="form-valide" action="/create_bin/post" method="POST">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-xl-6">
+                                            <div class="col-xl-12">
+
+
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">BinNumber <span
+                                                    <label class="col-lg-2 col-form-label" for="val-digits">BinNumber <span
                                                             class="text-danger">*</span>
                                                     </label>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-8">
                                                         <input type="number" class="form-control" id="val-digits" name="number" placeholder="5">
                                                     </div>
 
@@ -57,20 +59,30 @@
                                                     </span>
                                                     @endif
                                                 </div>
+
+
+
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Microcontrolar Type <span
+                                                    <label class="col-lg-2 col-form-label" for="val-digits">Microcontrolar Type <span
                                                             class="text-danger">*</span>
                                                     </label>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-8">
                                                         <input type="text" class="form-control" id="val-digits" name="microcontroller_type" placeholder="MBILISodaq1284">
                                                     </div>
+
+
+                                                    @if($errors->has('microcontroller_type'))
+                                                    <span class="text-danger">
+                                                      {{$errors->first('microcontroller_type')}}
+                                                    </span>
+                                                    @endif
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">worm Type <span
+                                                    <label class="col-lg-2 col-form-label" for="val-digits">worm Type <span
                                                             class="text-danger">*</span>
                                                     </label>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-8">
                                                         <input type="text" class="form-control" id="val-digits" name="worm_type" placeholder="redWriggles">
                                                     </div>
                                                     @if($errors->has('worm_type'))
@@ -79,6 +91,45 @@
                                                     </span>
                                                     @endif
                                                 </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label" for="val-suggestions">Other description <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-8">
+                                                        <textarea class="form-control" id="val-suggestions" name="description" rows="5" placeholder="about this bin"></textarea>
+                                                    </div>
+
+
+                                                    @if($errors->has('description'))
+                                                    <span class="text-danger">
+                                                      {{$errors->first('description')}}
+                                                    </span>
+                                                    @endif
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <div class="col-lg-8">
+                                                        <input type="hidden" class="form-control" id="val-digits" name="member_id" value="{{$member}}" >
+                                                    </div>
+
+
+
+                                                </div>
+
+
+                                                <div class="form-group row">
+
+                                                    <div class="col-lg-8">
+                                                        <input type="hidden" class="form-control" id="val-digits" name="cooperative_id" value="{{$cooperative_id}}" >
+                                                    </div>
+
+
+
+                                                </div>
+
 
 
                                                 <div class="form-group row">
@@ -92,112 +143,6 @@
 
 
                                             </div>
-                                            <div class="col-xl-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Country <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="country" placeholder="Rwanda">
-                                                    </div>
-                                                    @if($errors->has('country'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('country')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Province <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="province" placeholder="KGL">
-                                                    </div>
-                                                    @if($errors->has('province'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('province')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">District <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="district" placeholder="Nyarugenge">
-                                                    </div>
-                                                    @if($errors->has('district'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('district')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Sector <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="sector" placeholder="Nyarugenge">
-                                                    </div>
-
-                                                    @if($errors->has('sector'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('sector')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Village <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="village" placeholder="Gatare">
-                                                    </div>
-
-
-                                                    @if($errors->has('village'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('village')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">Cell <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="cell" placeholder="Gatare">
-                                                    </div>
-
-
-                                                    @if($errors->has('cell'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('cell')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-digits">R
-                                                    oad <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="val-digits" name="road" placeholder="NY234">
-                                                    </div>
-
-
-
-                                                </div>
 
 
 
@@ -207,19 +152,26 @@
 
 
 
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label" for="val-suggestions">Other description <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <textarea class="form-control" id="val-suggestions" name="description" rows="5" placeholder="about this bin"></textarea>
-                                                    </div>
-                                                </div>
 
 
 
 
-                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </div>
                                     </form>
                                 </div>

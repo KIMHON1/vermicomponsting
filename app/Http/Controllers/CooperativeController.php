@@ -10,6 +10,8 @@ use App\Models\District;
 use App\Models\Sector;
 use App\Models\Cell;
 use App\Models\Village;
+use App\Models\Member;
+use App\Models\Bin;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -158,7 +160,7 @@ class CooperativeController extends Controller
      * @param  \App\Models\Cooperative  $cooperative
      * @return \Illuminate\Http\Response
      */
-    public function show(Cooperative $cooperative ,User $user)
+    public function show(Cooperative $cooperative ,User $user, Member $menber)
     {
 
         $auth_user=auth()->user()->id;
@@ -167,9 +169,57 @@ class CooperativeController extends Controller
                          ->value('cooperative_id');
         $cooperativeInfo=Cooperative::find($cooperative_id);
 
+        // $cooperative_members = DB::table('members')->where('cooperative_id',$cooperative_id)->get();
+        // $members_bins= [];
+        // foreach($cooperative_members as $cooperative_member)
+        // {
+        //  $bins=Bin::where('member_id',$cooperative_member)->get();
+        //  $members_bins[]=$bins;
+        // }
 
-        // dd($auth_user);
-        return view('Cooperative.show',['cooperativeInfo'=>$cooperativeInfo]);
+
+
+
+
+
+
+
+        // foreach($members as $member){
+
+        //     // $member = Member::find($member->id);
+        //     $member=[];
+
+
+        // }
+
+
+
+        //$bins = collect();
+//$member_user =$cooperativeInfo->members;
+
+// $bins=$member_user->id;
+
+
+// $cooperativeone = Cooperative::with('members.bins')->find($cooperative_id);
+// $bins = collect();
+
+// foreach ($cooperativeInfo->members as $comember) {
+//     $bins = $bins->merge($comember->bins);
+
+// }
+// dd($bins);
+
+
+
+
+
+
+        $Members=Member::where('cooperative_id',$cooperative_id)->get();
+
+
+
+       
+        return view('Cooperative.show',['cooperativeInfo'=>$cooperativeInfo, 'Members'=>$Members])->with('i');
     }
 
     /**
