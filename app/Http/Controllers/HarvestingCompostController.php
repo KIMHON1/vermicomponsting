@@ -53,7 +53,7 @@ class HarvestingCompostController extends Controller
 
         $formfields['bin_id'] = $bin->id;
 
-        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->value('id');
+        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->latest('id')->value('id');
         $plantings = Planting::find($planting_id);
 
         $formfields['planting_id'] = $planting_id;
@@ -61,7 +61,7 @@ class HarvestingCompostController extends Controller
         if(Harvesting::create($formfields)){
 
             $planting = Planting::find( $planting_id);
-            $planting->status = 0;
+            $planting->status = 1;
             $planting->save();
         };
 

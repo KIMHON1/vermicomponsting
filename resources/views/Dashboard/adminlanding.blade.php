@@ -9,15 +9,25 @@
             <!-- row -->
 			<div class="container-fluid">
 				<div class="form-head d-flex align-items-center mb-sm-4 mb-3">
+                    @can('view-users-admin')
 					<div class="mr-auto">
 						<h2 class="text-black font-w600">Dashboard</h2>
 						<p class="mb-0">Vermicomposting Admin Dashboard</p>
 					</div>
+                    @endcan
+                    @if ($cooperativeInfo)
+                    <div class="mr-auto">
+						<h2 class="text-black font-w600">Dashboard</h2>
+						<p class="mb-0">{{$cooperativeInfo->co_operativename}} Manager Dashboard</p>
+					</div>
+                    @endif
 
 				</div>
 				<div class="row">
+
+                    @can('view-users-admin')
 					<div class="col-xl-3 col-sm-6">
-                        {{-- @can('create-users') --}}
+
 						<div class="card">
 
 
@@ -45,7 +55,7 @@
 								</div>
 							</div>
 						</div>
-                        {{-- @endcan --}}
+
 					</div>
                     <div class="col-xl-3 col-sm-6">
 						<div class="card">
@@ -134,24 +144,160 @@
 							</div>
 						</div>
 					</div>
+                    @endcan
+
+ @can('view-co-operative')
+
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-primary">
+                            <div class="card-body  p-4">
+                                <div class="media">
+                                    <span class="mr-3">
+                                        <i class="la la-users"></i>
+                                    </span>
+                                    <div class="media-body text-white">
+                                        <p class="mb-1">Total Members</p>
+                                        <h3 class="text-white">{{$total_members}}</h3>
+                                        <div class="progress mb-2 bg-secondary">
+                                            <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
+                                        </div>
+                                        <small>80% Increase in 20 Days</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-warning">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="mr-3">
+                                        <i class="la la-box"></i>
+                                    </span>
+                                    <div class="media-body text-white">
+                                        <p class="mb-1">Total Bins</p>
+                                        <h3 class="text-white">{{$total_bins}}</h3>
+                                        <div class="progress mb-2 bg-primary">
+                                            <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
+                                        </div>
+                                        <small>50% Increase in 25 Days</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-secondary">
+                            <div class="card-body p-4">
+                                <div class="media">
+
+                                    <span class="mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 96c0-53 43-96 96-96h38.4C439.9 0 480 40.1 480 89.6V176v16V376c0 75.1-60.9 136-136 136s-136-60.9-136-136V296c0-22.1-17.9-40-40-40s-40 17.9-40 40V464c0 26.5-21.5 48-48 48s-48-21.5-48-48V296c0-75.1 60.9-136 136-136s136 60.9 136 136v80c0 22.1 17.9 40 40 40s40-17.9 40-40V192H352c-53 0-96-43-96-96zm144-8a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z"/></svg>
+
+                                    </span>
+
+                                    <div class="media-body text-white">
+                                        <p class="mb-1"> Bins that haven't started vermicomposting proccess</p>
+                                        <h3 class="text-white">{{$no_verm_procces}}</h3>
+                                        <div class="progress mb-2 bg-primary">
+                                            <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
+                                        </div>
+                                        <small>76% Increase in 20 Days</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-danger ">
+                            <div class="card-body p-4">
+                                <div class="media">
+                                    <span class="mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 96c0-53 43-96 96-96h38.4C439.9 0 480 40.1 480 89.6V176v16V376c0 75.1-60.9 136-136 136s-136-60.9-136-136V296c0-22.1-17.9-40-40-40s-40 17.9-40 40V464c0 26.5-21.5 48-48 48s-48-21.5-48-48V296c0-75.1 60.9-136 136-136s136 60.9 136 136v80c0 22.1 17.9 40 40 40s40-17.9 40-40V192H352c-53 0-96-43-96-96zm144-8a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z"/></svg>
+
+                                    </span>
+                                    <div class="media-body text-white">
+                                        <p class="mb-1">Bins in Vermicomposting Proccess</p>
+                                        <h3 class="text-white">
+                                         {{$verm_proccess}} </h3>
+                                        <div class="progress mb-2 bg-secondary">
+                                            <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
+                                        </div>
+                                        <small>30% Increase in 30 Days</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">Total Students</h4>
+                                <h3>3280</h3>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar progress-animated bg-primary" style="width: 80%"></div>
+                                </div>
+                                <small>80% Increase in 20 Days</small>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">New Students</h4>
+                                <h3>245</h3>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
+                                </div>
+                                <small>50% Increase in 25 Days</small>
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">Total Course</h4>
+                                <h3>28</h3>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
+                                </div>
+                                <small>76% Increase in 20 Days</small>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-xl-12">
+
+
+
+                                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
 
 
 				</div>
-				<div class="row">
-					<div class="col-xl-6">
-						<div class="row">
-							<div class="col-xl-12">
 
 
-
-                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+@endcan
 
 
 
 
-						</div>
-					</div>
-				</div>
+
+
+
             </div>
         </div>
         <!--**********************************

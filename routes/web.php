@@ -19,6 +19,7 @@ use App\Http\Controllers\MemberController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -108,7 +109,22 @@ Route::delete('cooperatives/{{$cooperative->id}}/delete',[CooperativeController:
 
 Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
 
-Route::post('/cooperatives_member/post',[MemberController::class, 'store']);
+
+Route::post('/cooperatives_membe/post',[MemberController::class, 'store']);
+Route::get('/cooperatives_member/{member}/show',[MemberController::class, 'show']);
+
+Route::get('/cooperatives_member_update/{member}/create',[MemberController::class, 'edit']);
+Route::put('/cooperatives_member_update/{member}/update',[MemberController::class, 'update']);
+
+Route::get('/cooperatives_member_update/{member}/delete',[MemberController::class,'destroy']);
+
+
+
+Route::get('/getDistricts',[MemberController::class,'getDistricts']);
+
+Route::get('/getSectors',[MemberController::class,'getSectors']);
+
+Route::get('/getCells',[MemberController::class,'getCells']);
 
 
 
@@ -131,7 +147,7 @@ Route::post('/planting/{bin}/store',[PlantingComponstcontroller::class, 'store']
 Route::get('/notification',[pageController::class, 'databaseNoIndex']);
 
 
-Route::post('/mark-as-read',[AdminController::class, 'markNotification'])->name('markNotification');
+// Route::post('/mark-as-read',[AdminController::class, 'markNotification'])->name('markNotification');
 
 
 Route::get('/dashboard',[pageController::class, 'dashbord']);
@@ -139,7 +155,7 @@ Route::get('/dashboard',[pageController::class, 'dashbord']);
 Route::get('/adminbins',[pageController::class, 'adminbin']);
 
 Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
-Route::get('/useradmin/{id}',[AdminController::class, 'show']);
+// Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 
@@ -162,7 +178,6 @@ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
     Route::get('/bins',[BinController::class,'index']);
 //    Route::get('/bins',[DistrictController::class,'index']);
     Route::get('/bin/{id}',[BinController::class,'show']);
-
 
 
 //user

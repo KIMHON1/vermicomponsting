@@ -212,6 +212,9 @@
                                                     <a href="/planting/{{$bin->id}}" class="btn btn-primary mb-1">start Composting</a>
                                                 </div>
 
+                                                {{-- @elseif(empty($plantingstatus)) --}}
+
+
                                                 @else
 
                                                     <h3>This Bin Number {{$bin->number}}  is in vermicomposting prossess</h3>

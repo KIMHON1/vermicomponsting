@@ -7,7 +7,9 @@ use App\Models\Bin;
 use App\Models\User;
 use App\Models\Bincondition;
 use App\Models\Location;
-
+use App\Models\Member;
+use App\Models\Cooperative;
+use Illuminate\Support\Facades\DB;
 class pageController extends Controller
 {
 
@@ -41,6 +43,152 @@ class pageController extends Controller
         $active_accounts = User::where('status',1)->count();
 
         $locations = Location::where('user_id', auth()->user()->id)->get();
+
+
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+         $status = 0;
+         $verm_proccess= DB::table('plantings')
+                         ->where('status',$status)
+                         ->count();
+
+
+
+        $statuss = 1;
+        $no_verm_procces= DB::table('plantings')
+                         ->where('status', $statuss )
+                         ->count();
+
+
+
+                      //dd(   $no_verm_procces);
+
+        $cooperativeInfo=Cooperative::find($cooperative_id);
+
+        $total_bins = Bin::where('cooperative_id', $cooperative_id)->count();
+        $total_members = Member::where('cooperative_id', $cooperative_id)->count();
+
+
+
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+
+
+
+        $previousMonth = $currentMonth - 1;
+      $previousYear = $currentYear;
+
+      $previous_month_member = DB::table('members')
+      ->where('cooperative_id',$cooperative_id)
+      ->select('id', DB::raw('COUNT(*) as previous_month_total'))
+      ->whereMonth('created_at', $previousMonth)
+      ->whereYear('created_at', $currentYear)
+      ->groupBy('id')
+      ->count();
+
+      $current_month_member = DB::table('members')
+      ->where('cooperative_id',$cooperative_id)
+      ->select('id', DB::raw('COUNT(*) as previous_month_total'))
+      ->whereMonth('created_at',$currentMonth)
+      ->whereYear('created_at', $currentYear)
+      ->groupBy('id')
+      ->count();
+
+
+    //   $new_members_per_month = DB::table('members')
+    //     ->selectRaw(' MONTH(created_at) as month, COUNT(*) as new_members')
+    //     ->where('cooperative_id', $cooperative_id)
+    //     ->groupBy( 'month')
+    //     ->count();
+
+
+    //   $percentageIncrease = ($current_month_member -  $previous_month_member) / $previous_month_member * 100;
+    //   dd( $previous_month_member);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         foreach($locations as $location)
         {
 
@@ -48,8 +196,16 @@ class pageController extends Controller
 
             if ($location) {
 
-                return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts]);
-                }
+
+
+
+                return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
+                'no_verm_procces'=>$no_verm_procces
+            ]);
+
+
+
+        }
 
 
 

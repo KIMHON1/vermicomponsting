@@ -18,66 +18,64 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-sm mb-0 table-responsive-lg text-black">
+                                    <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
                                         <thead>
                                             <tr>
-
+                                                <!-- Column headers -->
                                                 <th class="align-middle">#</th>
                                                 <th class="align-middle pr-7">Bin_number</th>
-
                                                 <th class="align-middle minw200">worm_type</th>
-
                                                 <th class="align-middle">microcontroller_type</th>
                                                 {{-- <th class="align-middle">BinOwner</th> --}}
                                                 <th class="align-middle text-right">Actions</th>
-                                                <th class="no-sort"></th>
+                                                {{-- <th class="no-sort"></th> --}}
                                             </tr>
                                         </thead>
-                                        @foreach ($bins as $bin)
                                         <tbody id="orders">
-
+                                            @foreach ($bins as $bin)
+                                            <!-- Table data -->
                                             <tr class="btn-reveal-trigger">
-                                                <td class="py-2">
-                                                    {{++$i}}
-
-                                                </td>
-                                                <td class="py-2">
-                                                     {{$bin->number}}
-                                                    </td>
-
-
-                                                <td class="py-2">{{$bin->worm_type}}
-                                                    <p class="mb-0 text-500"></p>
-                                                </td>
-
-                                                <td class="py-2">{{$bin->microcontroller_type}}
-                                                    <p class="mb-0 text-500"></p>
-                                                </td>
-                                                {{-- <td class="py-2">
-                                               {{$bins->member->firstname}}
-                                                 </td> --}}
+                                                <td class="py-2">{{ ++$i }}</td>
+                                                <td class="py-2">{{ $bin->number }}</td>
+                                                <td class="py-2">{{ $bin->worm_type }}<p class="mb-0 text-500"></p></td>
+                                                <td class="py-2">{{ $bin->microcontroller_type }}<p class="mb-0 text-500"></p></td>
+                                                {{-- <td class="py-2">{{ $bins->member->firstname }}</td> --}}
                                                 <td class="py-2 text-right">
-                                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span></button>
+                                                    <!-- Actions dropdown -->
+                                                    <div class="dropdown text-sans-serif">
+                                                        <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
+                                                        </button>
                                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
                                                             <div class="py-2">
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/admsinglebin/{{$bin->id}}">View</a>
+                                                                <a class="dropdown-item" href="/admsinglebin/{{ $bin->id }}">View</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/bins/{{$bin->id}}/edit">Edit</a>
-                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="/bins/{{ $bin->id }}/edit"
 
-                                                                <a class="dropdown-item text-danger" href="{{"/delete/".$bin->id}}">Delete</a>
+
+                                                                   >Edit</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item text-danger" href="{{ "/delete/".$bin->id }}">Delete</a>
                                                                 <div class="dropdown-divider"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            @endforeach
                                         </tbody>
-                                        @endforeach
-
                                     </table>
+
 
                                     {{-- {{$bins->links()}} --}}
                                 </div>
@@ -87,4 +85,6 @@
                 </div>
             </div>
         </div>
+
+
 @endsection

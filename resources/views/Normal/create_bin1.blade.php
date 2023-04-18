@@ -30,7 +30,7 @@
                                 <div class="form-validation">
 
                                     @if(Session::get('success'))
-                                    <div class="alert alert-seccess">
+                                    <div class="alert alert-success">
                                       {{Session::get('success')}}
                                       @php
                                           Session::forget('success')
@@ -143,32 +143,6 @@
 
 
                                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

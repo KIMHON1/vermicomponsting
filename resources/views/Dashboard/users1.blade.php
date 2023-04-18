@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-sm mb-0 table-responsive-lg text-black">
+                                    <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
                                         <thead>
                                             <tr>
 
@@ -35,13 +35,13 @@
                                                 <th class="align-middle">Role</th>
                                                 <th class="align-middle">Status</th>
                                                 <th class="align-middle text-right">Action</th>
-                                                <th class="no-sort"></th>
+
                                             </tr>
                                         </thead>
 
 
-                                        @foreach ($users as $user)
                                         <tbody id="orders">
+                                            @foreach ($users as $user)
 
                                             <tr class="btn-reveal-trigger">
                                                 <td class="py-2">
@@ -51,6 +51,8 @@
                                                 <td class="py-2">
                                                     <a href="#">
                                                     {{$user->name}}
+
+                                                </td>
                                                 <td class="py-2">{{$user->email}}</td>
 
                                                 <td class="py-2">
@@ -100,6 +102,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
                                             @endforeach
                                         </tbody>
                                     </table>

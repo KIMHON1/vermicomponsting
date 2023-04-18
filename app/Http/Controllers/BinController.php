@@ -134,13 +134,19 @@ class BinController extends Controller
      * @param  \App\Models\Bin  $bin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Bin $bin)
+    public function edit(Request $request, Bin $bin,Member $member)
     {
 
 
 
+        $member=$member->id;
 
-        return view('Normal.edit_bin',['bin'=>$bin]);
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+
+        return view('Normal.edit_bin',['bin'=>$bin,'member'=>$member,'cooperative_id'=>$cooperative_id]);
 
     }
 
@@ -158,24 +164,23 @@ class BinController extends Controller
 
         $formfields=$request->validate(
             [
-                'user_id'=>'required',
-               'number'=> 'required',
-               'microcontroller_type'=>'required',
-               'worm_type' => 'required',
-               'country' => 'required',
-               'province' => 'required',
-               'district' => 'required',
-               'sector' => 'required',
-               'cell' => 'required',
-               'village' => 'required',
-               'road' => 'required',
-               'description' => 'required'
+
+
+                'number'=> 'required',
+                'microcontroller_type'=>'required',
+                'worm_type' => 'required',
+
+                'description' => 'required',
+                'member_id'=>'required',
+                'cooperative_id'=>'required',
 
 
 
             ]
              );
-        $formfields['user_id']=auth()->user()->id;
+
+
+
 
         $bin->update($formfields);
 

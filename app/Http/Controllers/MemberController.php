@@ -10,6 +10,7 @@ use App\Models\District;
 use App\Models\Sector;
 use App\Models\Cell;
 use App\Models\Village;
+use App\Models\Bin;
 
 class MemberController extends Controller
 {
@@ -110,7 +111,12 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+
+        // dd($member);
+        $bins =DB::table('bins')->where('member_id',$member->id)->latest('id')->get();
+
+
+        return view('Cooperative.member',['member'=>$member,  'bins'=>$bins])->with('i');
     }
 
     /**
@@ -121,7 +127,31 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+
+
+        $provinces = Province::all();
+
+
+
+
+
+        return view('Cooperative.update', ['member'=>$member,'provinces'=>$provinces]);
+    }
+
+    public function getDistricts(Request $request)
+    {
+        $districts=District::where('provincecode',$request->provincecode)->get();
+        return response()->json($districts);
+    }
+
+    public function getSectors(Request $request){
+        $sectors=Sector::where('districtcode',$request->districtcode)->get();
+        return response()->json($sectors);
+    }
+
+    public function getCells(Request $request){
+        $cells=Cell::where('sectorcode',$request->sectorcode)->get();
+        return response()->json($cells);
     }
 
     /**
@@ -133,7 +163,57 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $formfields = $request->validate(
+            [
+                'firstname'=>'required',
+                'secondname'=>'required',
+                'phonenumber'=>'required',
+                'email'=>'required',
+                'province'=>'required',
+                'district'=>'required',
+                'sector'=>'required',
+                'cell'=>'required',
+            ]
+
+
+            );
+
+
+
+            $provincecode = $formfields['province'];
+
+            $province_details = Province::find($provincecode);
+            $province_name  =  $province_details->provincename;
+            $formfields['province']   =  $province_name;
+
+            $districtcode   =   $formfields['district'];
+
+            $district_details= District::where('provincecode', $provincecode)
+            ->where('districtcode', $districtcode)
+            ->first();
+            $district_name =$district_details->namedistrict;
+            $formfields['district']= $district_name;
+
+
+
+            $sectorcode = $formfields['sector'];
+            $sector_details = Sector::where('districtcode', $districtcode)->where('sectorcode', $sectorcode)
+            ->first();
+
+            $sector_name =$sector_details->namesector;
+            $formfields['sector']=  $sector_name;
+
+
+            $codecell = $formfields['cell'];
+            $cell_details = Cell::where('sectorcode', $sectorcode)->where('codecell', $codecell)
+            ->first();
+            $name_cell =   $cell_details->nameCell;
+            $formfields['cell']=$name_cell;
+
+            $member->update($formfields);
+
+            return redirect('/cooperatives/show');
+
     }
 
     /**
@@ -144,6 +224,11 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+
+
+        $member->delete();
+        return redirect('/cooperatives/show');
+
+
     }
 }

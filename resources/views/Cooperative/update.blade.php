@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+
+
+
+
+
+        <!DOCTYPE html>
 <html lang="en">
 
 
@@ -1033,7 +1038,206 @@
             Sidebar end
         ***********************************-->
 
-		@yield('content')
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="page-titles">
+					<h4>Validation</h4>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Validation</a></li>
+					</ol>
+                </div>
+                <!-- row -->
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Update Member</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form class="form-valide-with-icon" action="/cooperatives_member_update/{{$member->id}}/update" method="post">
+
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group">
+                                            <label class="text-label">Firstname</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                </div>
+                                                <input type="text"  class="form-control"  name="firstname" value="{{$member->firstname}}">
+                                            </div>
+
+                                            @if($errors->has('firstname'))
+                                            <span class="text-danger">
+                                              {{$errors->first('firstname')}}
+                                            </span>
+                                            @endif
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="text-label">Second Name</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                </div>
+                                                <input type="text" class="form-control"  name="secondname"  value="{{$member->secondname}}" >
+                                            </div>
+
+                                            @if($errors->has('secondname'))
+                                            <span class="text-danger">
+                                              {{$errors->first('secondname')}}
+                                            </span>
+                                            @endif
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="text-label">email</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                                </div>
+                                                <input type="text" class="form-control"  value="{{$member->email}}"  name="email" >
+                                            </div>
+                                            @if($errors->has('email'))
+                                                <span class="text-danger">
+                                                {{$errors->first('email')}}
+                                                </span>
+                                            @endif
+
+                                        </div>
+
+
+
+
+
+
+                                        <div class="form-group">
+                                            <label class="text-label">Phone Number *</label>
+                                            <div class="input-group transparent-append">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                                </div>
+                                                <input type="number" class="form-control"  name="phonenumber"  value="{{$member->phonenumber}}" >
+
+                                            </div>
+
+                                            @if($errors->has('phonenumber'))
+                                                <span class="text-danger">
+                                                {{$errors->first('phonenumber')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="text-label">Province *</label>
+                                            <div class="input-group transparent-append">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                </div>
+                                                <select id="provinces" name="province"  class="form-control"  >
+                                                    <option value="{{$member->province}}" >{{$member->province}}</option>
+
+                                                    @foreach ($provinces as $province)
+                                                        <option value="{{$province->provincecode}}">{{$province->provincename}}</option>
+
+                                                    @endforeach
+
+                                                </select>
+
+                                            </div>
+
+                                            @if($errors->has('province'))
+                                                <span class="text-danger">
+                                                {{$errors->first('province')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="text-label">District *</label>
+                                            <div class="input-group transparent-append">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                </div>
+                                                <select  id="districts" name="district"  class="form-control"  >
+                                                    <option value=""></option>
+
+                                                </select>
+
+                                            </div>
+
+                                            @if($errors->has('district'))
+                                                <span class="text-danger">
+                                                {{$errors->first('district')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="text-label">sectors*</label>
+                                            <div class="input-group transparent-append">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                </div>
+                                                <select  id="sectors" name="sector"  class="form-control"  >
+                                                    <option value=""></option>
+
+                                                </select>
+
+                                            </div>
+
+                                            @if($errors->has('sector'))
+                                                <span class="text-danger">
+                                                {{$errors->first('sector')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="text-label">Cells*</label>
+                                            <div class="input-group transparent-append">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                </div>
+                                                <select  id="cells" name="cell"  class="form-control"  >
+                                                    <option value=""></option>
+
+                                                </select>
+
+                                            </div>
+
+                                            @if($errors->has('cell'))
+                                                <span class="text-danger">
+                                                {{$errors->first('cell')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+
+
+
+
+
+
+
+                                        <button type="submit" class="btn mr-2 btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-light">cencel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
         <!--**********************************
@@ -1126,6 +1330,81 @@ $(document).ready(function() {
   });
 });
 </script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+      $(document).on('change','#provinces',function(){
+
+        var procode=$(this).val();
+        $.ajax({
+          type:'get',
+          url:'{!!URL::to('getDistricts')!!}',
+          data:{'provincecode':procode},
+          success:function(data){
+          var op = '<option value="{{$member->district}}">{{$member->district}}</option>';
+          for (var i = 0; i < data.length; i++) {
+              op += '<option value="' + data[i].districtcode + '">' + data[i].namedistrict + '</option>';
+          }
+          $('#districts').html(op);
+          },
+          error:function(){
+
+          }
+        });
+      });
+    });
+    $(document).ready(function(){
+      $(document).on('change','#districts',function(){
+
+        var districtcode=$(this).val();
+        $.ajax({
+          type:'get',
+          url:'{!!URL::to('getSectors')!!}',
+          data:{'districtcode':districtcode},
+          success:function(data){
+          var op = '<option value="{{$member->sector}}">{{$member->sector}}</option>';
+          for (var i = 0; i < data.length; i++) {
+              op += '<option value="' + data[i].sectorcode + '">' + data[i].namesector + '</option>';
+          }
+          $('#sectors').html(op);
+          },
+          error:function(){
+
+          }
+        });
+      });
+    });
+    $(document).ready(function(){
+      $(document).on('change','#sectors',function(){
+
+        var sectorcode=$(this).val();
+        $.ajax({
+          type:'get',
+          url:'{!!URL::to('getCells')!!}',
+          data:{'sectorcode':sectorcode},
+          success:function(data){
+          var op = '<option value="{{$member->cell}}" >{{$member->cell}}</option>';
+          for (var i = 0; i < data.length; i++) {
+              op += '<option value="' + data[i].codecell + '">' + data[i].nameCell + '</option>';
+          }
+          $('#cells').html(op);
+          },
+          error:function(){
+
+          }
+        });
+      });
+    });
+  </script>
+
+
+
+
+
+
+
 
 
 

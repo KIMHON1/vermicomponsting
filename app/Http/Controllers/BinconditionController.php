@@ -76,10 +76,21 @@ class BinconditionController extends Controller
     {
 
 
-        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->value('id');
+        $planting_id = DB::table('plantings')->where('bin_id',$bin->id)->latest('id')->value('id');
 
         $plantings = Planting::find($planting_id);
-        $plantingstatus=$plantings->status;
+
+        $plantingstatus;
+        if(isset($plantings->status)){
+
+
+            $plantingstatus=$plantings->status;
+
+        }
+
+        else{
+            $plantingstatus=1;
+        }
 
         $conditions=$bin->binconditions;
         $initialcompost= $bin->planting;
