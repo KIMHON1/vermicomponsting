@@ -100,30 +100,36 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //dashboard
 
 
+
+
+
+//cooperative
 Route::get('/cooperatives',[CooperativeController::class, 'index']);
 Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
 // ->middleware('role:Sedo');
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
-Route::delete('cooperatives/{{$cooperative->id}}/delete',[CooperativeController::class, 'destroy']);
+
+
+
+Route::get('cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
 
 
 Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
 
 
+
+//cooperative members
+
+
 Route::post('/cooperatives_membe/post',[MemberController::class, 'store']);
 Route::get('/cooperatives_member/{member}/show',[MemberController::class, 'show']);
-
 Route::get('/cooperatives_member_update/{member}/create',[MemberController::class, 'edit']);
 Route::put('/cooperatives_member_update/{member}/update',[MemberController::class, 'update']);
-
 Route::get('/cooperatives_member_update/{member}/delete',[MemberController::class,'destroy']);
 
-
-
+//locations rwanda
 Route::get('/getDistricts',[MemberController::class,'getDistricts']);
-
 Route::get('/getSectors',[MemberController::class,'getSectors']);
-
 Route::get('/getCells',[MemberController::class,'getCells']);
 
 

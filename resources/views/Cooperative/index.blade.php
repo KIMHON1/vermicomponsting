@@ -74,7 +74,9 @@
                                                                 <a class="dropdown-item" href="/Profile/show/">View</a>
                                                                 <a class="dropdown-item" href="/cooperatives_member_update/create">Edit</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger" href="">Delete</a>
+                                                               <a class="dropdown-item text-danger" href="cooperatives/{{$cooperative->id}}/delete">Delete</a>
+
+
                                                             </div>
                                                         </div>
                                                     </div>

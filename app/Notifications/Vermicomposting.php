@@ -57,7 +57,7 @@ class Vermicomposting extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data'=>'bincondition changed'
+            
         ];
     }
 }

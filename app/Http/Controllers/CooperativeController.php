@@ -218,7 +218,7 @@ class CooperativeController extends Controller
 
 
 
-       
+
         return view('Cooperative.show',['cooperativeInfo'=>$cooperativeInfo, 'Members'=>$Members])->with('i');
     }
 
@@ -253,7 +253,11 @@ class CooperativeController extends Controller
      */
     public function destroy(Cooperative $cooperative)
     {
+    //  dd($cooperative);
+        // $cooperativeId->delete();
 
-        $cooperativeId->delete();
+        // $cooperative = Cooperative::Find($cooperative->id);
+        $cooperative->delete();
+        return redirect('/cooperatives');
     }
 }
