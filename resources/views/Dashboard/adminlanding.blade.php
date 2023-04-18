@@ -158,10 +158,7 @@
                                     <div class="media-body text-white">
                                         <p class="mb-1">Total Members</p>
                                         <h3 class="text-white">{{$total_members}}</h3>
-                                        <div class="progress mb-2 bg-secondary">
-                                            <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
-                                        </div>
-                                        <small>80% Increase in 20 Days</small>
+
                                     </div>
                                 </div>
                             </div>
@@ -177,10 +174,7 @@
                                     <div class="media-body text-white">
                                         <p class="mb-1">Total Bins</p>
                                         <h3 class="text-white">{{$total_bins}}</h3>
-                                        <div class="progress mb-2 bg-primary">
-                                            <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
-                                        </div>
-                                        <small>50% Increase in 25 Days</small>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -199,10 +193,7 @@
                                     <div class="media-body text-white">
                                         <p class="mb-1"> Bins that haven't started vermicomposting proccess</p>
                                         <h3 class="text-white">{{$no_verm_procces}}</h3>
-                                        <div class="progress mb-2 bg-primary">
-                                            <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
-                                        </div>
-                                        <small>76% Increase in 20 Days</small>
+
                                     </div>
                                 </div>
                             </div>
@@ -222,10 +213,7 @@
                                         <p class="mb-1">Bins in Vermicomposting Proccess</p>
                                         <h3 class="text-white">
                                          {{$verm_proccess}} </h3>
-                                        <div class="progress mb-2 bg-secondary">
-                                            <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
-                                        </div>
-                                        <small>30% Increase in 30 Days</small>
+
                                     </div>
                                 </div>
                             </div>

@@ -69,6 +69,13 @@ class pageController extends Controller
 
         $total_bins = Bin::where('cooperative_id', $cooperative_id)->count();
         $total_members = Member::where('cooperative_id', $cooperative_id)->count();
+        $binis = Bin::where('cooperative_id', $cooperative_id)->get();
+        // $bins_id = [];
+        // foreach($bins as $b){
+        //  $bins_id[] = $b->id;
+        // }
+        // dd( $bins_id);
+
 
 
 

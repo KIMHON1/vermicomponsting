@@ -26,7 +26,7 @@ class PlantingComponstcontroller extends Controller
     public function create(Bin $bin)
     {
 
-
+        
         return view('planting.start',['bin'=>$bin]);
     }
 
