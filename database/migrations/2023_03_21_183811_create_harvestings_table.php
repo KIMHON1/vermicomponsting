@@ -19,7 +19,7 @@ return new class extends Migration
         $table->bigInteger('bin_id')->unsigned();
         $table->integer("wormQuantity");
         $table->integer("harvestCompostQuantity");
-        $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
+         $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
         $table->foreign('planting_id')->references('id')->on('plantings')->onDelete("cascade");
         $table->timestamps();
         });

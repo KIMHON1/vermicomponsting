@@ -108,13 +108,11 @@ Route::get('/cooperatives',[CooperativeController::class, 'index']);
 Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
 // ->middleware('role:Sedo');
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
-
-
-
 Route::get('cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
-
-
 Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
+
+Route::get('/cooperatives/{cooperative}/edit',[CooperativeController::class, 'edit']);
+Route::put('/cooperatives/{cooperative}/update',[CooperativeController::class, 'update']);
 
 
 

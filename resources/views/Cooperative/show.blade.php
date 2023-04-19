@@ -13,10 +13,10 @@
 
                 <div class="page-titles">
 					<h4>Manage</h4>
-					<ol class="breadcrumb">
+					{{-- <ol class="breadcrumb">
 
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">CO-Operative  {{$cooperativeInfo->co_operativename}}</a></li>
-					</ol>
+					</ol> --}}
 
 
 
@@ -27,10 +27,10 @@
         ***********************************-->
 
 				<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
-					<div class="mr-auto">
+					{{-- <div class="mr-auto">
 						<h2 class="text-black font-w600">Members</h2>
 						<p class="mb-0">{{$cooperativeInfo->co_operativename}} Cooperative Members </p>
-					</div>
+					</div> --}}
 					<div>
 						<a href="javascript:void(0)" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addOrderModal">+New member</a>
 

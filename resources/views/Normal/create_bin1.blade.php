@@ -46,68 +46,66 @@
 
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">BinNumber <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="number" class="form-control" id="val-digits" name="number" placeholder="5">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-lg-2 col-form-label" for="val-digits">BinNumber <span
+                                                                class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-12">
+                                                            <input type="number" class="form-control" id="val-digits" name="number" placeholder="5">
+                                                        </div>
                                                     </div>
-
-                                                    @if($errors->has('number'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('number')}}
-                                                    </span>
-                                                    @endif
+                                                        @if($errors->has('number'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('number')}}
+                                                        </span>
+                                                        @endif
                                                 </div>
 
 
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">Microcontrolar Type <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" id="val-digits" name="microcontroller_type" placeholder="MBILISodaq1284">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-lg-2 col-form-label" for="val-digits">Microcontrolar Type <span
+                                                                class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" id="val-digits" name="microcontroller_type" placeholder="MBILISodaq1284">
+                                                        </div>
                                                     </div>
 
-
-                                                    @if($errors->has('microcontroller_type'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('microcontroller_type')}}
-                                                    </span>
-                                                    @endif
+                                                        @if($errors->has('microcontroller_type'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('microcontroller_type')}}
+                                                        </span>
+                                                        @endif
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">worm Type <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" id="val-digits" name="worm_type" placeholder="redWriggles">
+
+                                                    <div class="col-sm-12">
+
+                                                        <label  for="val-digits">worm Type <span
+                                                                class="text-danger">*</span>
+                                                        </label>
+
+                                                        <div class="col-lg-12">
+                                                            <input type="text" class="form-control" id="val-digits" name="worm_type" placeholder="redWriggles">
+                                                        </div>
                                                     </div>
+
                                                     @if($errors->has('worm_type'))
                                                     <span class="text-danger">
                                                       {{$errors->first('worm_type')}}
                                                     </span>
                                                     @endif
                                                 </div>
+                            </div>
+
+                        </div>
 
 
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-suggestions">Other description <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <textarea class="form-control" id="val-suggestions" name="description" rows="5" placeholder="about this bin"></textarea>
-                                                    </div>
+                                                @include('livewire.dependent_dropdown')
 
-
-                                                    @if($errors->has('description'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('description')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
 
                                                 <div class="form-group row">
 
@@ -149,8 +147,8 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
+
+
                     </div>
 
                 </div>

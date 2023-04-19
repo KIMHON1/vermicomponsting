@@ -12,7 +12,11 @@ class Bin extends Model
         "number",
         "microcontroller_type",
         "worm_type",
-        "description",
+        'province',
+        'district',
+        'sector',
+        'cell',
+        
         "member_id",
         "cooperative_id"
     ];

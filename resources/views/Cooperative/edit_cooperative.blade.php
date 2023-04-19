@@ -1,159 +1,3 @@
-{{-- @extends('Dashboard.master')
-
-
-@section('content')
-
-
-        <!--**********************************
-            Content body start
-        ***********************************-->
-
-
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="page-titles">
-					<h4>bin</h4>
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">bin</a></li>
-					</ol>
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Update Bin {{$bin->number}}</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-validation">
-
-                                    @if(Session::get('success'))
-                                    <div class="alert alert-success">
-                                      {{Session::get('success')}}
-                                      @php
-                                          Session::forget('success')
-                                      @endphp
-
-
-                                    </div>
-                                    @endif
-                                    <form class="form-valide" action="/bins/{{$bin->id}}/update" method="POST">
-                                        @csrf
-
-                                        @method('PUT')
-                                        <div class="row">
-                                            <div class="col-xl-12">
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">BinNumber <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="number" class="form-control" id="val-digits" name="number"    value="{{$bin->number}}">
-                                                    </div>
-
-                                                    @if($errors->has('number'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('number')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">Microcontrolar Type <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" id="val-digits" name="microcontroller_type" value="{{$bin->microcontroller_type}}">
-                                                    </div>
-
-
-                                                    @if($errors->has('microcontroller_type'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('microcontroller_type')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-digits">worm Type <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" id="val-digits" name="worm_type" value={{$bin->worm_type}}>
-                                                    </div>
-                                                    @if($errors->has('worm_type'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('worm_type')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label" for="val-suggestions">Other description <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <textarea class="form-control" id="val-suggestions" name="description" rows="5" >{{$bin->description}}</textarea>
-                                                    </div>
-
-
-                                                    @if($errors->has('description'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('description')}}
-                                                    </span>
-                                                    @endif
-                                                </div>
-
-
-
-
-                                                <div class="form-group row">
-
-                                                    <div class="col-lg-8">
-                                                        <input type="hidden" class="form-control" id="val-digits" name="cooperative_id" value="{{$cooperative_id}}" >
-                                                    </div>
-
-
-
-                                                </div>
-
-
-
-                                                <div class="form-group row">
-                                                    <div class="col-lg-8 ml-auto">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-
-                                                        <a class="btn btn-primary" href="/bins">Cancel</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-
-@endsection --}}
-
-
 
              <!--**********************************
             Content body start
@@ -1057,10 +901,10 @@
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
-					<h4>update</h4>
+					<h4>Validation</h4>
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javascript:void(0)">bins</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)"></a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Validation</a></li>
 					</ol>
                 </div>
                 <!-- row -->
@@ -1075,7 +919,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> Update bin</h4>
+                                <h4 class="card-title"> Update cooperative</h4>
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
@@ -1091,212 +935,220 @@
                                                             </div>
                                                             @endif
                                             <div class="basic-form">
-                                                <form class="form-valide" action="/bins/{{$bin->id}}/update" method="POST">
+                                                <form method="post" action="/cooperatives/{{$cooperative->id}}/update">
                                                     @csrf
-
                                                     @method('PUT')
+                                                    <div class="card-body">
+                                                        <div class="form-group   col-sm-12">
 
 
+                                                        <label class="col-lg-4 col-form-label"          for="val-suggestions">Co-operativename<span
+                                                            class="text-danger">*</span>
+                                                        </label>
 
 
+                                                        <input type="text" class="form-control input-default" name="co_operativename" value="{{$cooperative->co_operativename}}">
 
 
-                                                    <div class="row">
-                                                        <div class="col-xl-12">
+                                                        @if($errors->has('co_operativename'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('co_operativename')}}
+                                                        </span>
+                                                        @endif
 
-
-
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">BinNumber</label>
-                                                                <div class="input-group">
-
-                                                                    <input type="text"  class="form-control"  name="number" value="{{$bin->number}}">
-                                                                </div>
-
-                                                                @if($errors->has('number'))
-                                                                <span class="text-danger">
-                                                                  {{$errors->first('number')}}
-                                                                </span>
-                                                                @endif
-                                                            </div>
-
-
-
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">microcontroller_type</label>
-                                                                <div class="input-group">
-
-                                                                    <input type="text"  class="form-control"  name="microcontroller_type" value="{{$bin->microcontroller_type}}">
-                                                                </div>
-
-                                                                @if($errors->has('microcontroller_type'))
-                                                                <span class="text-danger">
-                                                                  {{$errors->first('microcontroller_type')}}
-                                                                </span>
-                                                                @endif
-                                                            </div>
-
-
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">worm_type</label>
-                                                                <div class="input-group">
-
-                                                                    <input type="text"  class="form-control"  name="worm_type" value="{{$bin->worm_type}}">
-                                                                </div>
-
-                                                                @if($errors->has('worm_type'))
-                                                                <span class="text-danger">
-                                                                  {{$errors->first('worm_type')}}
-                                                                </span>
-                                                                @endif
-                                                            </div>
-
-
-
-
-
-
-
-
-
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">Province *</label>
-                                                                <div class="input-group transparent-append">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
-                                                                    </div>
-                                                                    <select id="provinces" name="province"  class="form-control"  >
-                                                                        <option >{{$bin->province}}</option>
-
-                                                                        @foreach ($provinces as $province)
-                                                                            <option value="{{$province->provincecode}}">{{$province->provincename}}</option>
-
-                                                                        @endforeach
-
-                                                                    </select>
-
-                                                                </div>
-
-                                                                @if($errors->has('province'))
-                                                                    <span class="text-danger">
-                                                                    {{$errors->first('province')}}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">District *</label>
-                                                                <div class="input-group transparent-append">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
-                                                                    </div>
-                                                                    <select  id="districts" name="district"  class="form-control"  >
-                                                                        <option value=""></option>
-
-                                                                    </select>
-
-                                                                </div>
-
-                                                                @if($errors->has('district'))
-                                                                    <span class="text-danger">
-                                                                    {{$errors->first('district')}}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">sectors*</label>
-                                                                <div class="input-group transparent-append">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
-                                                                    </div>
-                                                                    <select  id="sectors" name="sector"  class="form-control"  >
-                                                                        <option value=""></option>
-
-                                                                    </select>
-
-                                                                </div>
-
-                                                                @if($errors->has('sector'))
-                                                                    <span class="text-danger">
-                                                                    {{$errors->first('sector')}}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="text-label">Cells*</label>
-                                                                <div class="input-group transparent-append">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
-                                                                    </div>
-                                                                    <select  id="cells" name="cell"  class="form-control"  >
-                                                                        <option value=""></option>
-
-                                                                    </select>
-
-                                                                </div>
-
-                                                                @if($errors->has('cell'))
-                                                                    <span class="text-danger">
-                                                                    {{$errors->first('cell')}}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-
-
-
-
-
-
-                                                            <div class="form-group row">
-
-                                                                <div class="col-lg-8">
-                                                                    <input type="number" class="form-control" id="val-digits" name="member_id" value="{{$member}}" >
-                                                                </div>
-
-
-
-                                                            </div>
-
-
-                                                            <div class="form-group row">
-
-                                                                <div class="col-lg-8">
-                                                                    <input type="hidden" class="form-control" id="val-digits" name="cooperative_id" value="{{$cooperative_id}}" >
-                                                                </div>
-
-
-
-                                                            </div>
-
-                                                            <div class="form-group row">
-
-                                                                <div class="col-lg-8">
-                                                                    <input type="hidden" class="form-control" id="val-digits" name="member_id" value="{{$member}}" >
-                                                                </div>
-
-
-
-                                                            </div>
-
-
-
-                                                            <div class="form-group row">
-                                                                <div class="col-lg-8 ml-auto">
-                                                                    <button type="submit" class="btn btn-primary">Submit</button>
-
-                                                                    <a class="btn btn-primary" href="/bins">Cancel</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </form>
 
+                                                    <div class="form-group   col-sm-12">
+
+
+                                                        <label class="col-lg-4 col-form-label"          for="val-suggestions">Co-operativeEmail<span
+                                                            class="text-danger">*</span>
+                                                        </label>
+
+
+                                                        <input type="text" class="form-control input-default" name="co_operative_email" value="{{$cooperative->co_operative_email}}">
+
+
+                                                        @if($errors->has('co_operative_email'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('co_operative_email')}}
+                                                        </span>
+                                                        @endif
+
+                                                    </div>
+
+                                                    <div class="form-group   col-sm-12">
+
+
+                                                        <label class="col-lg-4 col-form-label"          for="val-suggestions">Co-operativePhoneNumber<span
+                                                            class="text-danger">*</span>
+                                                        </label>
+
+
+                                                        <input type="text" class="form-control input-default" name="co_operative_telephone" value="{{$cooperative->co_operative_telephone}}">
+
+
+                                                        @if($errors->has('co_operative_telephone'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('co_operative_telephone')}}
+                                                        </span>
+                                                        @endif
+
+                                                    </div>
+
+                                                    <div class="form-group   col-sm-12">
+
+
+                                                        <label class="col-lg-4 col-form-label"          for="val-suggestions">Co-operativeStartingDate<span
+                                                            class="text-danger">*</span>
+                                                        </label>
+
+
+                                                        <input type="date" class="form-control input-default" name="starting_date" value="{{$cooperative->starting_date}}">
+
+
+                                                        @if($errors->has('starting_date'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('starting_date')}}
+                                                        </span>
+                                                        @endif
+
+                                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <div class="form-group col-sm-12">
+
+
+                                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Co-operative Manager <span
+                                                                class="text-danger">*</span>
+                                                            </label>
+
+
+                                                            <select  class="form-control input-default" name="co_operativemanager">
+                                                                <option disable selected>{{$cooperative->co_operativemanager}}</option>
+                                                                @foreach($managers as $manager)
+                                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                                @endforeach
+                                                            </select>
+
+
+                                                            @if($errors->has('co_operativemanager'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('co_operativemanager')}}
+                                                        </span>
+                                                        @endif
+
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                                    <label class="text-label">Province *</label>
+                                                                    <div class="input-group transparent-append">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                                        </div>
+                                                                        <select id="provinces" name="province"  class="form-control"  >
+                                                                            <option >{{$cooperative->province}}</option>
+
+                                                                            @foreach ($provinces as $province)
+                                                                                <option value="{{$province->provincecode}}">{{$province->provincename}}</option>
+
+                                                                            @endforeach
+
+                                                                        </select>
+
+                                                                    </div>
+
+                                                                    @if($errors->has('province'))
+                                                                        <span class="text-danger">
+                                                                        {{$errors->first('province')}}
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="text-label">District *</label>
+                                                                    <div class="input-group transparent-append">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                                        </div>
+                                                                        <select  id="districts" name="district"  class="form-control"  >
+                                                                            <option value=""></option>
+
+                                                                        </select>
+
+                                                                    </div>
+
+                                                                    @if($errors->has('district'))
+                                                                        <span class="text-danger">
+                                                                        {{$errors->first('district')}}
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="text-label">sectors*</label>
+                                                                    <div class="input-group transparent-append">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                                        </div>
+                                                                        <select  id="sectors" name="sector"  class="form-control"  >
+                                                                            <option value=""></option>
+
+                                                                        </select>
+
+                                                                    </div>
+
+                                                                    @if($errors->has('sector'))
+                                                                        <span class="text-danger">
+                                                                        {{$errors->first('sector')}}
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="text-label">Cells*</label>
+                                                                    <div class="input-group transparent-append">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
+                                                                        </div>
+                                                                        <select  id="cells" name="cell"  class="form-control"  >
+                                                                            <option value=""></option>
+
+                                                                        </select>
+
+                                                                    </div>
+
+                                                                    @if($errors->has('cell'))
+                                                                        <span class="text-danger">
+                                                                        {{$errors->first('cell')}}
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                <button type="submit" class="btn mr-2 btn-primary">Submit</button>
+
+                                                </form>
                                             </div>
                                         </div>
                                 </div>
@@ -1422,7 +1274,7 @@ $(document).ready(function() {
           url:'{!!URL::to('getDistricts')!!}',
           data:{'provincecode':procode},
           success:function(data){
-          var op = '<option value="{{$bin->district}}">{{$bin->district}}</option>';
+          var op = '<option value="{{$cooperative->district}}">{{$cooperative->district}}</option>';
           for (var i = 0; i < data.length; i++) {
               op += '<option value="' + data[i].districtcode + '">' + data[i].namedistrict + '</option>';
           }
@@ -1443,7 +1295,7 @@ $(document).ready(function() {
           url:'{!!URL::to('getSectors')!!}',
           data:{'districtcode':districtcode},
           success:function(data){
-          var op = '<option value="{{$bin->sector}}">{{$bin->sector}}</option>';
+          var op = '<option value="{{$cooperative->sector}}">{{$cooperative->sector}}</option>';
           for (var i = 0; i < data.length; i++) {
               op += '<option value="' + data[i].sectorcode + '">' + data[i].namesector + '</option>';
           }
@@ -1464,7 +1316,7 @@ $(document).ready(function() {
           url:'{!!URL::to('getCells')!!}',
           data:{'sectorcode':sectorcode},
           success:function(data){
-          var op = '<option value="{{$bin->cell}}" >{{$bin->cell}}</option>';
+          var op = '<option value="{{$cooperative->cell}}" >{{$cooperative->cell}}</option>';
           for (var i = 0; i < data.length; i++) {
               op += '<option value="' + data[i].codecell + '">' + data[i].nameCell + '</option>';
           }

@@ -169,45 +169,7 @@ class CooperativeController extends Controller
                          ->value('cooperative_id');
         $cooperativeInfo=Cooperative::find($cooperative_id);
 
-        // $cooperative_members = DB::table('members')->where('cooperative_id',$cooperative_id)->get();
-        // $members_bins= [];
-        // foreach($cooperative_members as $cooperative_member)
-        // {
-        //  $bins=Bin::where('member_id',$cooperative_member)->get();
-        //  $members_bins[]=$bins;
-        // }
 
-
-
-
-
-
-
-
-        // foreach($members as $member){
-
-        //     // $member = Member::find($member->id);
-        //     $member=[];
-
-
-        // }
-
-
-
-        //$bins = collect();
-//$member_user =$cooperativeInfo->members;
-
-// $bins=$member_user->id;
-
-
-// $cooperativeone = Cooperative::with('members.bins')->find($cooperative_id);
-// $bins = collect();
-
-// foreach ($cooperativeInfo->members as $comember) {
-//     $bins = $bins->merge($comember->bins);
-
-// }
-// dd($bins);
 
 
 
@@ -230,7 +192,12 @@ class CooperativeController extends Controller
      */
     public function edit(Cooperative $cooperative)
     {
-        //
+        // $
+        $managers = User::where('Roles','Manager')->get();
+        $provinces = Province::all();
+
+
+        return view('Cooperative.edit_cooperative',['cooperative'=>$cooperative,'managers'=>$managers,'provinces'=>$provinces]);
     }
 
     /**
@@ -242,6 +209,65 @@ class CooperativeController extends Controller
      */
     public function update(Request $request, Cooperative $cooperative)
     {
+
+        $formfields = $request->validate(
+            [
+                'co_operativename'=> 'required',
+                'co_operativemanager' => 'required',
+                'co_operative_email'=>'required',
+                'co_operative_telephone'=>'required',
+                // 'status'=>'required',
+                'starting_date'=>'required',
+                'province'=>'required',
+                'district'=>'required',
+                'sector'=>'required',
+                'cell'=>'required',
+
+            ]
+            );
+
+        $manager_id=$formfields['co_operativemanager'];
+        $manager_details = User::find($manager_id);
+        $managername=$manager_details->name;
+        $formfields['co_operativemanager']=$managername;
+
+
+
+        $provincecode=$formfields['province'];
+
+        $province_details = Province::find($provincecode);
+        $province_name=$province_details->provincename;
+        $formfields['province']=$province_name;
+
+        $districtcode=$formfields['district'];
+
+        $district_details= District::where('provincecode', $provincecode)
+        ->where('districtcode', $districtcode)
+        ->first();
+        $district_name =$district_details->namedistrict;
+        $formfields['district']= $district_name;
+
+
+
+        $sectorcode = $formfields['sector'];
+        $sector_details = Sector::where('districtcode', $districtcode)->where('sectorcode', $sectorcode)
+        ->first();
+
+        $sector_name =$sector_details->namesector;
+        $formfields['sector']=  $sector_name;
+
+
+        $codecell = $formfields['cell'];
+        $cell_details = Cell::where('sectorcode', $sectorcode)->where('codecell', $codecell)
+        ->first();
+        $name_cell =   $cell_details->nameCell;
+        $formfields['cell']=$name_cell;
+
+
+        $cooperative->update($formfields);
+        $cooperative->users()->detach($manager_id);
+        $cooperative->users()->attach($manager_id);
+        return redirect('/cooperatives');
 
     }
 

@@ -7,6 +7,10 @@ use App\Http\Requests\UpdateBinRequest;
 use App\Models\Bin;
 use App\Models\Bincondition;
 use App\Models\Province;
+use App\Models\District;
+use App\Models\Sector;
+use App\Models\Cell;
+use App\Models\Village;
 use App\Models\Member;
 use App\Models\Planting;
 use App\Models\Cooperative;
@@ -34,12 +38,12 @@ class BinController extends Controller
         // ->where('member_id',$member_id)
         // ->value('cooperative_id');
         $cooperativeInfo=Cooperative::find($cooperative_id);
-        $members=$cooperativeInfo->members;
+        // $members=$cooperativeInfo->members;
         // $bins=[];
-        foreach($members as $member){
-            $bin = $member->bin;
+        // foreach($members as $member){
+        //     $bin = $member->bin;
 
-        }
+        // }
 
 
 
@@ -91,8 +95,10 @@ class BinController extends Controller
                 'number'=> 'required|unique:bins',
                 'microcontroller_type'=>'required',
                 'worm_type' => 'required',
-
-                'description' => 'required',
+                'province'=>'required',
+                'district'=>'required',
+                'sector'=>'required',
+                'cell'=>'required',
                 'member_id'=>'required',
                 'cooperative_id'=>'required',
 
@@ -102,6 +108,35 @@ class BinController extends Controller
 
              ]
               );
+              $provincecode=$formfields['province'];
+
+              $province_details = Province::find($provincecode);
+              $province_name=$province_details->provincename;
+              $formfields['province']=$province_name;
+
+              $districtcode=$formfields['district'];
+
+              $district_details= District::where('provincecode', $provincecode)
+              ->where('districtcode', $districtcode)
+              ->first();
+              $district_name =$district_details->namedistrict;
+              $formfields['district']= $district_name;
+
+
+
+              $sectorcode = $formfields['sector'];
+              $sector_details = Sector::where('districtcode', $districtcode)->where('sectorcode', $sectorcode)
+              ->first();
+
+              $sector_name =$sector_details->namesector;
+              $formfields['sector']=  $sector_name;
+
+
+              $codecell = $formfields['cell'];
+              $cell_details = Cell::where('sectorcode', $sectorcode)->where('codecell', $codecell)
+              ->first();
+              $name_cell =   $cell_details->nameCell;
+              $formfields['cell']=$name_cell;
 
 
 
@@ -146,9 +181,34 @@ class BinController extends Controller
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
 
-        return view('Normal.edit_bin',['bin'=>$bin,'member'=>$member,'cooperative_id'=>$cooperative_id]);
+
+        $provinces = Province::all();
+
+dd($member);
+
+
+
+        //return view('Cooperative.update', ['member'=>$member]);
+
+        return view('Normal.edit_bin',['bin'=>$bin,'member'=>$member,'cooperative_id'=>$cooperative_id,'provinces'=>$provinces]);
 
     }
+    public function getDistricts(Request $request)
+    {
+        $districts=District::where('provincecode',$request->provincecode)->get();
+        return response()->json($districts);
+    }
+
+    public function getSectors(Request $request){
+        $sectors=Sector::where('districtcode',$request->districtcode)->get();
+        return response()->json($sectors);
+    }
+
+    public function getCells(Request $request){
+        $cells=Cell::where('sectorcode',$request->sectorcode)->get();
+        return response()->json($cells);
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -169,7 +229,10 @@ class BinController extends Controller
                 'number'=> 'required',
                 'microcontroller_type'=>'required',
                 'worm_type' => 'required',
-
+                'province'=>'required',
+                'district'=>'required',
+                'sector'=>'required',
+                'cell'=>'required',
                 'description' => 'required',
                 'member_id'=>'required',
                 'cooperative_id'=>'required',
@@ -178,6 +241,7 @@ class BinController extends Controller
 
             ]
              );
+        
 
 
 
