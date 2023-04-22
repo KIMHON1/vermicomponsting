@@ -39,5 +39,10 @@ class Cooperative extends Model
 
     }
 
+    public function microcontrollers()
+    {
+        return $this->hasMany(Microcontroller::class);
+    }
+
 
 }

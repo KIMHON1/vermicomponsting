@@ -184,7 +184,7 @@ class BinController extends Controller
 
         $provinces = Province::all();
 
-dd($member);
+
 
 
 
@@ -241,7 +241,7 @@ dd($member);
 
             ]
              );
-        
+
 
 
 

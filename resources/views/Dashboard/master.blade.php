@@ -20,6 +20,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
 
@@ -741,10 +742,14 @@
 										<span class="text-black">Hello,<strong>Franklin</strong></span>
 										<p class="fs-12 mb-0">Super Admin</p>
 									</div> -->
-                                    <img src="/dashboard_themes/images/birt.png" width="20" alt=""/>
+                                    <div class="profile-photo">
+                                        {{-- <img src="{{$user_profile->profilePic ? asset('storage/'.$user_profile->profilePic) : asset('images/no-image.jpg')}}" class="img-fluid rounded-circle" alt="hh"> --}}
+
+                                        {{Auth::user()->name}}
+                                    </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="app-profile.html" class="dropdown-item ai-icon">
+                                    <a href="/Profile" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                         <span class="ml-2">Profile </span>
                                     </a>
@@ -787,15 +792,33 @@
 						</ul>
                     </li>
                 @endcan --}}
-
+@can('view-co-operative')
                 <li><a  href="javascript:void()" aria-expanded="false">
 
-                    <a href="/Profile">
-                        <i class="fa fa-user"></i>
+                    <a href="/microcontrollers/index">
+                        <i class="fa fa-microchip"></i>
 
-                        <span class="nav-text">Account</span></a>
+
+                        <span class="nav-text">Microcontrollers</span></a>
 </a>
                     </li>
+
+
+                    <li><a  href="javascript:void()" aria-expanded="false">
+
+                        <a href="/worms/index">
+                            {{-- <i class="fa fa-genderless"></i> --}}
+
+                             <i class="fa fa-venus"></i>
+
+
+
+                            <span class="nav-text">Worms</span></a>
+    </a>
+                        </li>
+
+
+                        @endcan
 
                     @can('view-users-admin')
                     <li><a  href="javascript:void()" aria-expanded="false">
@@ -856,7 +879,7 @@
  @can('view-co-operative')
                     <li><a  href="javascript:void()" aria-expanded="false">
 
-                        <a href="/cooperatives/show"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperative</span></a>
+                        <a href="/cooperatives/show"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperative Members</span></a>
     </a>
  @endcan
 

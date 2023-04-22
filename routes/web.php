@@ -14,7 +14,8 @@ use App\Http\Controllers\HarvestingCompostController;
 use App\Http\Controllers\LocationController;
 use App\Http\Livewire\LocationDropdown;
 use App\Http\Controllers\CooperativeController;
-
+use App\Http\Controllers\MicrocontrollerController;
+use App\Http\Controllers\WormController;
 use App\Http\Controllers\MemberController;
 
 
@@ -101,6 +102,25 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
+//microcontroller
+Route::get('/microcontrollers/index', [MicrocontrollerController::class, 'index']);
+Route::get('/microcontrollers/create', [MicrocontrollerController::class, 'create']);
+Route::post('/microcontrollers/storecontroller', [MicrocontrollerController::class, 'store']);
+Route::get('/microcontrollers/{microcontroller}/show', [MicrocontrollerController::class, 'show']);
+Route::get('/microcontrollers/{microcontroller}/edit', [MicrocontrollerController::class, 'edit']);
+Route::put('/microcontrollers/{microcontroller}/update', [MicrocontrollerController::class, 'update']);
+Route::get('/microcontrollers/{microcontroller}/delete', [MicrocontrollerController::class, 'destroy']);
+
+
+
+//worms
+Route::get('/worms/index', [WormController::class, 'index']);
+Route::get('/worms/create', [WormController::class, 'create']);
+Route::post('/worms/store', [WormController::class, 'store']);
+// Route::get('/microcontrollers/{microcontroller}/show', [MicrocontrollerController::class, 'show']);
+// Route::get('/microcontrollers/{microcontroller}/edit', [MicrocontrollerController::class, 'edit']);
+// Route::put('/microcontrollers/{microcontroller}/update', [MicrocontrollerController::class, 'update']);
+// Route::get('/microcontrollers/{microcontroller}/delete', [MicrocontrollerController::class, 'destroy']);
 
 
 //cooperative
@@ -108,7 +128,7 @@ Route::get('/cooperatives',[CooperativeController::class, 'index']);
 Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
 // ->middleware('role:Sedo');
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
-Route::get('cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
+Route::get('/cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
 Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
 
 Route::get('/cooperatives/{cooperative}/edit',[CooperativeController::class, 'edit']);

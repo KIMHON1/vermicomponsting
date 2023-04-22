@@ -23,9 +23,9 @@ class MemberServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('Dashboard.master', function ($view) {
-            $members = Member::all();
-            $view->with('members', $members);
-        });
+        // View::composer('Dashboard.master', function ($view) {
+        //     $members = Member::all();
+        //     $view->with('members', $members);
+        // });
     }
 }
