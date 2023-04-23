@@ -66,16 +66,32 @@ class MicrocontrollerController extends Controller
                 'ram_size'=>'required',
                 'pin_count'=>'required',
                 'price'=>'required',
-                //'stock'=>'required',
+                'stock'=>'required',
                 'cooperative_id'=>'required',
 
 
         ]);
 
+        $existingMicrocontroller = Microcontroller::where('name', $formfield['name'])
+        ->where('price', $formfield['price'])
+        ->first();
+
+    if ($existingMicrocontroller) {
+        // A worm with the same name and price already exists,
+        // so we need to increment its population
+        $existingMicrocontroller->stock += $formfield['stock'];
+        $existingMicrocontroller->save();
+    } else {
+        // No worm with the same name and price exists,
+        // so we create a new one
+        $newMicrocontroller = Microcontroller::create($formfield);
+    }
 
 
 
-        $microcontroller =Microcontroller::create($formfields);
+
+
+        //$microcontroller =Microcontroller::create($formfields);
 
         return redirect('microcontrollers/index');
     }
@@ -132,7 +148,7 @@ class MicrocontrollerController extends Controller
                     'cooperative_id'=>'required',
                 ]);
 
-             
+
                 $microcontroller->update($formfields);
 
                 return redirect('microcontrollers/index');

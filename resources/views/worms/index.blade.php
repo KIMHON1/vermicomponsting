@@ -42,7 +42,7 @@
                                                 <th class="align-middle pr-7"> Name</th>
                                                 <th class="align-middle pr-7"> population</th>
                                                 <th class="align-middle minw200">Price</th>
-                                                <th class="align-middle minw200">stock</th>
+
                                                 <th class="align-middle text-right">Action</th>
 
                                             </tr>
@@ -60,9 +60,7 @@
                                                 <td class="py-2">
                                                     <div>{{ $worm->price }}$</div>
                                                 </td>
-                                                <td class="py-2">
-                                                    <div>{{ $worm->stock }}</div>
-                                                </td>
+
                                                 <td class="py-2 text-right">
                                                     <div class="dropdown text-sans-serif">
                                                         <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +80,8 @@
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item" href="/worms/{{$worm->id}}/show">view</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/worms/{{$worm->id}}/edit">Edit</a>
+                                                                <a class="dropdown-item" href="
+                                                                /worms/{{$worm->id}}/edit">Edit</a>
                                                                 <div class="dropdown-divider"></div>
                                                                <a class="dropdown-item text-danger" href="/worms/{{$worm->id}}/delete">Delete</a>
 

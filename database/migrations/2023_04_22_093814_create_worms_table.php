@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('population');
-            $table->decimal('price', 8, 2);
-            $table->integer('stock')->default(0);
+            $table->float('price', 8, 2);
+
             $table->foreign("cooperative_id")->references('id')->on("cooperatives")->onDelete("cascade");
             $table->timestamps();
         });

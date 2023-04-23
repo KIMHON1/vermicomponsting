@@ -19,6 +19,7 @@ class Microcontroller extends Model
                 'flash_memory_size',
                 'ram_size',
                 'pin_count',
+                'stock',
                 'price',
                 'cooperative_id',
 

@@ -66,14 +66,24 @@ class WormController extends Controller
                 ]
                 );
 
+                $existingWorm = Worm::where('name', $formfield['name'])
+                ->where('price', $formfield['price'])
+                ->first();
 
-                $worm->price = $formfield['price'];
-                $worm->cooperative_id = $formfield['cooperative_id'];
-                $worm = Worm::firstOrCreate(['name' => $formfield['name']]);
+            if ($existingWorm) {
+                // A worm with the same name and price already exists,
+                // so we need to increment its population
+                $existingWorm->population += $formfield['population'];
+                $existingWorm->save();
+            } else {
+                // No worm with the same name and price exists,
+                // so we create a new one
+                $newWorm = Worm::create($formfield);
+            }
 
-                $worm->price = $formfield['price'];
-             
-                $worm->save();
+
+
+
 
                 return redirect('/worms/index');
     }
@@ -86,7 +96,7 @@ class WormController extends Controller
      */
     public function show(Worm $worm)
     {
-        //
+        return view('worms.show',['worm'=>$worm]);
     }
 
     /**
@@ -97,7 +107,11 @@ class WormController extends Controller
      */
     public function edit(Worm $worm)
     {
-        //
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+        ->where('user_id',$auth_user)
+        ->value('cooperative_id');
+        return view('worms.edit',['cooperative_id'=>$cooperative_id,'worm'=>$worm]);
     }
 
     /**
@@ -109,7 +123,40 @@ class WormController extends Controller
      */
     public function update(UpdateWormRequest $request, Worm $worm)
     {
-        //
+                $formfield = $request->filled('description')
+                ? $request->validate([
+                    'name' => 'required',
+                    'price' => 'required',
+                    'population' => 'required',
+                    'description' => 'nullable',
+                    'cooperative_id' => 'required',
+                ])
+                : $request->validate([
+                    'name' => 'required',
+                    'price' => 'required',
+                    'population' => 'required',
+                    'cooperative_id' => 'required',
+                ]);
+
+                $existingWorm = Worm::where('name', $formfield['name'])
+                    ->where('price', $formfield['price'])
+                    ->where('id', '!=', $worm->id)
+                    ->first();
+
+                if ($existingWorm) {
+                    // A worm with the same name and price already exists,
+                    // so we need to increment its population and delete the current worm
+                    $existingWorm->population += $formfield['population'];
+                    $existingWorm->save();
+
+                    $worm->delete();
+                } else {
+                    // No worm with the same name and price exists,
+                    // so we update the current worm
+                    $worm->update($formfield);
+                }
+
+                return redirect('/worms/index');
     }
 
     /**
@@ -120,6 +167,8 @@ class WormController extends Controller
      */
     public function destroy(Worm $worm)
     {
-        //
+
+        $worm->delete();
+        return redirect('/worms/index');
     }
 }

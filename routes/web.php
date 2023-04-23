@@ -117,10 +117,10 @@ Route::get('/microcontrollers/{microcontroller}/delete', [MicrocontrollerControl
 Route::get('/worms/index', [WormController::class, 'index']);
 Route::get('/worms/create', [WormController::class, 'create']);
 Route::post('/worms/store', [WormController::class, 'store']);
-// Route::get('/microcontrollers/{microcontroller}/show', [MicrocontrollerController::class, 'show']);
-// Route::get('/microcontrollers/{microcontroller}/edit', [MicrocontrollerController::class, 'edit']);
-// Route::put('/microcontrollers/{microcontroller}/update', [MicrocontrollerController::class, 'update']);
-// Route::get('/microcontrollers/{microcontroller}/delete', [MicrocontrollerController::class, 'destroy']);
+Route::get('/worms/{worm}/show', [WormController::class, 'show']);
+Route::get('/worms/{worm}/edit', [WormController::class, 'edit']);
+Route::put('/worms/{worm}/update', [WormController::class, 'update']);
+Route::get('/worms/{worm}/delete', [WormController::class, 'destroy']);
 
 
 //cooperative

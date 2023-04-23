@@ -20,7 +20,7 @@ class MicrocontrollerFactory extends Factory
 
         return [
             //
-            'name'=>$this->faker->unique()->word(),
+            'name'=>$this->faker->word(),
 
             'manufacturer' => $this->faker->company,
             'architecture' => $this->faker->randomElement(['AVR', 'ARM', 'PIC', 'MSP430']),

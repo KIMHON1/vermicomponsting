@@ -879,7 +879,7 @@
  @can('view-co-operative')
                     <li><a  href="javascript:void()" aria-expanded="false">
 
-                        <a href="/cooperatives/show"><i class="fa fa-handshake-o" aria-hidden="true"></i><span class="nav-text">Cooperative Members</span></a>
+                        <a href="/cooperatives/show"><i class="fa fa-users" aria-hidden="true"></i><span class="nav-text">Cooperative Members</span></a>
     </a>
  @endcan
 

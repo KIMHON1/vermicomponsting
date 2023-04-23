@@ -87,7 +87,7 @@
                                             <label class="text-label">Price</label>
                                             <div class="input-group">
 
-                                                <input type="number" class="form-control" id="val-username1" name="price" >
+                                                <input type="number" class="form-control" id="val-username1" step="0.01" name="price" >
 
                                             </div>
                                             @if($errors->has('price'))

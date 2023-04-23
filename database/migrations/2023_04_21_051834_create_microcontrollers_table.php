@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('microcontrollers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("cooperative_id");
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('manufacturer');
             $table->string('architecture');
             $table->unsignedInteger('clock_speed');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedInteger('ram_size');
             $table->unsignedTinyInteger('pin_count');
             $table->decimal('price', 8, 2);
-            $table->integer('stock')->default(0);
+            $table->integer('stock');
             $table->foreign("cooperative_id")->references('id')->on("cooperatives")->onDelete("cascade");
             $table->timestamps();
         });

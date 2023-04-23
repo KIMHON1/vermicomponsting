@@ -21,7 +21,6 @@ class WormFactory extends Factory
             'description' => $this->faker->sentence(),
             'population' => $this->faker->numberBetween(100, 1000),
             'price' => $this->faker->randomFloat(2, 5, 500),
-            'stock' => $this->faker->numberBetween(0, 100),
             'cooperative_id' => function () {
                 return \App\Models\Cooperative::inRandomOrder()->first()->id;}
         ];

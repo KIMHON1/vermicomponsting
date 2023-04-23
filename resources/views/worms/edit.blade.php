@@ -13,7 +13,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Update Microcontroller </h4>
+                                <h4 class="card-title">Update worm </h4>
                                 @if(Session::get('success'))
                                 <div class="alert alert-seccess">
                                   {{Session::get('success')}}
@@ -27,15 +27,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form class="form-valide-with-icon" method="POST" action="/microcontrollers/{{$microcontroller->id}}/update">
+                                    <form class="form-valide-with-icon" method="POST" action="/worms/{{$worm->id}}/update">
                                       @csrf
                                       @method('PUT')
 
                                             <div class="form-group">
-                                                <label class="text-label">Name/model number</label>
+                                                <label class="text-label"> WormName</label>
                                                 <div class="input-group">
 
-                                                    <input type="text" class="form-control" id="val-username1" name="name"  value="{{$microcontroller->name}}" >
+                                                    <input type="text" class="form-control" id="val-username1" name="name"  value="{{$worm->name}}" >
 
                                                 </div>
                                                 @if($errors->has('name'))
@@ -45,24 +45,23 @@
                                                 @endif
                                             </div>
 
-
                                             <div class="form-group">
-                                                <label class="text-label">Manufacture</label>
+                                                <label class="text-label">Price</label>
                                                 <div class="input-group">
 
-                                                    <input type="text" class="form-control" id="val-username1" name="manufacturer" value="{{$microcontroller->manufacturer}}" >
+                                                    <input type="text" class="form-control" id="val-username1" step="0.01" name="price" value="{{$worm->price}}">
 
                                                 </div>
-                                                @if($errors->has('manufacturer'))
+                                                @if($errors->has('price'))
                                                 <span class="text-danger">
-                                                {{$errors->first('manufacturer')}}
+                                                {{$errors->first('price')}}
                                                 </span>
                                                 @endif
                                             </div>
 
 
                                             <div class="form-group">
-                                                <label class="text-label">coo</label>
+
                                                 <div class="input-group">
 
                                                     <input type="hidden" class="form-control" id="val-username1" name="cooperative_id" value="{{$cooperative_id}}">
@@ -79,95 +78,34 @@
 
 
                                             <div class="form-group">
-                                                <label class="text-label">Architecture</label>
+                                                <label class="text-label">WormPopulation
+                                                </label>
                                                 <div class="input-group">
 
-                                                    <input type="text" class="form-control"  name="architecture"  value="{{$microcontroller->architecture}}">
+                                                    <input type="number" class="form-control" id="val-username1" name="population" value="{{$worm->population
+                                                    }}">
 
                                                 </div>
-                                                @if($errors->has('architecture'))
+                                                @if($errors->has('population'))
                                                 <span class="text-danger">
-                                                {{$errors->first('architecture')}}
+                                                    {{$errors->first('population')}}
                                                 </span>
                                                 @endif
                                             </div>
 
 
+                                            <div class="form-group">
+                                                <label class="text-label">Description of this Worm..*</label>
+                                                <textarea name ="description" class="form-control" rows="4" id="comment"  >{{$worm->description}} </textarea>
 
-
-
-
-                                        <div class="form-group">
-                                            <label class="text-label">ClockSpeed</label>
-                                            <div class="input-group">
-
-                                                <input type="number" class="form-control" id="val-username1" name="clock_speed" value="{{$microcontroller->clock_speed}}" >
-
-                                            </div>
-                                            @if($errors->has('clock_speed'))
-                                            <span class="text-danger">
-                                            {{$errors->first('clock_speed')}}
-                                            </span>
-                                            @endif
+                                                @if($errors->has('description'))
+                                                <span class="text-danger">
+                                                  {{$errors->first('description')}}
+                                                </span>
+                                                @endif
                                             </div>
 
 
-
-                                        <div class="form-group">
-                                            <label class="text-label">FlashMemorySize</label>
-                                            <div class="input-group">
-
-                                                <input type="number" class="form-control" id="val-username1" name="flash_memory_size"  value="{{$microcontroller->flash_memory_size}}">
-
-                                            </div>
-                                            @if($errors->has('flash_memory_size'))
-                                            <span class="text-danger">
-                                            {{$errors->first('flash_memory_size')}}
-                                            </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="text-label">RamSize</label>
-                                            <div class="input-group">
-
-                                                <input type="number" class="form-control" id="val-username1" name="ram_size"  value="{{$microcontroller->ram_size}}">
-
-                                            </div>
-                                            @if($errors->has('ram_size'))
-                                            <span class="text-danger">
-                                                {{$errors->first('ram_size')}}
-                                            </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="text-label">PinCount</label>
-                                            <div class="input-group">
-
-                                                <input type="number" class="form-control" id="val-username1" name="pin_count"  value="{{$microcontroller->pin_count}}">
-
-                                            </div>
-                                            @if($errors->has('pin_count'))
-                                            <span class="text-danger">
-                                            {{$errors->first('pin_count')}}
-                                            </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="text-label">Price</label>
-                                            <div class="input-group">
-
-                                                <input type="number" class="form-control" id="val-username1" name="price" value="{{$microcontroller->price}}">
-
-                                            </div>
-                                            @if($errors->has('price'))
-                                            <span class="text-danger">
-                                            {{$errors->first('price')}}
-                                            </span>
-                                            @endif
-                                        </div>
 
 
 
@@ -184,6 +122,8 @@
                                         <button type="submit" class="btn  mr-2  btn-primary"> Submit </button>
 
                                     </form>
+
+
                                 </div>
                             </div>
                         </div>

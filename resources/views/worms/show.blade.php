@@ -17,10 +17,10 @@
                     <!-- row -->
                     <div class="container-fluid">
                         <div class="page-titles">
-                            <h4>Microcontrollers</h4>
+                            <h4>worms</h4>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">   {{$microcontroller->name}}</a></li>
-                                <li class="breadcrumb-item active"><a href="javascript:void(0)">Microcontroller</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">   {{$worm->name}}</a></li>
+                                <li class="breadcrumb-item active"><a href="javascript:void(0)">worm</a></li>
                             </ol>
                         </div>
 
@@ -38,15 +38,12 @@
 
 
 
-                                                        {{$microcontroller->name}}
+                                                        {{$worm->name}}
 
                                                     </h4>
-                                                    <p>microcontrollername/code</p>
+                                                    <p>wormname</p>
                                                 </div>
-                                                <div class="profile-email px-2 pt-2">
-                                                    <h4 class="text-muted mb-6">{{$microcontroller->manufacturer}}</h4>
-                                                    <p>manufacturer</p>
-                                                </div>
+
 
                                                 {{-- <div class="profile-email px-2 pt-2">
                                                     <h4 class="text-muted mb-6"></h4>
@@ -85,8 +82,8 @@
                                                         <div class="d-flex">
 
                                                             <div>
-                                                                <span class="d-block mb-1">{{$microcontroller->architecture}}   architecture</span>
-                                                                <p class="fs-18 mb-0 text-black">{{$microcontroller->clock_speed}}(MHz)    clock_speed, {{$microcontroller->flash_memory_size}}KB flash_memory_size, <strong class="d-block">{{$microcontroller->ram_size}}KB    ram_size</strong></p>
+                                                                <span class="d-block mb-1">{{$worm->population}}  population</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,8 +100,8 @@
                                                         <div class="media align-items-center">
 
                                                             <div class="media-body">
-                                                                <span class="d-block mb-1">Pincount</span>
-                                                                <p class="fs-18 mb-0 text-black">{{$microcontroller->pin_count}}</p>
+                                                                <span class="d-block mb-1">Description</span>
+                                                                <p class="fs-18 mb-0 text-black">{{$worm->description}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -120,37 +117,10 @@
                                 <div class="widget-stat card">
                                     <div class="card-body p-4">
                                         <h4 class="card-title">price</h4>
-                                        <h3>{{$microcontroller->price}} $</h3>
+                                        <h3>{{$worm->price}} $</h3>
 
 
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-xxl-12">
-                                <div class="row">
-                                    <div class="col-xl-12 col-xxl-4 col-lg-5">
-                                        <div class="card">
-
-                                            <div class="card-body">
-                                                <div class="media mb-4 align-items-center">
-
-
-                                                    <div class="media-body">
-
-
-                                                            <h3 class="fs-18 font-w600 mb-1"><a href="javascript:void(0)" class="text-black">
-
-
-                                                                {{$microcontroller->stock}} Microcotrollers in   stock</a></h3>
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
