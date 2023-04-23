@@ -57,7 +57,7 @@ class MicrocontrollerController extends Controller
 
 
 
-        $formfields = $request->validate([
+        $formfield = $request->validate([
                 'name'=> 'required',
                 'manufacturer'=>'required',
                 'architecture' => 'required',
@@ -73,7 +73,7 @@ class MicrocontrollerController extends Controller
         ]);
 
         $existingMicrocontroller = Microcontroller::where('name', $formfield['name'])
-        ->where('price', $formfield['price'])
+        ->where('manufacturer', $formfield['manufacturer'])->where('architecture', $formfield['architecture'])->where('clock_speed', $formfield['clock_speed'])->where('flash_memory_size', $formfield['flash_memory_size'])->where('ram_size', $formfield['ram_size'])->where('pin_count', $formfield['pin_count'])->where('price', $formfield['price'])
         ->first();
 
     if ($existingMicrocontroller) {
@@ -168,4 +168,12 @@ class MicrocontrollerController extends Controller
 
         return redirect('/microcontrollers/index');
     }
+
+
+
+
+
+
+
+
 }

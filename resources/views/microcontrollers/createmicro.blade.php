@@ -61,7 +61,7 @@
 
 
                                             <div class="form-group">
-                                                <label class="text-label">coo</label>
+
                                                 <div class="input-group">
 
                                                     <input type="hidden" class="form-control" id="val-username1" name="cooperative_id" value="{{$cooperative_id}}">
@@ -167,6 +167,23 @@
                                             </span>
                                             @endif
                                         </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="text-label">stockNumber</label>
+                                            <div class="input-group">
+
+                                                <input type="number" class="form-control" id="val-username1" name="stock" >
+
+                                            </div>
+                                            @if($errors->has('stock'))
+                                            <span class="text-danger">
+                                            {{$errors->first('stock')}}
+                                            </span>
+                                            @endif
+                                        </div>
+
 
 
 
