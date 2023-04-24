@@ -140,10 +140,10 @@
                                                 <td class="py-2">{{$member->email}}</td>
                                                 <td class="py-2">{{$member->phonenumber}}</td>
                                                 <td class="py-2">
-                                                    <?php
-                                                    $bins = \App\Models\Bin::where('member_id', $member->id)->count();
-                                                    echo $bins;
-                                                    ?>
+                                                    {{-- //<?php
+                                                    //$bins = \App\Models\Bin::where('member_id', $member->id)->count();
+                                                    //echo $bins;
+                                                    ?> --}}
                                                 </td>
                                                 <td class="py-2 text-right">
                                                     <div class="dropdown text-sans-serif">

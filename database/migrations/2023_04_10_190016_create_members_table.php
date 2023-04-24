@@ -18,12 +18,14 @@ return new class extends Migration
             $table->string("firstname");
             $table->string("secondname");
             $table->string('email')->unique();
-            $table->integer('phonenumber');
+            $table->bigInteger('phonenumber')->unique();
+            $table->string('gender');
+            $table->integer('age');
             $table->string("province");
             $table->string("district");
             $table->string("sector");
             $table->string("cell");
-            $table->unsignedinteger('cooperative_id');
+            $table->unsignedBigInteger('cooperative_id');
             $table->foreign("cooperative_id")->references('id')->on("cooperatives")->onDelete("cascade");
 
             $table->timestamps();
