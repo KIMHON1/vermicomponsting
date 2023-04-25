@@ -12,7 +12,8 @@ class Member extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstname','secondname','province','district','sector','cell','cooperative_id','phonenumber','email'
+        'firstname','secondname','gender',
+        'age','province','district','sector','cell','cooperative_id','phonenumber','email'
     ];
 
 

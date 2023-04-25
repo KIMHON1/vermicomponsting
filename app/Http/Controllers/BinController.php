@@ -14,7 +14,10 @@ use App\Models\Village;
 use App\Models\Member;
 use App\Models\Planting;
 use App\Models\Cooperative;
+use App\Models\Microcontroller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 
 
 class BinController extends Controller
@@ -66,6 +69,10 @@ class BinController extends Controller
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
         $cooperativeInfo=Cooperative::find($cooperative_id);
+        $microcontrollers=Microcontroller::where('cooperative_id',$cooperative_id)->get();
+
+        // dd($microcontroller);
+
 
 
 
@@ -76,7 +83,7 @@ class BinController extends Controller
 
 
 
-        return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id]);
+        return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id,'microcontrollers'=>$microcontrollers]);
     }
 
     /**
@@ -85,70 +92,71 @@ class BinController extends Controller
      * @param  \App\Http\Requests\StoreBinRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Member $member)
+    public function store(Request $request, Member $member)
     {
+        $formfields = $request->validate([
+            'microcontroller_type' => 'required',
+            'worm_type' => 'required',
+            'province' => 'required',
+            'district' => 'required',
+            'sector' => 'required',
+            'cell' => 'required',
+            'member_id' => 'required',
+            'cooperative_id' => 'required',
+        ]);
 
+        $auth_user = auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+            ->where('user_id', $auth_user)
+            ->value('cooperative_id');
+        $cooperativeInfo = Cooperative::find($cooperative_id);
+        $cooperativeName = $cooperativeInfo->co_operativename;
+        $year = date('Y'); // current year
+        $date = date('md'); // current date (month and day)
 
+        // get the last Bin record and increment its code
+        $lastBin = Bin::orderBy('created_at', 'desc')->first();
+        $lastCode = $lastBin ? $lastBin->code : '000'; // use '000' if no previous record exists
+        $nextCode = str_pad((int) $lastCode + 1, 3, '0', STR_PAD_LEFT);
+        $code = $nextCode . '-' . $cooperativeName . '-BIN-' . $year . '-' . $date;
 
-            $formfields=$request->validate(
-             [
-                'number'=> 'required|unique:bins',
-                'microcontroller_type'=>'required',
-                'worm_type' => 'required',
-                'province'=>'required',
-                'district'=>'required',
-                'sector'=>'required',
-                'cell'=>'required',
-                'member_id'=>'required',
-                'cooperative_id'=>'required',
+        $formfields['code'] = $code;
+        $provincecode = $formfields['province'];
 
+        // lookup province details
+        $province_details = Province::find($provincecode);
+        $province_name = $province_details->provincename;
+        $formfields['province'] = $province_name;
 
+        // lookup district details
+        $districtcode = $formfields['district'];
+        $district_details = District::where('provincecode', $provincecode)
+            ->where('districtcode', $districtcode)
+            ->first();
+        $district_name = $district_details->namedistrict;
+        $formfields['district'] = $district_name;
 
+        // lookup sector details
+        $sectorcode = $formfields['sector'];
+        $sector_details = Sector::where('districtcode', $districtcode)
+            ->where('sectorcode', $sectorcode)
+            ->first();
+        $sector_name = $sector_details->namesector;
+        $formfields['sector'] = $sector_name;
 
-
-             ]
-              );
-              $provincecode=$formfields['province'];
-
-              $province_details = Province::find($provincecode);
-              $province_name=$province_details->provincename;
-              $formfields['province']=$province_name;
-
-              $districtcode=$formfields['district'];
-
-              $district_details= District::where('provincecode', $provincecode)
-              ->where('districtcode', $districtcode)
-              ->first();
-              $district_name =$district_details->namedistrict;
-              $formfields['district']= $district_name;
-
-
-
-              $sectorcode = $formfields['sector'];
-              $sector_details = Sector::where('districtcode', $districtcode)->where('sectorcode', $sectorcode)
-              ->first();
-
-              $sector_name =$sector_details->namesector;
-              $formfields['sector']=  $sector_name;
-
-
-              $codecell = $formfields['cell'];
-              $cell_details = Cell::where('sectorcode', $sectorcode)->where('codecell', $codecell)
-              ->first();
-              $name_cell =   $cell_details->nameCell;
-              $formfields['cell']=$name_cell;
-
-
-
-
-
-
+        // lookup cell details
+        $codecell = $formfields['cell'];
+        $cell_details = Cell::where('sectorcode', $sectorcode)
+            ->where('codecell', $codecell)
+            ->first();
+        $name_cell = $cell_details->nameCell;
+        $formfields['cell'] = $name_cell;
 
         $bin = Bin::create($formfields);
-        // $bin->user_id = auth()->user()->id;
 
-      return redirect('/bins');
+        return redirect('/bins');
     }
+
 
     /**
      * Display the specified resource.

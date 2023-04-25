@@ -44,59 +44,48 @@
                                         <div class="row">
                                             <div class="col-xl-12">
 
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label class="col-lg-2 col-form-label" for="val-digits">BinNumber <span
-                                                                class="text-danger">*</span>
-                                                        </label>
-                                                        <div class="col-lg-12">
-                                                            <input type="number" class="form-control" id="val-digits" name="number" placeholder="5">
+                                                <div class="form-group">
+                                                    <label class="text-label">Microcontrolar Type </label>
+                                                    <div class="input-group transparent-append">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">  <i class="fa fa-microchip"></i></span>
                                                         </div>
-                                                    </div>
-                                                        @if($errors->has('number'))
-                                                        <span class="text-danger">
-                                                        {{$errors->first('number')}}
-                                                        </span>
-                                                        @endif
-                                                </div>
+                                                        <select   name="microcontroller_type"  class="form-control"  >
+                                                            @foreach($microcontrollers as $microcontroller)
+                                                            <option value="{{ $microcontroller->id }}">{{ $microcontroller->name }}</option>
+                                                            @endforeach
 
+                                                        </select>
 
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label class="col-lg-2 col-form-label" for="val-digits">Microcontrolar Type <span
-                                                                class="text-danger">*</span>
-                                                        </label>
-                                                        <div class="col-lg-12">
-                                                            <input type="text" class="form-control" id="val-digits" name="microcontroller_type" placeholder="MBILISodaq1284">
-                                                        </div>
                                                     </div>
 
-                                                        @if($errors->has('microcontroller_type'))
+                                                    @if($errors->has('microcontroller_type'))
                                                         <span class="text-danger">
                                                         {{$errors->first('microcontroller_type')}}
                                                         </span>
-                                                        @endif
+                                                    @endif
                                                 </div>
 
-                                                <div class="form-group row">
 
-                                                    <div class="col-sm-12">
-
-                                                        <label  for="val-digits">worm Type <span
-                                                                class="text-danger">*</span>
-                                                        </label>
-
-                                                        <div class="col-lg-12">
-                                                            <input type="text" class="form-control" id="val-digits" name="worm_type" placeholder="redWriggles">
+                                                <div class="form-group">
+                                                    <label class="text-label">Worm Type </label>
+                                                    <div class="input-group transparent-append">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">  <i class="fa fa-venus"></i></span>
                                                         </div>
+                                                        <select   name="microcontroller_type"  class="form-control"  >
+                                                            @foreach($microcontrollers as $microcontroller)
+                                                            <option value="{{ $microcontroller->id }}">{{ $microcontroller->name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+
                                                     </div>
 
-                                                    @if($errors->has('worm_type'))
-                                                    <span class="text-danger">
-                                                      {{$errors->first('worm_type')}}
-                                                    </span>
+                                                    @if($errors->has('microcontroller_type'))
+                                                        <span class="text-danger">
+                                                        {{$errors->first('microcontroller_type')}}
+                                                        </span>
                                                     @endif
                                                 </div>
                             </div>

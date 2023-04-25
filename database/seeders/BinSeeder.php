@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Bin;
 
 class BinSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class BinSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Bin::factory()->count(50)->create();
     }
 }

@@ -23,9 +23,11 @@
                                             <tr>
                                                 <!-- Column headers -->
                                                 <th class="align-middle">#</th>
-                                                <th class="align-middle pr-7">Bin_number</th>
-                                                <th class="align-middle minw200">worm_type</th>
+                                                <th class="align-middle pr-7">Bin_Code</th>
+                                                <th class="align-middle minw200">worm_Type</th>
                                                 <th class="align-middle">microcontroller_type</th>
+
+                                                <th class="align-middle">Bin_Status</th>
                                                 {{-- <th class="align-middle">BinOwner</th> --}}
                                                 <th class="align-middle text-right">Actions</th>
                                                 {{-- <th class="no-sort"></th> --}}
@@ -36,10 +38,10 @@
                                             <!-- Table data -->
                                             <tr class="btn-reveal-trigger">
                                                 <td class="py-2">{{ ++$i }}</td>
-                                                <td class="py-2">{{ $bin->number }}</td>
+                                                <td class="py-2">{{ $bin->code }}</td>
                                                 <td class="py-2">{{ $bin->worm_type }}<p class="mb-0 text-500"></p></td>
                                                 <td class="py-2">{{ $bin->microcontroller_type }}<p class="mb-0 text-500"></p></td>
-                                                {{-- <td class="py-2">{{ $bins->member->firstname }}</td> --}}
+                                                <td class="py-2">{{ $bin->status }}</td>
                                                 <td class="py-2 text-right">
                                                     <!-- Actions dropdown -->
                                                     <div class="dropdown text-sans-serif">

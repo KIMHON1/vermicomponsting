@@ -138,7 +138,7 @@ Route::put('/cooperatives/{cooperative}/update',[CooperativeController::class, '
 
 //cooperative members
 
-
+Route::get('/cooperatives_membe/create',[MemberController::class, 'create']);
 Route::post('/cooperatives_membe/post',[MemberController::class, 'store']);
 Route::get('/cooperatives_member/{member}/show',[MemberController::class, 'show']);
 Route::get('/cooperatives_member_update/{member}/create',[MemberController::class, 'edit']);

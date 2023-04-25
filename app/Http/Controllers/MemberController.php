@@ -29,9 +29,10 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+        return view('Cooperative.comember_create');
     }
 
     /**
@@ -48,6 +49,8 @@ class MemberController extends Controller
             'firstname'=>'required',
             'secondname'=>'required',
             'phonenumber'=>'required',
+            'gender'=>'required',
+            'age'=>'required',
             'email'=>'required',
             'province'=>'required',
             'district'=>'required',
@@ -94,6 +97,11 @@ class MemberController extends Controller
                          ->value('cooperative_id');
 
         $formfields['cooperative_id']= $cooperative_id;
+        $dateString = $formfields['age'];
+        $dateTimestamp = strtotime($dateString);
+        $currentTimestamp = time();
+        $yearDifference = date('Y', $currentTimestamp) - date('Y', $dateTimestamp);
+        $formfields['age']=$yearDifference;
 
 
         Member::create($formfields);

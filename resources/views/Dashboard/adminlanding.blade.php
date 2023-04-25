@@ -1,3 +1,4 @@
+
 @extends('Dashboard.master')
 
 @section('content')
@@ -174,7 +175,7 @@
                                     <div class="media-body text-white">
                                         <p class="mb-1">Total Bins</p>
                                         <h3 class="text-white">{{$total_bins}}</h3>
-                                        
+
                                     </div>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@
 					<h4>Bin</h4>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Number</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">{{$bin->number}}</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">{{$bin->code}}</a></li>
 					</ol>
 
                 </div>
@@ -52,7 +52,7 @@
 
                                             <div class="profile-about-me">
                                                 <div class="pt-4 border-bottom-1 pb-3">
-                                                    <h4 class="text-primary">About Bin  {{$bin->number}} </h4>
+                                                    <h4 class="text-primary">About Bin  {{$bin->code}} </h4>
                                                     <p class="mb-2">
                                                      {{$bin->description}}
 
@@ -67,7 +67,7 @@
                                                         <h5 class="f-w-500">BinNumber<span class="pull-right">:</span>
                                                         </h5>
                                                     </div>
-                                                    <div class="col-9"><span>{{$bin->number}}</span>
+                                                    <div class="col-9"><span>{{$bin->code}}</span>
                                                     </div>
                                                 </div>
 
