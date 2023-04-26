@@ -9,43 +9,42 @@ class Bin extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "number",
+        "code",
         "microcontroller_type",
         "worm_type",
         'province',
         'district',
         'sector',
         'cell',
-
         "member_id",
         "cooperative_id"
     ];
 
-    // public function user(){
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
-    // public function binconditions(){
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function binconditions(){
 
-    //     return $this->hasOne(Bincondition::class,'bin_id','id');
-    // }
-
-
-    // public function harvesting(){
-
-    //     return $this->hasOne(Harvesting::class,'bin_id','id');
-    // }
+        return $this->hasOne(Bincondition::class,'bin_id','id');
+    }
 
 
+    public function harvesting(){
 
-    // public function planting(){
-
-    //     return $this->hasOne(Planting::class,'bin_id','id');
-    // }
+        return $this->hasOne(Harvesting::class,'bin_id','id');
+    }
 
 
-    // public function member(){
-    //     return $this->belongsTo(Member::class, 'member_id', 'id');
-    // }
+
+    public function planting(){
+
+        return $this->hasOne(Planting::class,'bin_id','id');
+    }
+
+
+    public function member(){
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
 
 
 

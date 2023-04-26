@@ -188,7 +188,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
 //bins
     Route::get('/create_bin/{member}/create',[BinController::class,'create']);
-    Route::post('/create_bin/post',[BinController::class,'store']);
+    Route::post('/createbin/post',[BinController::class,'store']);
 
 
     Route::get('/bins/{bin}/edit',[BinController::class,'edit']);

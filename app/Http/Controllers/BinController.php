@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBinRequest;
 use App\Http\Requests\UpdateBinRequest;
 use App\Models\Bin;
+use App\Models\Worm;
 use App\Models\Bincondition;
 use App\Models\Province;
 use App\Models\District;
@@ -50,7 +51,7 @@ class BinController extends Controller
 
 
 
-        return view('Normal.bins1',compact('bins'))->with('i');
+        return view('Normal.bins1',['bins'=>$bins])->with('i');
     }
 
     /**
@@ -70,8 +71,10 @@ class BinController extends Controller
                          ->value('cooperative_id');
         $cooperativeInfo=Cooperative::find($cooperative_id);
         $microcontrollers=Microcontroller::where('cooperative_id',$cooperative_id)->get();
+        $worms=Worm::where('cooperative_id',$cooperative_id)->get();
 
-        // dd($microcontroller);
+
+
 
 
 
@@ -83,7 +86,7 @@ class BinController extends Controller
 
 
 
-        return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id,'microcontrollers'=>$microcontrollers]);
+        return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id,'microcontrollers'=>$microcontrollers,'worms'=>$worms]);
     }
 
     /**
@@ -120,6 +123,7 @@ class BinController extends Controller
         $nextCode = str_pad((int) $lastCode + 1, 3, '0', STR_PAD_LEFT);
         $code = $nextCode . '-' . $cooperativeName . '-BIN-' . $year . '-' . $date;
 
+
         $formfields['code'] = $code;
         $provincecode = $formfields['province'];
 
@@ -152,6 +156,7 @@ class BinController extends Controller
         $name_cell = $cell_details->nameCell;
         $formfields['cell'] = $name_cell;
 
+
         $bin = Bin::create($formfields);
 
         return redirect('/bins');
@@ -168,7 +173,7 @@ class BinController extends Controller
     {
         $bin = Bin::find($id);
 
-        return view('Normal.singleBin')->with('bin',$bin);
+        return view('Normal.singleBin',['bin'=>$bin]);
     }
 
     /**
@@ -183,22 +188,22 @@ class BinController extends Controller
 
 
         $member=$member->id;
+       // dd($member);
 
         $auth_user=auth()->user()->id;
         $cooperative_id = DB::table('cooperative_user')
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
-
+                        // dd( $cooperative_id);
 
         $provinces = Province::all();
 
-
-
-
+        $microcontrollers=Microcontroller::where('cooperative_id',$cooperative_id)->get();
+        $worms=Worm::where('cooperative_id',$cooperative_id)->get();
 
         //return view('Cooperative.update', ['member'=>$member]);
 
-        return view('Normal.edit_bin',['bin'=>$bin,'member'=>$member,'cooperative_id'=>$cooperative_id,'provinces'=>$provinces]);
+        return view('Normal.edit_bin',['bin'=>$bin,'member'=>$member,'cooperative_id'=>$cooperative_id,'provinces'=>$provinces,'microcontrollers'=>$microcontrollers,'worms'=>$worms]);
 
     }
     public function getDistricts(Request $request)
@@ -232,21 +237,14 @@ class BinController extends Controller
 
         $formfields=$request->validate(
             [
-
-
-                'number'=> 'required',
                 'microcontroller_type'=>'required',
                 'worm_type' => 'required',
                 'province'=>'required',
                 'district'=>'required',
                 'sector'=>'required',
                 'cell'=>'required',
-                'description' => 'required',
                 'member_id'=>'required',
                 'cooperative_id'=>'required',
-
-
-
             ]
              );
 
@@ -259,7 +257,7 @@ class BinController extends Controller
 
 
 
-       return view('Normal.singleBin');
+       return redirect('/bins');
     }
 
     /**
