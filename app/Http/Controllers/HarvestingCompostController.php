@@ -30,9 +30,9 @@ class HarvestingCompostController extends Controller
         foreach($planting_ids as $planting_id){
             $harvestings=DB::table('harvestings')->where('planting_id',$planting_id)->get();
         }
-        dd($harvestings);
 
-        return view('harvesting.index');
+
+        return view('harvesting.index',['harvestings'=>$harvestings,'planting_ids'=>$planting_ids,])->with('i');
     }
 
     /**
