@@ -133,7 +133,7 @@
                                                     <tr>
                                                         <!-- Column headers -->
                                                         <th class="align-middle">#</th>
-                                                        <th class="align-middle pr-7">Bin_number</th>
+                                                        <th class="align-middle pr-7">Bin_Code</th>
                                                         <th class="align-middle minw200">worm_type</th>
                                                         <th class="align-middle">microcontroller_type</th>
                                                         {{-- <th class="align-middle">BinOwner</th> --}}
@@ -146,7 +146,7 @@
                                                     <!-- Table data -->
                                                     <tr class="btn-reveal-trigger">
                                                         <td class="py-2">{{ ++$i }}</td>
-                                                        <td class="py-2">{{ $bin->number }}</td>
+                                                        <td class="py-2">{{ $bin->code }}</td>
                                                         <td class="py-2">{{ $bin->worm_type }}<p class="mb-0 text-500"></p></td>
                                                         <td class="py-2">{{ $bin->microcontroller_type }}<p class="mb-0 text-500"></p></td>
                                                         {{-- <td class="py-2">{{ $bins->member->firstname }}</td> --}}

@@ -947,8 +947,8 @@
 
 
                         <li><a  href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-notepad"></i>
-							<span class="nav-text">Report</span>
+							<a href="/harvesting/index"><i class="flaticon-381-notepad"></i>
+                                <span class="nav-text">harvested Compost</span></a>
 						</a>
 
                     </li>

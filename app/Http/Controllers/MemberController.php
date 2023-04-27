@@ -121,7 +121,7 @@ class MemberController extends Controller
     {
 
         // dd($member);
-      //  $bins =DB::table('bins')->where('member_id',$member->id)->latest('id')->get();
+      $bins =DB::table('bins')->where('member_id',$member->id)->latest('id')->get();
 
 
         return view('Cooperative.member',['member'=>$member,  'bins'=>$bins])->with('i');

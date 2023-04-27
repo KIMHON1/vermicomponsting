@@ -1083,7 +1083,7 @@
                                                                             <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                                         </div>
                                                                         <select  id="districts" name="district"  class="form-control"  >
-                                                                            <option value=""></option>
+                                                                            <option value="">{{$cooperative->district}}</option>
 
                                                                         </select>
 
@@ -1103,7 +1103,7 @@
                                                                             <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                                         </div>
                                                                         <select  id="sectors" name="sector"  class="form-control"  >
-                                                                            <option value=""></option>
+                                                                            <option value="">{{$cooperative->sector}}</option>
 
                                                                         </select>
 
@@ -1123,7 +1123,7 @@
                                                                             <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                                         </div>
                                                                         <select  id="cells" name="cell"  class="form-control"  >
-                                                                            <option value=""></option>
+                                                                            <option value="">{{$cooperative->cell}}</option>
 
                                                                         </select>
 

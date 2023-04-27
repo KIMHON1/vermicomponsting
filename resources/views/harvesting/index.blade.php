@@ -1,5 +1,3 @@
-
-
 @extends('Dashboard.master')
 @section('content')
 
@@ -8,66 +6,70 @@
         ***********************************-->
          <div class="content-body">
             <div class="container-fluid">
-
-
-
                 <div class="page-titles">
 					<h4>Manage</h4>
-					{{-- <ol class="breadcrumb">
+					<ol class="breadcrumb">
 
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">CO-Operative  {{$cooperativeInfo->co_operativename}}</a></li>
-					</ol> --}}
-
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Compost</a></li>
+					</ol>
 
 
                 </div>
 
-                <!--**********************************
-            Content body start
-        ***********************************-->
 
-				<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
-					<div>
-                        <a class="btn btn-primary mr-3" href="/cooperatives_membe/create"> +New member</a>
-					</div>
-				</div>
-				<!-- Add Order -->
+                 <div class="row">
+                    <div class="col-lg-12 margin-tb">
 
 
+                        {{-- <div class="pull-left">
 
-
-                <div class="row  mr-auto" >
+                            <a class="btn btn-primary" href="/microcontrollers/create"> + Microcontroller</a>
+                        </div> --}}
+                        <div class="pull-right">
+                            <a class="btn btn-primary" href="/dashboard"> Back</a>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-
-
                                     <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
                                         <thead>
                                             <tr>
                                                 <th class="align-middle">#</th>
-                                                <th class="align-middle pr-7">FirstName</th>
-                                                <th class="align-middle pr-7">SecondName</th>
-                                                <th class="align-middle minw200">Email</th>
-                                                <th class="align-middle">PhoneNumber</th>
-                                                <th class="align-middle">BinsNumber</th>
+                                                <th class="align-middle minw200">Bin Code</th>
+                                                <th class="align-middle pr-7"> Date
+                                                </th>
+                                                <th class="align-middle pr-7"> Initial
+                                                    worm population
+                                                </th>
+                                                <th class="align-middle pr-7"> Initial waste</th>
+                                                <th class="align-middle minw200">Expected Compost</th>
+
+                                                <th class="align-middle minw200">Date</th>
+                                                <th class="align-middle minw200">harvested Worm Quantity</th>
+                                                <th class="align-middle minw200">harvested Compost Quantity</th>
+
+
                                                 <th class="align-middle text-right">Action</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="orders">
-                                            @foreach ($Members as $member)
+                                            {{-- @foreach ($microcontrollers as $microcontroller) --}}
                                             <tr class="btn-reveal-trigger">
-                                                <td class="py-2">{{++$i}}</td>
-                                                <td class="py-2"><a href="#">{{$member->firstname}}</a></td>
-                                                <td class="py-2">{{$member->secondname}}</td>
-                                                <td class="py-2">{{$member->email}}</td>
-                                                <td class="py-2">{{$member->phonenumber}}</td>
+                                                 {{-- <td class="py-2">{{++$i}}</td> --}}
                                                 <td class="py-2">
-                                                     <?php
-                                                    $bins = \App\Models\Bin::where('member_id', $member->id)->count();
-                                                    echo $bins;
-                                                    ?>
+                                                    {{-- <div>{{ $microcontroller->name }}</div> --}}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{-- <div>{{ $microcontroller->manufacturer }}</div> --}}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{-- <div>{{ $microcontroller->price }}$</div> --}}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{-- <div>{{ $microcontroller->stock }}</div> --}}
                                                 </td>
                                                 <td class="py-2 text-right">
                                                     <div class="dropdown text-sans-serif">
@@ -85,34 +87,32 @@
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
                                                             <div class="py-2">
+                                                                <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item" href="
-                                                                /cooperatives_member/{{$member->id}}/show
-                                                                ">View</a>
+                                                                {{-- /microcontrollers/{{$microcontroller->id}}/ --}}
+
+                                                                show">view</a>
                                                                 <div class="dropdown-divider"></div>
-
-
-
-
                                                                 <a class="dropdown-item" href="
-                                                               /cooperatives_member_update/{{$member->id}}/create">Edit</a>
 
+                                                                {{-- /microcontrollers/{{$microcontroller->id}}/edit --}}
 
-
+                                                                ">Edit</a>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="/create_bin/{{$member->id}}/create">+ Bin</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item text-danger" href=
-                                                                "/cooperatives_member_update/{{$member->id}}/delete
-                                                                ">Delete</a>
+                                                               <a class="dropdown-item text-danger" href="
+                                                               {{-- /microcontrollers/{{$microcontroller->id}}/delete --}}
+
+                                                               ">Delete</a>
+
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                             {{-- @endforeach --}}
                                         </tbody>
                                     </table>
-
 
                                 </div>
                             </div>
@@ -120,10 +120,14 @@
                     </div>
                 </div>
 
-					</div>
-				</div>
 
+
+
+
+            </div>
+        </div>
         <!--**********************************
             Content body end
         ***********************************-->
- @endsection
+
+@endsection

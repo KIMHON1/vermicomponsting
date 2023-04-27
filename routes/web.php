@@ -160,7 +160,7 @@ Route::get('/getCells',[MemberController::class,'getCells']);
 
 
 
-
+Route::get('/harvesting/index',[HarvestingCompostController::class, 'index']);
 Route::get('/harvesting/{bin}/create',[HarvestingCompostController::class, 'create']);
 Route::post('/harvesting/{bin}/post',[HarvestingCompostController::class, 'store']);
 

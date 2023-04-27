@@ -1020,7 +1020,7 @@
                                                     <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                 </div>
                                                 <select  id="districts" name="district"  class="form-control"  >
-                                                    <option value=""></option>
+                                                    <option value="">{{$member->district}}</option>
 
                                                 </select>
 
@@ -1040,7 +1040,7 @@
                                                     <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                 </div>
                                                 <select  id="sectors" name="sector"  class="form-control"  >
-                                                    <option value=""></option>
+                                                    <option value="">{{$member->sector}}</option>
 
                                                 </select>
 
@@ -1060,7 +1060,7 @@
                                                     <span class="input-group-text"> <i class="fa fa-map-marker"></i> </span>
                                                 </div>
                                                 <select  id="cells" name="cell"  class="form-control"  >
-                                                    <option value=""></option>
+                                                    <option value="">{{$member->cell}}</option>
 
                                                 </select>
 
@@ -1081,7 +1081,9 @@
 
 
                                         <button type="submit" class="btn mr-2 btn-primary">Update</button>
-                                        <button type="submit" class="btn btn-light">cencel</button>
+
+                                        <a href="/bins" class="btn btn-light">cencel</a>
+
                                     </form>
                                 </div>
                             </div>
