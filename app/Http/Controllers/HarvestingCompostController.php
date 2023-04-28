@@ -18,18 +18,24 @@ class HarvestingCompostController extends Controller
      */
     public function index()
     {
-        $harvestings;
+        // $harvestings;
 
-        $plantings = Planting::all();
-        $planting_ids = [];
+        // $plantings = Planting::all();
+        // $planting_ids = [];
 
-        foreach($plantings as $planting){
-            $planting_ids[]=$planting->id;
-        }
+        // foreach($plantings as $planting){
+        //     $planting_ids[]=$planting->id;
+        // }
 
-        foreach($planting_ids as $planting_id){
-            $harvestings=DB::table('harvestings')->where('planting_id',$planting_id)->get();
-        }
+        // foreach($planting_ids as $planting_id){
+        //     $harvestings=DB::table('harvestings')->where('planting_id',$planting_id)->get();
+        // }
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+        $bins = DB::table('bins')->where('cooperative_id',$cooperative_id)->get();
+        
 
 
         return view('harvesting.index',['harvestings'=>$harvestings,'planting_ids'=>$planting_ids,])->with('i');

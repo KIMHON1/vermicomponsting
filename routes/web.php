@@ -193,6 +193,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
     Route::get('/bins/{bin}/edit',[BinController::class,'edit']);
     Route::put('/bins/{bin}/update',[BinController::class,'update']);
+    Route::get('/bins/status_code/{bin}/{status_code}', [BinController::class, 'updateStatus'])->name('bins.update.status');
 
 
 

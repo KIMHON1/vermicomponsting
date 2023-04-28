@@ -15,10 +15,10 @@ class Planting extends Model
         "ExpectedCompostQuantity",
         "bin_id"
     ];
-    public function plantingBin (){
+    public function planting (){
         return $this->belongsTo(Bin::class, 'bin_id');
     }
 
-    
+
 
 }
