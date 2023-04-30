@@ -43,18 +43,20 @@
                                                 <td class="py-2">{{ $bin->microcontroller_type }}<p class="mb-0 text-500"></p></td>
                                                 <td class="py-2">
                                                     @if($bin->status == 1)
-                                                    <a href="{{route('bins.update.status',['bin_id'=>$bin->id,'status_code'=> 0])}}" class="btn btn-success m-2">
+                                                    <a href="{{ route('bins.update.status', ['bin' => $bin->id, 'status_code' => 0]) }}" class="btn btn-success m-2">
                                                         <i class="fa fa-check"></i>
 
                                                     </a>
                                                     @else
 
-                                                    <a href="{{route('bins.update.status',['bin_id'=>$bin->id,'status_code'=> 1])}}" class="btn btn-danger m-2">
+                                                    <a href="{{ route('bins.update.status', ['bin' => $bin->id, 'status_code' => 1]) }}" class="btn btn-danger m-2">
                                                         <i class="fa fa-ban"></i>
                                                    </a>
 
                                                    @endif
                                                 </td>
+
+                                            @if($bin->status==1)
                                                 <td class="py-2 text-right">
                                                     <!-- Actions dropdown -->
                                                     <div class="dropdown text-sans-serif">
@@ -86,7 +88,9 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                            @endif
                                             </tr>
+
                                             @endforeach
                                         </tbody>
                                     </table>

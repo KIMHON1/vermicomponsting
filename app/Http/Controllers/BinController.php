@@ -283,20 +283,30 @@ class BinController extends Controller
 
 
 
-public function updateStatus($bin,$status_code){
-    try{
-        $update_bin = Bin::whereId($bin->id)->update(['status'=>$status_code]);
+    public function updateStatus(Bin $bin, $status_code){
+        try{
 
-        if($update_bin){
-            return redirect('/bins')->with('success','User Updated success full');
+            
+            $update_bin = $bin->update(['status'=>$status_code]);
+
+
+            if($update_bin){
+                return redirect('/bins')->with('success','User Updated successfully');
+            }
+
+            return redirect('/bins')->with('error','Failed to update the status');
+
+        } catch(\Throwable $th){
+             throw $th;
         }
-
-        return redirect('/bins')->with('error','failed to  Updated the status');
-
     }
-     catch(\Throwable $th){
-         throw $th;
-     }
 
-}
+
+
+
+
+
+
+
+
 }
