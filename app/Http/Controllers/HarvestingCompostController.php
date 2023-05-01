@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bin;
 use App\Models\Planting;
 use App\Models\Harvesting;
+use App\Models\Cooperative;
 use Illuminate\Support\Facades\DB;
 
 
@@ -18,27 +19,42 @@ class HarvestingCompostController extends Controller
      */
     public function index()
     {
-        // $harvestings;
 
-        // $plantings = Planting::all();
-        // $planting_ids = [];
-
-        // foreach($plantings as $planting){
-        //     $planting_ids[]=$planting->id;
-        // }
-
-        // foreach($planting_ids as $planting_id){
-        //     $harvestings=DB::table('harvestings')->where('planting_id',$planting_id)->get();
-        // }
         $auth_user=auth()->user()->id;
         $cooperative_id = DB::table('cooperative_user')
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
+
+
+                        //  $cooperative = Cooperative::find($cooperative_id);
+                        // $bins = $cooperative->bins;
+
         $bins = DB::table('bins')->where('cooperative_id',$cooperative_id)->get();
-        
+        $binIds=$bins->pluck('id');
+        $results = DB::table('plantings')
+            ->rightjoin('harvestings', 'plantings.bin_id', '=', 'harvestings.bin_id')
+            ->whereIn('harvestings.bin_id',$binIds)
+            ->select('plantings.*','harvestings.*')
+            ->whereRaw('harvestings.id = (select max(id) from harvestings where bin_id = ?)', $binIds)
+            ->get();
 
 
-        return view('harvesting.index',['harvestings'=>$harvestings,'planting_ids'=>$planting_ids,])->with('i');
+            dd($results);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return view('harvesting.index',['bins'=>$bins])->with('i');
     }
 
     /**

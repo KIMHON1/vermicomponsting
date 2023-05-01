@@ -44,5 +44,10 @@ class Cooperative extends Model
         return $this->hasMany(Microcontroller::class);
     }
 
+    public function bins()
+    {
+        return $this->hasMany(Bin::class);
+    }
+
 
 }

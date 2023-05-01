@@ -21,31 +21,33 @@ class Bin extends Model
         "cooperative_id"
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
+
+
+
     public function binconditions(){
 
         return $this->hasOne(Bincondition::class,'bin_id','id');
     }
 
 
-    public function harvesting(){
-
-        return $this->hasOne(Harvesting::class,'bin_id','id');
+    public function harvestings()
+    {
+        return $this->hasMany(Harvesting::class);
     }
 
 
-
-    public function planting(){
-
-        return $this->hasOne(Planting::class,'bin_id','id');
+    public function plantings()
+    {
+        return $this->hasMany(Planting::class);
     }
+
 
 
     public function member(){
         return $this->belongsTo(Member::class, 'member_id', 'id');
     }
+
+
 
 
 

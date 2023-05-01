@@ -56,19 +56,42 @@
                                             </tr>
                                         </thead>
                                         <tbody id="orders">
-                                            {{-- @foreach ($microcontrollers as $microcontroller) --}}
+                                         {{-- @foreach ($bins as $bin) --}}
                                             <tr class="btn-reveal-trigger">
-                                                 {{-- <td class="py-2">{{++$i}}</td> --}}
+
+
+                                                  <td class="py-2">{{++$i}}</td>
+
+
                                                 <td class="py-2">
-                                                    {{-- <div>{{ $microcontroller->name }}</div> --}}
+                                                    {{-- <div>{{ $bin->code }}</div> --}}
                                                 </td>
+
+
+                                            {{-- @if ($bin->plantings && is_object($bin->plantings)) --}}
+
+                                                {{-- @foreach ($bin->plantings as $planting) --}}
                                                 <td class="py-2">
-                                                    {{-- <div>{{ $microcontroller->manufacturer }}</div> --}}
+                                                    <div>
+                                                        {{-- {{$planting->wormQuantity}} --}}
+                                                    </div>
                                                 </td>
                                                 <td class="py-2">
                                                     {{-- <div>{{ $microcontroller->price }}$</div> --}}
                                                 </td>
+
+                                                {{-- @endforeach
+
+                                            @endif --}}
+
+
+
+
+
+
                                                 <td class="py-2">
+
+
                                                     {{-- <div>{{ $microcontroller->stock }}</div> --}}
                                                 </td>
                                                 <td class="py-2 text-right">

@@ -17,8 +17,9 @@ class Harvesting extends Model
         "planting_id"
     ];
 
-    public function harvestingBin (){
-        return $this->belongsTo(Bin::class, 'bin_id');
+    public function bin()
+    {
+        return $this->belongsTo(Bin::class);
     }
 
 
