@@ -95,12 +95,15 @@ class BinconditionController extends Controller
         $conditions=$bin->binconditions;
         $initialcompost= $bin->planting;
 
+        $plantingsresults = DB::table('plantings')->where('bin_id',$bin->id)->where('status', 1)->get();
 
 
 
 
 
-        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus]);
+
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus, 'plantingsresults'=>$plantingsresults])->with('i');
     }
 
     /**

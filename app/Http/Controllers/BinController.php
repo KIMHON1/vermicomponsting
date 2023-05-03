@@ -171,7 +171,9 @@ class BinController extends Controller
      */
     public function show(Bin $id)
     {
-        $bin = Bin::find($id);
+        //$bin = Bin::find($id);
+
+        $dd($bin);
 
         return view('Normal.singleBin',['bin'=>$bin]);
     }
@@ -286,7 +288,7 @@ class BinController extends Controller
     public function updateStatus(Bin $bin, $status_code){
         try{
 
-            
+
             $update_bin = $bin->update(['status'=>$status_code]);
 
 

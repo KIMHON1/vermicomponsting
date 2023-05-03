@@ -24,24 +24,27 @@ class HarvestingCompostController extends Controller
         $cooperative_id = DB::table('cooperative_user')
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
+        $bins = Bin::where('cooperative_id', $cooperative_id)->get();
+
+        foreach ($bins as $bin) {
+            $plantings = $bin->plantings;
+            dd($plantings);
+        }
 
 
                         //  $cooperative = Cooperative::find($cooperative_id);
                         // $bins = $cooperative->bins;
 
         $bins = DB::table('bins')->where('cooperative_id',$cooperative_id)->get();
-        $binIds=$bins->pluck('id');
-        $results = DB::table('plantings')
-            ->rightjoin('harvestings', 'plantings.bin_id', '=', 'harvestings.bin_id')
-            ->whereIn('harvestings.bin_id',$binIds)
-            ->select('plantings.*','harvestings.*')
-            ->whereRaw('harvestings.id = (select max(id) from harvestings where bin_id = ?)', $binIds)
-            ->get();
 
-
-            dd($results);
-
-
+        $plantings = $bins->plantings;
+        dd($plantings);
+        // $binIds=$bins->pluck('id');
+        // $Bins = DB::table('plantings')
+        // ->whereIn('bin_id', $binIds)
+        // ->whereRaw('id IN (SELECT MAX(id) FROM harvestings WHERE bin_id IN (?))', [$binIds])
+        // ->get();
+        // dd($Bins);
 
 
 
@@ -54,7 +57,12 @@ class HarvestingCompostController extends Controller
 
 
 
-        return view('harvesting.index',['bins'=>$bins])->with('i');
+
+
+
+
+
+        return view('harvesting.index',['bins'=>$Bins])->with('i');
     }
 
     /**
