@@ -277,6 +277,10 @@
                                     </tr>
                                 </thead>
                                 <tbody id="orders">
+                                    @php
+                                        $total_gain = 0;
+                                        $total_loss = 0;
+                                    @endphp
                                   @foreach ($plantingsresults as $index => $plantingsresult)
                                         {{-- <p>Planting {{$index + 1}}:</p> --}}
                                             <tr class="btn-reveal-trigger">
@@ -335,7 +339,15 @@
 
                                                     <div>
                                                     @php
-                                                        $difference = $harvestingsresults[$index]->harvestCompostQuantity-$plantingsresult->ExpectedCompostQuantity
+                                                        $difference = $harvestingsresults[$index]->harvestCompostQuantity-$plantingsresult->ExpectedCompostQuantity;
+                                                        if ($difference < 0) {
+                                                            $total_loss += abs($difference);
+                                                                                }
+                                                        else {
+                                                            $total_gain += $difference;
+                                                            }
+
+
 
                                                     @endphp
 
@@ -355,44 +367,7 @@
 
 
                                     @endif
-                                                {{-- <td class="py-2 text-right">
-                                                    <div class="dropdown text-sans-serif">
-                                                        <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                                                            <span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <rect x="0" y="0" width="24" height="24"></rect>
-                                                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                                                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                                                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                                                                    </g>
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
-                                                            <div class="py-2">
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="
-                                                                {{-- /microcontrollers/{{$microcontroller->id}}/ --}}
 
-                                                                {{-- show">view</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href=" --}}
-
-                                                                {{-- /microcontrollers/{{$microcontroller->id}}/edit --}}
-
-                                                                {{-- ">Edit</a>
-                                                                <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger" href=" --}}
-                                                            {{-- /microcontrollers/{{$microcontroller->id}}/delete --}}
-{{--
-                                                            ">Delete</a> --}}
-
-{{--
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>  --}}
                                             </tr>
                                      @endforeach
                                 </tbody>
@@ -402,6 +377,27 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @if ($total_gain > $total_loss)
+                                <p>Overall   </p>
+                                <span class="text-success"> Gain:  {{$total_gain - $total_loss}} Kg </span>
+                            @elseif ($total_loss > $total_gain)
+
+                                <span class="text-danger">Loss: {{$total_loss - $total_gain}} Kg</span>
+                            @else
+                                <p>No overall gain or loss</p>
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+
         </div>
             </div>
         </div>
