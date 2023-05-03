@@ -24,12 +24,7 @@ class HarvestingCompostController extends Controller
         $cooperative_id = DB::table('cooperative_user')
                          ->where('user_id',$auth_user)
                          ->value('cooperative_id');
-        $bins = Bin::where('cooperative_id', $cooperative_id)->get();
 
-        foreach ($bins as $bin) {
-            $plantings = $bin->plantings;
-            dd($plantings);
-        }
 
 
                         //  $cooperative = Cooperative::find($cooperative_id);
@@ -37,8 +32,8 @@ class HarvestingCompostController extends Controller
 
         $bins = DB::table('bins')->where('cooperative_id',$cooperative_id)->get();
 
-        $plantings = $bins->plantings;
-        dd($plantings);
+        // $plantings = $bins->plantings;
+        // dd($plantings);
         // $binIds=$bins->pluck('id');
         // $Bins = DB::table('plantings')
         // ->whereIn('bin_id', $binIds)
@@ -62,7 +57,7 @@ class HarvestingCompostController extends Controller
 
 
 
-        return view('harvesting.index',['bins'=>$Bins])->with('i');
+        return view('harvesting.index')->with('i');
     }
 
     /**

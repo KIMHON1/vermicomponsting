@@ -255,7 +255,7 @@
                             <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
                                 <thead>
                                     <tr>
-                                        <th class="align-middle">#</th>
+
 
                                         <th class="align-middle pr-7"> Date
                                         </th>
@@ -265,86 +265,135 @@
                                         </th>
                                         <th class="align-middle pr-7"> Initial waste</th>
                                         <th class="align-middle minw200">Expected Compost</th>
-                                        <th class="align-middle text-right">Action</th>
+
+                                        <th class="align-middle minw200">Date</th>
+
+                                        <th class="align-middle minw200">harvested Worm Quantity</th>
+
+                                        <th class="align-middle minw200">harvested Compost Quantity</th>
+
+                                         <th class="align-middle text-right">Results</th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="orders">
-                                  @foreach ($plantingsresults as $plantingsresult)
-                                    <tr class="btn-reveal-trigger">
-
-
-                                        <td class="py-2">
-                                         {{++$i}}
-                                        </td>
-
-
-                                        <td class="py-2">
-                                             <div>{{ $plantingsresult->created_at }}</div>
-                                        </td>
-
-
-
-                                        <td class="py-2">
-                                            <div>
-                                                {{$plantingsresult->wormQuantity}}
-                                            </div>
-                                        </td>
-                                        <td class="py-2">
-                                            {{$plantingsresult->WasteQuantity}} Kg
-                                        </td>
+                                  @foreach ($plantingsresults as $index => $plantingsresult)
+                                        {{-- <p>Planting {{$index + 1}}:</p> --}}
+                                            <tr class="btn-reveal-trigger">
 
 
 
 
 
+                                                <td class="py-2">
+                                                    <div>{{ $plantingsresult->created_at }}</div>
+                                                </td>
 
 
 
-                                        <td class="py-2">
-
-
-                                            <div> {{$plantingsresult->ExpectedCompostQuantity}} Kg</div>
-                                        </td>
-                                        <td class="py-2 text-right">
-                                            <div class="dropdown text-sans-serif">
-                                                <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                                                    <span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24"></rect>
-                                                                <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                                                                <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                                                                <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                                                            </g>
-                                                        </svg>
-                                                    </span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
-                                                    <div class="py-2">
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="
-                                                        {{-- /microcontrollers/{{$microcontroller->id}}/ --}}
-
-                                                        show">view</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="
-
-                                                        {{-- /microcontrollers/{{$microcontroller->id}}/edit --}}
-
-                                                        ">Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                       <a class="dropdown-item text-danger" href="
-                                                       {{-- /microcontrollers/{{$microcontroller->id}}/delete --}}
-
-                                                       ">Delete</a>
-
-
+                                                <td class="py-2">
+                                                    <div>
+                                                        {{$plantingsresult->wormQuantity}}
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                </td>
+                                                <td class="py-2">
+                                                    {{$plantingsresult->WasteQuantity}} Kg
+                                                </td>
+
+
+
+
+
+
+
+
+                                                <td class="py-2">
+
+
+                                                    <div> {{$plantingsresult->ExpectedCompostQuantity}} Kg</div>
+                                                </td>
+                                    @if (isset($harvestingsresults[$index]))
+                                                 {{-- {{$index + 1}} --}}
+                                                <td class="py-2">
+
+
+                                                    <div> {{$harvestingsresults[$index]->created_at}} Kg</div>
+                                                </td>
+                                                <td class="py-2">
+
+
+                                                    <div>  {{$harvestingsresults[$index]->wormQuantity}} </div>
+                                                </td>
+                                                <td class="py-2">
+
+
+                                                    <div> {{$harvestingsresults[$index]->harvestCompostQuantity}} Kg</div>
+                                                </td>
+
+                                                <td class="py-2">
+
+
+                                                    <div>
+                                                    @php
+                                                        $difference = $harvestingsresults[$index]->harvestCompostQuantity-$plantingsresult->ExpectedCompostQuantity
+
+                                                    @endphp
+
+                                                    @if ($difference < 0)
+                                                    <span class="text-danger"> {{ abs($difference) }}  Kg  Lost</span>
+
+                                                    @else
+                                                     {{ $difference }}
+                                                     <span class="text-success"> {{ $difference }} Kg Gained</span>
+                                                    @endif
+
+
+                                                        </div>
+                                                </td>
+
+
+
+
+                                    @endif
+                                                {{-- <td class="py-2 text-right">
+                                                    <div class="dropdown text-sans-serif">
+                                                        <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
+                                                            <div class="py-2">
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="
+                                                                {{-- /microcontrollers/{{$microcontroller->id}}/ --}}
+
+                                                                {{-- show">view</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href=" --}}
+
+                                                                {{-- /microcontrollers/{{$microcontroller->id}}/edit --}}
+
+                                                                {{-- ">Edit</a>
+                                                                <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item text-danger" href=" --}}
+                                                            {{-- /microcontrollers/{{$microcontroller->id}}/delete --}}
+{{--
+                                                            ">Delete</a> --}}
+
+{{--
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>  --}}
+                                            </tr>
                                      @endforeach
                                 </tbody>
                             </table>

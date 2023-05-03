@@ -96,6 +96,14 @@ class BinconditionController extends Controller
         $initialcompost= $bin->planting;
 
         $plantingsresults = DB::table('plantings')->where('bin_id',$bin->id)->where('status', 1)->get();
+        $planting_ids = [];
+        foreach ($plantingsresults as $plantingresult) {
+            $planting_ids[] = $plantingresult->id;
+        }
+
+        $harvestingsresults = DB::table('harvestings')
+            ->whereIn('planting_id', $planting_ids)
+            ->get();
 
 
 
@@ -103,7 +111,9 @@ class BinconditionController extends Controller
 
 
 
-        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus, 'plantingsresults'=>$plantingsresults])->with('i');
+
+
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus, 'plantingsresults'=>$plantingsresults, 'harvestingsresults'=>$harvestingsresults])->with('i');
     }
 
     /**
