@@ -224,7 +224,7 @@
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Total worms</h4>
+                                <h4 class="card-title">Total worms Type</h4>
                                 <h3>{{$worm}}</h3>
                                 <div class="progress mb-2">
                                     @php
@@ -247,25 +247,33 @@
                         </div>
                     </div>
                  <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="widget-stat card">
+                        <div class=" widget-stat card bg-secondary">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Total Microcontrollars
+                                <h4 class="card-title">Total Microcontrollars Types
                                 <h3>{{$microcontrollers}}</h3>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
-                                </div>
-                                <small>50% Increase in 25 Days</small>
+
                             </div>
                         </div>
                     </div>
                      <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="widget-stat card">
+                        <div class="widget-stat card bg-primary">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Total </h4>
-                                <h3>28</h3>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
-                                </div>
+                                <h4 class="card-title">Total Active Bin </h4>
+                                <h3>{{$active_bins}}</h3>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-danger">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">Total In Active Bin</h4>
+                                <h3>{{$inactive_bins}}</h3>
+
 
 
                             </div>
@@ -356,7 +364,7 @@
                                                 data: {
                                                     labels: xValues,
                                                     datasets: [{
-                                                        label: 'age',
+                                                        label: '',
                                                         fill: false,
                                                         lineTension: 0,
                                                         backgroundColor: "rgba(0,0,255,1.0)",
@@ -383,6 +391,106 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">worm population chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
+
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                                        <script>
+                                            var xyValues = [
+                                            {x:50, y:7},
+                                            {x:60, y:8},
+                                            {x:70, y:8},
+                                            {x:80, y:9},
+                                            {x:90, y:9},
+                                            {x:100, y:9},
+                                            {x:110, y:10},
+                                            {x:120, y:11},
+                                            {x:130, y:14},
+                                            {x:140, y:14},
+                                            {x:150, y:15}
+                                            ];
+
+                                            new Chart("myChart3", {
+                                            type: "scatter",
+                                            data: {
+                                                datasets: [{
+                                                pointRadius: 4,
+                                                pointBackgroundColor: "rgb(0,0,255)",
+                                                data: xyValues
+                                                }]
+                                            },
+                                            options: {
+                                                legend: {display: false},
+                                                scales: {
+                                                xAxes: [{ticks: {min: 40, max:160}}],
+                                                yAxes: [{ticks: {min: 6, max:16}}],
+                                                }
+                                            }
+                                            });
+                                            </script>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Worms conditions chart</h4>
+                                    </div>
+                                    <div class="card-body">
+
+
+                                    <canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
+
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+                                    <script>
+const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    }, {
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, {
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+</script>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
 
 
 

@@ -70,7 +70,16 @@ class pageController extends Controller
 
         $total_bins = Bin::where('cooperative_id', $cooperative_id)->count();
         $total_members = Member::where('cooperative_id', $cooperative_id)->count();
-        $binis = Bin::where('cooperative_id', $cooperative_id)->get();
+
+
+        $active_bins = DB::table('bins')->where('cooperative_id', $cooperative_id)->where('status','1')->count();
+
+
+        $inactive_bins = DB::table('bins')->where('cooperative_id', $cooperative_id)->where('status','0')->count();
+
+
+
+
 
 
 
@@ -164,11 +173,11 @@ class pageController extends Controller
     $cooperative_members = Member::where('cooperative_id', $cooperative_id)->get();
     $Age = [];
 
-foreach ($cooperative_members as $member) {
-    $dateOfBirth = Carbon::parse($member->age);
-    $years = $dateOfBirth->diffInYears(Carbon::now());
-    $Age[] = $years;
-}
+    foreach ($cooperative_members as $member) {
+        $dateOfBirth = Carbon::parse($member->age);
+        $years = $dateOfBirth->diffInYears(Carbon::now());
+        $Age[] = $years;
+    }
 
 
 
@@ -196,7 +205,7 @@ foreach ($cooperative_members as $member) {
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
-                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age
+                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,
             ]);
 
 
