@@ -221,31 +221,43 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Total Students</h4>
-                                <h3>3280</h3>
+                                <h4 class="card-title">Total worms</h4>
+                                <h3>{{$worm}}</h3>
                                 <div class="progress mb-2">
                                     <div class="progress-bar progress-animated bg-primary" style="width: 80%"></div>
                                 </div>
-                                <small>80% Increase in 20 Days</small>
+                                @php
+                                    $previousCount = 0;
+                                    $monthlyIncrease = 0;
+
+                                    foreach ($wormsByMonth as $month => $count) {
+                                        if ($previousCount > 0) {
+                                            $monthlyIncrease = round(($count - $previousCount) / $previousCount * 100);
+                                        }
+                                        $previousCount = $count;
+                                    }
+                                @endphp
+
+                                <small>{{ $monthlyIncrease }}% Increase per month</small>
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                 <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
                             <div class="card-body p-4">
-                                <h4 class="card-title">New Students</h4>
-                                <h3>245</h3>
+                                <h4 class="card-title">Total Microcontrollars
+                                <h3>{{$microcontrollers}}</h3>
                                 <div class="progress mb-2">
                                     <div class="progress-bar progress-animated bg-warning" style="width: 50%"></div>
                                 </div>
                                 <small>50% Increase in 25 Days</small>
                             </div>
                         </div>
-                    </div> --}}
-                    {{-- <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    </div>
+                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
                             <div class="card-body p-4">
                                 <h4 class="card-title">Total Course</h4>
@@ -253,21 +265,6 @@
                                 <div class="progress mb-2">
                                     <div class="progress-bar progress-animated bg-red" style="width: 76%"></div>
                                 </div>
-                                <small>76% Increase in 20 Days</small>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="row">
-                                <div class="col-xl-12">
-
-
-
-                                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-
 
 
                             </div>
@@ -276,7 +273,232 @@
 
 
 
+
 				</div>
+
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Gender Bar Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart1" style="width:100%;max-width:600px;height:400px"></canvas>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+                                        <script>
+                                            var xValues = {!! json_encode($months) !!};
+                                            var yValues = {!! json_encode($monthCount) !!};
+                                            var xValuesf = {!! json_encode($monthsf) !!};
+                                            var yValuesf = {!! json_encode($monthCountf) !!};
+
+                                            var ctx = document.getElementById("myChart1").getContext("2d");
+                                            var myChart1 = new Chart(ctx, {
+                                                type: 'bar',
+                                                data: {
+                                                    labels: xValues,
+                                                    datasets: [{
+                                                        label: 'Male',
+                                                        backgroundColor: '#ffa500',
+                                                        data: yValues,
+                                                    }, {
+                                                        label: 'Female',
+                                                        backgroundColor: '#e7440b',
+                                                        data: yValuesf,
+                                                    }]
+                                                },
+                                                options: {
+                                                    responsive: true,
+                                                    legend: {
+                                                        display: true,
+                                                        position: 'bottom',
+                                                    },
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Cooperative Member Gender Chart'
+                                                    },
+                                                    scales: {
+                                                        yAxes: [{
+                                                            ticks: {
+                                                                beginAtZero: true
+                                                            }
+                                                        }]
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 class="card-title">Members age Chart</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                                    <script>
+                                      const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+                                      const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+                                      new Chart("myChart2", {
+                                        type: "line",
+                                        data: {
+                                          labels: xValues,
+                                          datasets: [{
+                                            fill: false,
+                                            lineTension: 0,
+                                            backgroundColor: "rgba(0,0,255,1.0)",
+                                            borderColor: "rgba(0,0,255,0.1)",
+                                            data: yValues
+                                          }]
+                                        },
+                                        options: {
+                                          legend: {display: false},
+                                          scales: {
+                                            yAxes: [{ticks: {min: 6, max:16}}],
+                                          }
+                                        }
+                                      });
+                                    </script>
+                                  </div>
+                                </div>
+                              </div>
+
+
+
+
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Stalked Bar Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChartlines" style="width:100%;max-width:600px"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Basic Line Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="lineChart_1"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Gradient Line Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="lineChart_2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Dual Line Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="lineChart_3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Basic Area Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="areaChart_1"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Gradinet Area Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="areaChart_2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Dual Area Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="areaChart_3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Radar Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="radar_chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Pie Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="pie_chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Doughnut Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-point">
+											<div class="check-point-area">
+												<canvas id="doughnut_chart"></canvas>
+											</div>
+											<ul class="chart-point-list">
+												<li><i class="fa fa-circle text-primary mr-1"></i> 40% Tickets</li>
+												<li><i class="fa fa-circle text-success mr-1"></i> 35% Events</li>
+												<li><i class="fa fa-circle text-warning mr-1"></i> 25% Other</li>
+											</ul>
+										</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Polar Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="polar_chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 @endcan

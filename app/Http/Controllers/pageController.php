@@ -10,6 +10,7 @@ use App\Models\Location;
 use App\Models\Member;
 use App\Models\Cooperative;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class pageController extends Controller
 {
 
@@ -78,7 +79,6 @@ class pageController extends Controller
 
 
 
-
         $currentMonth = date('m');
         $currentYear = date('Y');
 
@@ -102,6 +102,71 @@ class pageController extends Controller
       ->whereYear('created_at', $currentYear)
       ->groupBy('id')
       ->count();
+
+
+      $microcontrollers = DB::table('microcontrollers')->where('cooperative_id',$cooperative_id)->count();
+
+      $wormsByMonth = DB::table('worms')
+    ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+    ->where('cooperative_id', $cooperative_id)
+    ->groupBy('month')
+    ->orderBy('month')
+    ->get();
+
+    $previousCount = 0;
+    foreach ($wormsByMonth as $key => $worms) {
+        $currentCount = $worms->count;
+        if ($key > 0) {
+            $percentageIncrease = (($currentCount - $previousCount) / $previousCount) * 100;
+            $wormsByMonth[$key]->percentageIncrease = round($percentageIncrease, 2);
+        } else {
+            $wormsByMonth[$key]->percentageIncrease = 0;
+        }
+        $previousCount = $currentCount;
+    }
+
+    $male = 'male';
+    $female = 'female';
+
+    // Get count of worms
+    $worm = DB::table('worms')->where('cooperative_id', $cooperative_id)->count();
+
+    // Get male member counts by month
+    $males = DB::table('members')->where('cooperative_id', $cooperative_id)
+        ->where('gender', $male)
+        ->get()
+        ->groupBy(function($created_at) {
+            return Carbon::parse($created_at->created_at)->format('Y-M');
+        });
+
+    $months = [];
+    $monthCount = [];
+
+    foreach ($males as $month => $monthValues) {
+        $months[] = $month;
+        $monthCount[] = count($monthValues);
+    }
+
+    // Get female member counts by month
+    $females = DB::table('members')->where('cooperative_id', $cooperative_id)
+        ->where('gender', $female)
+        ->get()
+        ->groupBy(function($created_at) {
+            return Carbon::parse($created_at->created_at)->format('Y-M');
+        });
+
+    $monthsf = [];
+    $monthCountf = [];
+
+    foreach ($females as $month => $monthValues) {
+        $monthsf[] = $month;
+        $monthCountf[] = count($monthValues);
+    }
+
+
+
+
+
 
 
     //   $new_members_per_month = DB::table('members')
@@ -207,7 +272,7 @@ class pageController extends Controller
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
-                'no_verm_procces'=>$no_verm_procces
+                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,
             ]);
 
 
