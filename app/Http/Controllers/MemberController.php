@@ -97,11 +97,11 @@ class MemberController extends Controller
                          ->value('cooperative_id');
 
         $formfields['cooperative_id']= $cooperative_id;
-        $dateString = $formfields['age'];
-        $dateTimestamp = strtotime($dateString);
-        $currentTimestamp = time();
-        $yearDifference = date('Y', $currentTimestamp) - date('Y', $dateTimestamp);
-        $formfields['age']=$yearDifference;
+        // $dateString = $formfields['age'];
+        // $dateTimestamp = strtotime($dateString);
+        // $currentTimestamp = time();
+        // $yearDifference = date('Y', $currentTimestamp) - date('Y', $dateTimestamp);
+        // $formfields['age']=$yearDifference;
 
 
         Member::create($formfields);

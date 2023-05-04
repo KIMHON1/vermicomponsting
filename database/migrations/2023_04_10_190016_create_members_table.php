@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->bigInteger('phonenumber')->unique();
             $table->string('gender');
-            $table->integer('age');
+            $table->dateTime('age');
             $table->string("province");
             $table->string("district");
             $table->string("sector");

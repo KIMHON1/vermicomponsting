@@ -71,11 +71,7 @@ class pageController extends Controller
         $total_bins = Bin::where('cooperative_id', $cooperative_id)->count();
         $total_members = Member::where('cooperative_id', $cooperative_id)->count();
         $binis = Bin::where('cooperative_id', $cooperative_id)->get();
-        // $bins_id = [];
-        // foreach($bins as $b){
-        //  $bins_id[] = $b->id;
-        // }
-        // dd( $bins_id);
+
 
 
 
@@ -165,86 +161,14 @@ class pageController extends Controller
 
 
 
-
-
-
-
-    //   $new_members_per_month = DB::table('members')
-    //     ->selectRaw(' MONTH(created_at) as month, COUNT(*) as new_members')
-    //     ->where('cooperative_id', $cooperative_id)
-    //     ->groupBy( 'month')
-    //     ->count();
-
-
-    //   $percentageIncrease = ($current_month_member -  $previous_month_member) / $previous_month_member * 100;
-    //   dd( $previous_month_member);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $cooperative_members = Member::where('cooperative_id', $cooperative_id)->get();
+    $Age = [];
+
+foreach ($cooperative_members as $member) {
+    $dateOfBirth = Carbon::parse($member->age);
+    $years = $dateOfBirth->diffInYears(Carbon::now());
+    $Age[] = $years;
+}
 
 
 
@@ -272,7 +196,7 @@ class pageController extends Controller
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
-                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,
+                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age
             ]);
 
 

@@ -26,7 +26,8 @@ class MemberFactory extends Factory
             'email' => $faker->unique()->safeEmail,
             'phonenumber' => $this->faker->numberBetween(1000000000, 9999999999),
             'gender' => $this->faker->randomElement(['male', 'female']),
-            'age' => $this->faker->numberBetween(18, 60),
+            'age' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d H:i:s'),
+
             'province' => $faker->state,
             'district' => $faker->city,
             'sector' => $faker->streetName,
