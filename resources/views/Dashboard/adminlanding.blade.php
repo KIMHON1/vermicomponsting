@@ -226,7 +226,7 @@
                             <div class="card-body p-4">
                                 <h4 class="card-title">Total worms Type</h4>
                                 <h3>{{$worm}}</h3>
-                                <div class="progress mb-2">
+                                {{-- <div class="progress mb-2">
                                     @php
                                     $previousCount = 0;
                                     $monthlyIncrease = 0;
@@ -234,15 +234,17 @@
                                     foreach ($wormsByMonth as $month => $count) {
                                         if ($previousCount > 0) {
                                             $monthlyIncrease = round(($count - $previousCount) / $previousCount * 100);
+
+
                                         }
                                         $previousCount = $count;
                                     }
                                 @endphp
                                     <div class="progress-bar progress-animated bg-primary" style="width:{{ $monthlyIncrease }}"></div>
-                                </div>
+                                </div> --}}
 
 
-                                <small>{{ $monthlyIncrease }}% Increase per month</small>
+                                {{-- <small>{{ $monthlyIncrease }}% Increase per month</small> --}}
                             </div>
                         </div>
                     </div>
@@ -402,40 +404,36 @@
                                         <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
 
                                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-                                        <script>
-                                            var xyValues = [
-                                            {x:50, y:7},
-                                            {x:60, y:8},
-                                            {x:70, y:8},
-                                            {x:80, y:9},
-                                            {x:90, y:9},
-                                            {x:100, y:9},
-                                            {x:110, y:10},
-                                            {x:120, y:11},
-                                            {x:130, y:14},
-                                            {x:140, y:14},
-                                            {x:150, y:15}
-                                            ];
 
-                                            new Chart("myChart3", {
-                                            type: "scatter",
-                                            data: {
-                                                datasets: [{
-                                                pointRadius: 4,
-                                                pointBackgroundColor: "rgb(0,0,255)",
-                                                data: xyValues
-                                                }]
-                                            },
-                                            options: {
-                                                legend: {display: false},
-                                                scales: {
-                                                xAxes: [{ticks: {min: 40, max:160}}],
-                                                yAxes: [{ticks: {min: 6, max:16}}],
-                                                }
-                                            }
-                                            });
-                                            </script>
-                                    </div>
+
+                                        <script>
+    new Chart("myChart3", {
+        type: "scatter",
+        data: {
+            datasets: [{
+                pointRadius: 4,
+                pointBackgroundColor: "rgb(0,0,255)",
+                data: <?php echo json_encode($data); ?>
+            }]
+        },
+        options: {
+            legend: { display: false },
+            scales: {
+                xAxes: [{ ticks: { min: 40, max: 160 } }],
+                yAxes: [{ ticks: { min: 0 } }]
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+                                            </div>
                                 </div>
                             </div>
 

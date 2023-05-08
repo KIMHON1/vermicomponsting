@@ -35,6 +35,7 @@ class MemberFactory extends Factory
             'cooperative_id' => function () {
                 return Cooperative::inRandomOrder()->first()->id;
             },
+            
 
 
             ];

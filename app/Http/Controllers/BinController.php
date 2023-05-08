@@ -83,7 +83,7 @@ class BinController extends Controller
 
         $cooperativeMembers=Member::where('cooperative_id',$cooperative_id)->get();
 
-
+        
 
 
         return view('Normal.create_bin1',['member'=>$member,'cooperative_id'=>$cooperative_id,'microcontrollers'=>$microcontrollers,'worms'=>$worms]);

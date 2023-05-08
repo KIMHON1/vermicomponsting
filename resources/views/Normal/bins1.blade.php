@@ -21,21 +21,18 @@
                                     <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
                                         <thead>
                                             <tr>
-                                                <!-- Column headers -->
+
                                                 <th class="align-middle">#</th>
                                                 <th class="align-middle pr-7">Bin_Code</th>
                                                 <th class="align-middle minw200">worm_Type</th>
                                                 <th class="align-middle">microcontroller_type</th>
 
                                                 <th class="align-middle">Bin_Status</th>
-                                                {{-- <th class="align-middle">BinOwner</th> --}}
                                                 <th class="align-middle text-right">Actions</th>
-                                                {{-- <th class="no-sort"></th> --}}
                                             </tr>
                                         </thead>
                                         <tbody id="orders">
                                             @foreach ($bins as $bin)
-                                            <!-- Table data -->
                                             <tr class="btn-reveal-trigger">
                                                 <td class="py-2">{{ ++$i }}</td>
                                                 <td class="py-2">{{ $bin->code }}</td>
@@ -56,8 +53,8 @@
                                                    @endif
                                                 </td>
 
-                                            @if($bin->status==1)
                                                 <td class="py-2 text-right">
+                                                    @if($bin->status==1)
                                                     <!-- Actions dropdown -->
                                                     <div class="dropdown text-sans-serif">
                                                         <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
@@ -87,8 +84,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </td>
-                                            @endif
                                             </tr>
 
                                             @endforeach
@@ -96,7 +93,6 @@
                                     </table>
 
 
-                                    {{-- {{$bins->links()}} --}}
                                 </div>
                             </div>
                         </div>

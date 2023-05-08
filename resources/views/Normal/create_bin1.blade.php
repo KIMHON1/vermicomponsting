@@ -51,6 +51,7 @@
                                                             <span class="input-group-text">  <i class="fa fa-microchip"></i></span>
                                                         </div>
                                                         <select   name="microcontroller_type"  class="form-control"  >
+                                                            <option> select Microcontrollers</option>
                                                             @foreach($microcontrollers as $microcontroller)
                                                             <option value="{{ $microcontroller->id }}">{{ $microcontroller->name }}</option>
                                                             @endforeach
@@ -73,18 +74,18 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">  <i class="fa fa-venus"></i></span>
                                                         </div>
-                                                        <select   name="microcontroller_type"  class="form-control"  >
-                                                            @foreach($microcontrollers as $microcontroller)
-                                                            <option value="{{ $microcontroller->id }}">{{ $microcontroller->name }}</option>
+                                                        <select   name="worm_type"  class="form-control"  >
+                                                            @foreach($worms as $worm)
+                                                            <option value="{{ $worm->id }}">{{ $worm->name }}</option>
                                                             @endforeach
 
                                                         </select>
 
                                                     </div>
 
-                                                    @if($errors->has('microcontroller_type'))
+                                                    @if($errors->has('worm_type'))
                                                         <span class="text-danger">
-                                                        {{$errors->first('microcontroller_type')}}
+                                                        {{$errors->first('worm_type')}}
                                                         </span>
                                                     @endif
                                                 </div>

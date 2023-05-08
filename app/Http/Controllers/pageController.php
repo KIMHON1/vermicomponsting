@@ -182,6 +182,38 @@ class pageController extends Controller
 
 
 
+    $worms = DB::table('worms')->where('cooperative_id', $cooperative_id)->get()->groupBy(function($created_at) {
+        return Carbon::parse($created_at->created_at)->format('Y-M');
+    });
+
+
+
+            $data = [];
+
+            foreach ($worms as $montha => $monthWormsa) {
+                $population = count($monthWormsa);
+                $data[] = [
+                    'x' => $montha,
+                    'y' => $population
+                ];
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -205,7 +237,7 @@ class pageController extends Controller
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
-                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,
+                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,'data' =>$data, 'worms'=>$worms
             ]);
 
 
