@@ -10,6 +10,7 @@
             <div class="container-fluid">
                 <div class="page-titles">
 					<h4>Manage</h4>
+                    @include('Auth.message')
 					<ol class="breadcrumb">
 
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">CO-Operative</a></li>
@@ -41,6 +42,8 @@
                                                 <th class="align-middle">#</th>
                                                 <th class="align-middle pr-7">Cooperative Name</th>
                                                 <th class="align-middle minw200">Manager Username</th>
+
+                                                <th class="align-middle minw200">status</th>
                                                 <th class="align-middle text-right">Action</th>
 
                                             </tr>
@@ -50,11 +53,25 @@
                                             <tr class="btn-reveal-trigger">
                                                 <td class="py-2">{{++$i}}</td>
                                                 <td class="py-2">
-                                                    <div>{{ $cooperative->co_operativename }}</div>
+                                                    <div>{{ $cooperative->co_operativename }}{{ $cooperative->id }}</div>
                                                 </td>
                                                 <td class="py-2">
                                                     <div>{{ $cooperative->co_operativemanager }}</div>
                                                 </td>
+
+                                                <td class="py-2">
+                                                    @if($cooperative->status == 1)
+                                                        <a href="{{ route('cooperatives.update.status', ['cooperative' => $cooperative->id, 'status_code' => 0]) }}" class="btn btn-success m-2">
+
+                                                            <i class="fa fa-check"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('cooperatives.update.status', ['cooperative' => $cooperative->id, 'status_code' => 1]) }}" class="btn btn-danger m-2">
+                                                            <i class="fa fa-ban"></i>
+                                                        </a>
+                                                    @endif
+                                                </td>
+
                                                 <td class="py-2 text-right">
                                                     <div class="dropdown text-sans-serif">
                                                         <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
@@ -71,7 +88,7 @@
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
                                                             <div class="py-2">
-                                                               
+
                                                                 <a class="dropdown-item" href="/cooperatives/{{$cooperative->id}}/edit">Edit</a>
                                                                 <div class="dropdown-divider"></div>
                                                                <a class="dropdown-item text-danger" href="cooperatives/{{$cooperative->id}}/delete">Delete</a>

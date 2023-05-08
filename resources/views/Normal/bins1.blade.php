@@ -9,6 +9,7 @@
 					<ol class="breadcrumb">
 
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Bins</a></li>
+                        @include('Auth.message')
 					</ol>
 
 

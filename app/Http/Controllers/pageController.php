@@ -279,23 +279,68 @@ class pageController extends Controller
 
     public function databaseNoIndex(){
 
-        $notifications = auth()->user()->Notifications;
-        return view('notify.database_condition', compact('notifications'));
+
+
+
+        // $notifications = auth()->user()->Notifications->orderBy('created_at', 'desc')->get();
+
+        $notifications = auth()->user()->notifications()
+    ->orderBy('created_at', 'desc')
+    ->get();
+        $acceptable_temperatures = ['min' => 15, 'max' => 25];
+        $acceptable_acidity = ['min' => 6, 'max' => 7.5];
+        $acceptable_humidity = ['min' => 60, 'max' => 70];
+
+        $out_of_range_conditions = [];
+        foreach ($notifications as $notification) {
+            // Check temperature
+            if ($notification->data['pre_temperature'] !== $notification->data['temperature']) {
+                if ($notification->data['temperature'] < $acceptable_temperatures['min'] || $notification->data['temperature'] > $acceptable_temperatures['max']) {
+                    $out_of_range_conditions[] = 'Temperature in bin ' . $notification->data['bin_number'] . ' is out of range';
+                }
+            }
+
+
+             // Check acidity
+             if ($notification->data['pre_acidity'] !== $notification->data['acidity']) {
+                if ($notification->data['acidity'] < $acceptable_acidity['min'] || $notification->data['acidity'] > $acceptable_acidity['max']) {
+                    $out_of_range_conditions[] = 'Acidity in bin ' . $notification->data['bin_number'] . ' is out of range';
+                }
+            }
+
+            // Check humidity
+            if ($notification->data['pre_humidity'] !== $notification->data['humidity']) {
+                if ($notification->data['humidity'] < $acceptable_humidity['min'] || $notification->data['humidity'] > $acceptable_humidity['max']) {
+                    $out_of_range_conditions[] = 'Humidity in bin ' . $notification->data['bin_number'] . ' is out of range';
+                }
+            }
+        }
+
+        return view('notify.database_condition',  [
+            'notifications' => $notifications,
+            'acceptable_temperatures' => $acceptable_temperatures,
+            'acceptable_acidity' => $acceptable_acidity,
+            'acceptable_humidity' => $acceptable_humidity,
+            'out_of_range_conditions' => $out_of_range_conditions,
+        ]);
     }
 
 
-
-    public function markNotification(Request $request)
-    {
-        auth()->user()
-            ->Notifications
-            ->when($request->input('id'), function ($query) use ($request) {
-                return $query->where('id', $request->input('id'));
-            })
-            ->markAsRead();
-
-        return response()->noContent();
+    public function markAsRead(){
+        Auth::user()->unreadNotifications->markAsRead();
+        return redirect()->back();
     }
+    // public function markNotification(Request $request)
+    // {
+    //     auth()->user()
+    //         ->Notifications
+    //         ->when($request->input('id'), function ($query) use ($request) {
+    //             return $query->where('id', $request->input('id'));
+    //         })
+    //         ->markAsRead();
+
+    //     return response()->noContent();
+    // }
     /**
      * Store a newly created resource in storage.
      *

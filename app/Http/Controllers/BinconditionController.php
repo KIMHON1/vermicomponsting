@@ -52,9 +52,9 @@ class BinconditionController extends Controller
     {
        $formFields = $request->validate([
 
-        'temperature' => 'required',
-        'humidity' => 'required',
-        'acidity' => 'required',
+        'temperature' => 'required|numeric|between:15,25',
+        'humidity' => 'required|numeric|between:70,90',
+        'acidity' => 'required|numeric|between:6.0,7.5',
         'bin_id' => 'required',
 
        ]);
@@ -144,42 +144,76 @@ class BinconditionController extends Controller
     {
         //
 
-        $pre_conditions=$bin->binconditions;;
 
+        $pre_conditions=$bin->binconditions;
         $formFields = $request->validate([
-
-            'temperature' => 'required',
-            'humidity' => 'required',
-            'acidity' => 'required',
+            'temperature' => 'required|numeric|between:5,225',
+            'humidity' => 'required|numeric|between:10,190',
+            'acidity' => 'required|numeric|between:0,14',
             'bin_id' => 'required',
+        ]);
 
-           ]);
-           $user= User::find(auth()->user()->id);
-           $model = Bincondition::find($bincondition);
+        $user = User::find(auth()->user()->id);
+        $model = Bincondition::find($bincondition);
+        $conditions = $bin->binconditions;
+        $bin_number = $bin->code;
+        $OG_temperature = $conditions->getOriginal('temperature');
+        $OG_humidity = $conditions->getOriginal('humidity');
+        $OG_acidity = $conditions->getOriginal('acidity');
+        $old_conditions = array('acidity'=>$OG_acidity,'humidity'=>$OG_humidity ,'temperature'=>$OG_temperature, 'bin_number'=>$bin_number);
+        $conditions->update($formFields);
 
-           $conditions=$bin->binconditions;
+        // Check if temperature, humidity, or acidity levels are outside the acceptable range
+        if ($conditions->wasChanged(['temperature', 'humidity', 'acidity'])) {
+            $notificationMessage = 'BinNumber ' . $bin_number . ' conditions have changed:';
+
+            $newTemperature = $conditions->getAttribute('temperature');
+            if ($newTemperature < 15 || $newTemperature > 25) {
+                $notificationMessage .= ' Temperature is outside the acceptable range .';
+            }
+
+            $newHumidity = $conditions->getAttribute('humidity');
+            if ($newHumidity < 70 || $newHumidity > 90) {
+                $notificationMessage .= ' Humidity is outside the acceptable range.';
+            }
+
+            $newAcidity = $conditions->getAttribute('acidity');
+            if ($newAcidity < 6.0 || $newAcidity > 7.5) {
+                $notificationMessage .= ' Acidity is outside the acceptable range.';
+            }
+
+            Notification::send($user, new BinConditionChanged($conditions, $old_conditions, $bin, $notificationMessage));
+        }
 
 
-           $bin_number = $bin->number;
-           $OG_temperature = $conditions->getOriginal('temperature');
-           $OG_humidity = $conditions->getOriginal('humidity');
-           $OG_acidity = $conditions->getOriginal('acidity');
-           $old_conditions =array('acidity'=>$OG_acidity,'humidity'=>$OG_humidity ,'temperature'=>$OG_temperature, 'bin_number'=>$bin_number);
+        // $formFields = $request->validate([
+
+        //     'temperature' => 'required|numeric|between:15,25',
+        //     'humidity' => 'required|numeric|between:70,90',
+        //     'acidity' => 'required|numeric|between:6.0,7.5',
+        //     'bin_id' => 'required',
+
+        //    ]);
+        //    $user= User::find(auth()->user()->id);
+        //    $model = Bincondition::find($bincondition);
+
+        //    $conditions=$bin->binconditions;
 
 
-          $conditions->update($formFields);
+        //    $bin_number = $bin->code;
+        //    $OG_temperature = $conditions->getOriginal('temperature');
+        //    $OG_humidity = $conditions->getOriginal('humidity');
+        //    $OG_acidity = $conditions->getOriginal('acidity');
+        //    $old_conditions =array('acidity'=>$OG_acidity,'humidity'=>$OG_humidity ,'temperature'=>$OG_temperature, 'bin_number'=>$bin_number);
 
 
-          if($conditions->wasChanged(['temperature','humidity','acidity'])){
+        //   $conditions->update($formFields);
 
 
-
-
-
-           Notification::send($user, new BinConditionChanged($conditions,$old_conditions,$bin));
-
-
-          };
+        //   if ($conditions->isDirty()) {
+        //     $conditions->update($formFields);
+        //     Notification::send($user, new BinConditionChanged($conditions, $old_conditions, $bin));
+        // }
 
 
 

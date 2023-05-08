@@ -17,31 +17,51 @@
 
 
 
+                    @foreach($notifications as $notification)
+                    <div class="media-body alert alert-light">
+                        <h4 class="mb-1 alert alert-primary">BinNumber {{$notification->data['bin_number']}}</h4>
+                        <h5 class="mb-1">
+                            @if ($notification->data['pre_temperature'] !== $notification->data['temperature'])
+                                temperature changed form {{$notification->data['pre_temperature']}}  &#176;C to {{$notification->data['temperature']}} &#176;C
+                                @if ($notification->data['temperature'] < $acceptable_temperatures['min'] || $notification->data['temperature'] > $acceptable_temperatures['max'])
+                                    <span style="color: red;">Critical condition:</span>
+                                    <span style="color: red;">{{$notification->data['temperature']}} &#176;C is outside the range of {{$acceptable_temperatures['min']}} &#176;C to {{$acceptable_temperatures['max']}} &#176;C</span>
+                                @endif
+                            @endif
 
+                            @if ($notification->data['pre_acidity'] !== $notification->data['acidity'])
+                                acitidy changed form {{$notification->data['pre_acidity']}} pH to {{$notification->data['acidity']}} pH
+                                @if ($notification->data['acidity'] < $acceptable_acidity['min'] || $notification->data['acidity'] > $acceptable_acidity['max'])
+                                    <span style="color: red;">Critical condition:</span>
+                                    <span style="color: red;">{{$notification->data['acidity']}} pH is outside the range of {{$acceptable_acidity['min']}} pH to {{$acceptable_acidity['max']}} pH</span>
+                                @endif
+                            @endif
 
-                            @foreach($notifications as $notification)
-                            <div class="media-body alert alert-light">
-                                <h4 class="mb-1 alert alert-primary">BinNumber {{$notification->data['bin_number']}}</h4>
-                                <h5 class="mb-1">
+                            @if ($notification->data['pre_humidity'] !== $notification->data['humidity'])
+                                Humidity changed form {{$notification->data['pre_humidity']}} mm to {{$notification->data['humidity']}} mm
+                                @if ($notification->data['humidity'] < $acceptable_humidity['min'] || $notification->data['humidity'] > $acceptable_humidity['max'])
+                                    <span style="color: red;">Critical condition:</span>
+                                    <span style="color: red;">{{$notification->data['humidity']}} mm is outside the range of {{$acceptable_humidity['min']}} mm to {{$acceptable_humidity['max']}} mm</span>
+                                @endif
+                            @endif
+                        </h5>
+                        <small class="d-block">{{ $notification->created_at }}</small>
+                    </div>
+                @endforeach
 
-                                    temperature changed form {{$notification->data['pre_temperature']}}  &#176;C to {{$notification->data['temperature']}} &#176;C
+                @if(count($out_of_range_conditions) > 0)
+                    <div class="media-body alert alert-danger">
+                        <h4 class="mb-1 alert alert-danger">Critical Conditions</h4>
+                        <ul>
+                            <div>
 
-                                    acitidy changed form 	 {{$notification->data['pre_acidity']}} pH to {{$notification->data['acidity']}} pH
-
-                                    Humidity changed form 	 {{$notification->data['pre_humidity']}} mm to {{$notification->data['humidity']}} mm
-
-
-
-
-
-
-
-
-                                </h5>
-                                <small class="d-block">{{ $notification->created_at }}</small>
+                                @foreach($out_of_range_conditions as $condition)
+                                    <li>{{$condition}}</li>
+                                @endforeach
                             </div>
-                            @endforeach
-
+                        </ul>
+                    </div>
+                @endif
 
 
 

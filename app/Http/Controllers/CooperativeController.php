@@ -26,34 +26,14 @@ class CooperativeController extends Controller
      */
     public function index()
     {
-
+        $users = User::all();
         $cooperatives = Cooperative::all();
-
-        // $managerids = Cooperative::distinct()->pluck('co_operativemanager');
-        // $managers = [];
-        // foreach ($managerids as $managerid) {
-        //     $manager_name  = User::find($managerid);
-        // //    $manager_name =$manager_details->name;
-
-        //    $managers[] = $manager_name;
-
-        // }
-
-
-        // $data = [];
-        // $max_length = max(count($cooperatives), count($managers));
-        // for ($i = 0; $i < $max_length; $i++) {
-        //             $data[] = [
-        //             'coop' => $cooperatives[$i] ?? null,
-        //             'manager' => $managers[$i] ?? null,
-        //                         ];
-        //                                     }
+    //     $managerIds = $cooperatives->users()->pluck('users.id');
+    //    ;
 
 
 
-        // return view('Cooperative.index',['cooperatives'=>$cooperatives,'managers'=>$managers])->with('i');
-
-        return view('Cooperative.index',[ 'cooperatives'=>$cooperatives])->with('i');
+        return view('Cooperative.index',[ 'cooperatives'=>$cooperatives,'users'=>$users])->with('i');
     }
 
     /**
@@ -109,6 +89,7 @@ class CooperativeController extends Controller
         $manager_id=$formfields['co_operativemanager'];
         $manager_details = User::find($manager_id);
         $managername=$manager_details->name;
+
         $formfields['co_operativemanager']=$managername;
 
 
@@ -286,4 +267,23 @@ class CooperativeController extends Controller
         $cooperative->delete();
         return redirect('/cooperatives');
     }
+
+
+
+
+    public function updateStatus(Cooperative $cooperative, $status_code)
+    {
+
+            $cooperative = Cooperative::find($cooperative->id);
+            $cooperative->status = $status_code;
+            $update_cooperative=$cooperative->save();
+
+            if ($update_cooperative) {
+                return redirect('/cooperatives')->with('success', 'Cooperative  status updated successfully');
+            }
+
+            return redirect('/cooperatives')->with('error', 'Failed to update the cooperative');
+
+    }
+
 }
