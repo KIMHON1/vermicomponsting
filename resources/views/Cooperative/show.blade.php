@@ -13,10 +13,7 @@
 
                 <div class="page-titles">
 					<h4>Manage</h4>
-					{{-- <ol class="breadcrumb">
-
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">CO-Operative  {{$cooperativeInfo->co_operativename}}</a></li>
-					</ol> --}}
+                    @include('Auth.message')
 
 
 
@@ -29,7 +26,9 @@
 				<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
 					<div>
                         <a class="btn btn-primary mr-3" href="/cooperatives_membe/create"> +New member</a>
+
 					</div>
+
 				</div>
 				<!-- Add Order -->
 

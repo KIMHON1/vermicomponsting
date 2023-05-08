@@ -108,7 +108,7 @@ class MemberController extends Controller
 
 
 
-        return redirect('/cooperatives/show');
+        return redirect('/cooperatives/show')->with('success', 'member Cooperative Created success full');
     }
 
     /**
@@ -235,7 +235,7 @@ class MemberController extends Controller
 
 
         $member->delete();
-        return redirect('/cooperatives/show');
+        return redirect('/cooperatives/show')->with('success', 'Cooperative  member  Deleted success full');;
 
 
     }
