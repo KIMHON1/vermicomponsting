@@ -899,6 +899,7 @@
 
 
 
+                    @can('view-co-operative')
 
 
                     <li><a  href="javascript:void()" aria-expanded="false">
@@ -920,6 +921,8 @@
 
 
                         </li>
+                        @endcan
+
 
 
 

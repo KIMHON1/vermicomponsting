@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{User,District,Province,Sector, Location};
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
+use App\Models\Cell;
+
+
 class LocationController extends Controller
 {
     /**
@@ -50,31 +55,68 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
+
+
+        $formfields = $request->validate([
+
+            'user_id'=>'required',
             'firstname'=>'required',
             'secondname'=>'required',
             'profilePic'=>'required|nullable',
 
-            'phonenumber'=>'required|unique:locations,phonenumber',
+            'phonenumber' => 'required|numeric|unique:locations,phonenumber',
+
             'gender'=>'required',
 
             'province'=>'required',
             'district'=>'required',
             'sector'=>'required',
             'cell'=>'required',
-            'village'=>'required',
 
 
-            'description'=>'required',
-            'user_id'=>'required'
         ]);
 
+
+
+
+
         if($request->hasFile('profilePic')){
-            $formFields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
+            $formfields['profilePic'] =$request->file('profilePic')->store('profiles', 'public');
         }
 
+        $provincecode = $formfields['province'];
 
-        Location::create($formFields);
+        // lookup province details
+        $province_details = Province::find($provincecode);
+        $province_name = $province_details->provincename;
+        $formfields['province'] = $province_name;
+
+        // lookup district details
+        $districtcode = $formfields['district'];
+        $district_details = District::where('provincecode', $provincecode)
+            ->where('districtcode', $districtcode)
+            ->first();
+        $district_name = $district_details->namedistrict;
+        $formfields['district'] = $district_name;
+
+        // lookup sector details
+        $sectorcode = $formfields['sector'];
+        $sector_details = Sector::where('districtcode', $districtcode)
+            ->where('sectorcode', $sectorcode)
+            ->first();
+        $sector_name = $sector_details->namesector;
+        $formfields['sector'] = $sector_name;
+
+        // lookup cell details
+        $codecell = $formfields['cell'];
+        $cell_details = Cell::where('sectorcode', $sectorcode)
+            ->where('codecell', $codecell)
+            ->first();
+        $name_cell = $cell_details->nameCell;
+        $formfields['cell'] = $name_cell;
+
+
+        Location::create($formfields);
         return redirect('/dashboard');
 
     }

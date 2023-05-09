@@ -1,86 +1,3 @@
-{{-- @extends('Dashboard.master')
-
-
-@section('content')
-
-
-    <div class="authincation h-90">
-        <div class="container h-90">
-        <div class="page-titles">
-					<h4></h4>
-					<ol class="breadcrumb">
-
-						<li class="breadcrumb-item active"><a href="javascript:void(0)"></a></li>
-					</ol>
-                </div>
-            <div class="row justify-content-center h-90 align-items-center">
-                <div class="col-md-6">
-
-					<div class="authincation-content">
-                        <div class="row no-gutters">
-                            <div class="col-xl-12">
-                                <div class="auth-form">
-									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
-									</div>
-                                    <h4 class="text-center mb-4 text-white">create Bin</h4>
-                                    <form action="" method="POST" >
-                                    @csrf
-                                        <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>BinNumber</strong></label>
-                                            <input type="text" name="number" class="form-control" placeholder="BinNumber" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>Location</strong></label>
-                                            <input type="text" class="form-control"
-                                            name="location"
-                                            placeholder="location" required>
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <input  value ="{{auth()->user()->id}}"
-                                            name="user_id"
-                                            class="form-control" style="display: none" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>MicrocontrollerType</strong></label>
-                                            <input type="text" name="microcontroller_type"
-                                            class="form-control" placeholder="Enter MicrocontrollerType" required >
-
-                                        <div class="text-center mt-4">
-                                            <button type="submit" class="btn bg-white text-primary btn-block">Create Bin</button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-@endsection --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 
@@ -92,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welly - Hospital Bootstrap Admin Dashboard</title>
+    <title>Vermicomposting</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -148,7 +65,7 @@
                                       @csrf
 
 
-                                      </div>
+
                                       <div class="form-group">
                                         <label class="text-label">FirstName</label>
                                         <div class="input-group">
@@ -214,107 +131,28 @@
 
 
 
- <div class="form-group mb-0">
-    <label for="Gender">Gender  :</label>
-    <label class="radio-inline mr-3">
+                                <div class="form-group mb-0">
+                                    <label for="Gender">Gender  :</label>
+                                    <label class="radio-inline mr-3">
 
-        <input type="radio" name="gender" value="Male">Male</label>
+                                        <input type="radio" name="gender" value="Male">Male</label>
 
-    <label class="radio-inline mr-3"><input type="radio" name="gender"  value="Female">Female</label>
+                                    <label class="radio-inline mr-3"><input type="radio" name="gender"  value="Female">Female</label>
 
-    <label class="radio-inline mr-3"><input type="radio" name="gender" value="other">other</label>
-
-
-    @if($errors->has('gender'))
-        <span class="text-danger">
-        {{$errors->first('gender')}}
-        </span>
-    @endif
-
-</div>
-
-<div class="form-group">
-    <label class="text-label">Province</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
-        </div>
-        <input type="text" class="form-control" id="val-username1" name="province" placeholder="Enter Province..">
-
-    </div>
-    @if($errors->has('province'))
-    <span class="text-danger">
-      {{$errors->first('province')}}
-    </span>
-    @endif
-</div>
+                                    <label class="radio-inline mr-3"><input type="radio" name="gender" value="other">other</label>
 
 
-<div class="form-group">
-    <label class="text-label">District</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
-        </div>
-        <input type="text" class="form-control" id="val-username1" name="district" placeholder="Enter District..">
+                                    @if($errors->has('gender'))
+                                        <span class="text-danger">
+                                        {{$errors->first('gender')}}
+                                        </span>
+                                    @endif
 
-    </div>
-    @if($errors->has('district'))
-    <span class="text-danger">
-      {{$errors->first('district')}}
-    </span>
-    @endif
-</div>
-
-<div class="form-group">
-    <label class="text-label">Sector</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
-        </div>
-        <input type="text" class="form-control" id="val-username1" name="sector" placeholder="Enter Sector..">
-
-    </div>
-    @if($errors->has('sector'))
-    <span class="text-danger">
-      {{$errors->first('sector')}}
-    </span>
-    @endif
-</div>
+                                </div>
 
 
-<div class="form-group">
-    <label class="text-label">Cell</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
-        </div>
-        <input type="text" class="form-control" id="val-username1" name="cell" placeholder="Enter Cell..">
 
-    </div>
-    @if($errors->has('cell'))
-    <span class="text-danger">
-      {{$errors->first('cell')}}
-    </span>
-    @endif
-</div>
-
-
-<div class="form-group">
-    <label class="text-label">Village</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
-        </div>
-        <input type="text" class="form-control" id="val-username1" name="village" placeholder="Enter Village..">
-
-    </div>
-    @if($errors->has('village'))
-    <span class="text-danger">
-      {{$errors->first('village')}}
-    </span>
-    @endif
-</div>
+                                @include('livewire.dependent_dropdown')
 
 
 
@@ -340,16 +178,7 @@
 
 
 
-                                                    <div class="form-group">
-                                                        <label class="text-label">Description of this Acount..*</label>
-                                                        <textarea name ="description" class="form-control" rows="4" id="comment"></textarea>
 
-                                                        @if($errors->has('description'))
-                                                        <span class="text-danger">
-                                                          {{$errors->first('description')}}
-                                                        </span>
-                                                        @endif
-                                                    </div>
 
 
 
@@ -370,9 +199,9 @@
                                                     </div>
 
 
-<button type="submit" class="btn mr-2 btn-primary">Submit</button>
+                                            <button type="submit" class="btn mr-2 btn-primary">Submit</button>
 
-<a  class="btn mr-2 btn-primary" href="/logout"> Cancel</a>
+                                            <a  class="btn mr-2 btn-primary" href="/logout"> Cancel</a>
 
 
 
@@ -407,3 +236,5 @@
 
 
 </body>
+@livewireScripts
+</html>

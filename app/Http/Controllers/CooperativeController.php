@@ -87,6 +87,7 @@ class CooperativeController extends Controller
             );
 
         $manager_id=$formfields['co_operativemanager'];
+
         $manager_details = User::find($manager_id);
         $managername=$manager_details->name;
 
@@ -174,7 +175,9 @@ class CooperativeController extends Controller
     public function edit(Cooperative $cooperative)
     {
         // $
+
         $managers = User::where('Roles','Manager')->get();
+
         $provinces = Province::all();
 
 
@@ -208,7 +211,9 @@ class CooperativeController extends Controller
             );
 
         $manager_id=$formfields['co_operativemanager'];
+
         $manager_details = User::find($manager_id);
+
         $managername=$manager_details->name;
         $formfields['co_operativemanager']=$managername;
 
@@ -246,8 +251,8 @@ class CooperativeController extends Controller
 
 
         $cooperative->update($formfields);
-        $cooperative->users()->detach($manager_id);
-        $cooperative->users()->attach($manager_id);
+        $cooperative->user()->detach($manager_id);
+        $cooperative->user()->attach($manager_id);
         return redirect('/cooperatives');
 
     }

@@ -48,7 +48,7 @@ class User extends Authenticatable
     ];
 
 
- 
+
 
 
  /**
@@ -67,7 +67,7 @@ class User extends Authenticatable
      return $this->hasOne(Location::class, 'user_id');
  }
 
- public function cooperatives()
+ public function cooperative()
  {
 
         return $this->belongsToMany(Cooperative::class);

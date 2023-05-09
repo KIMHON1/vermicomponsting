@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+
 
 class CheckActiveAccount
 {
@@ -22,6 +25,19 @@ class CheckActiveAccount
             $request->session()->regenerateToken();
 
             return redirect('/invalidateError')->with('error','Your Account is not Activated');
+        }
+
+
+        if (auth()->check() && auth()->user()->hasRole('Manager')) {
+            $cooperative = auth()->user()->cooperative->first();
+            //dd($cooperative);
+            if ($cooperative->status == 0) {
+               // Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect('/invalidateError')->with('error','Your Cooperative is not Activated');
+            }
         }
         return $next($request);
     }
