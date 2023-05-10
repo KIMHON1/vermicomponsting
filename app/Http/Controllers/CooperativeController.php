@@ -26,15 +26,37 @@ class CooperativeController extends Controller
      */
     public function index()
     {
+        $userLocation = auth()->user()->location;
+        $cooperatives = null; // declare and initialize the variable
+
+        if(auth()->user()->roles){
+            foreach(auth()->user()->roles as $role){
+                if($role->name == 'Admin'){
+                    $cooperatives = Cooperative::all();
+
+                }
+
+                else if($role->name == 'Sedo'){
+                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+                }
+
+            else {
+                $cooperatives = Cooperative::all();
+            }
+        }
+
+
+        }
+
+
+        // dd($userLocation->cell);
+
+
         $users = User::all();
-        $cooperatives = Cooperative::all();
-    //     $managerIds = $cooperatives->users()->pluck('users.id');
-    //    ;
 
-
-
-        return view('Cooperative.index',[ 'cooperatives'=>$cooperatives,'users'=>$users])->with('i');
+        return view('Cooperative.index', ['cooperatives' => $cooperatives, 'users' => $users])->with('i');
     }
+
 
     /**
      * Show the form for creating a new resource.

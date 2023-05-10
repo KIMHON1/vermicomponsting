@@ -64,7 +64,7 @@ class User extends Authenticatable
 
  public function location()
  {
-     return $this->hasOne(Location::class, 'user_id');
+     return $this->hasOne(Location::class);
  }
 
  public function cooperative()

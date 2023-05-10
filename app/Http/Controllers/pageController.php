@@ -270,6 +270,12 @@ class pageController extends Controller
     }
 
 
+    public function InvalidCooperativeError(Request $request, User $user)
+    {
+
+        return view('Dashboard.erro403cooperative')->with('user',$user);
+    }
+
 
 
 

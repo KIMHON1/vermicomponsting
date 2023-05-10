@@ -36,7 +36,7 @@ class CheckActiveAccount
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
 
-                return redirect('/invalidateError')->with('error','Your Cooperative is not Activated');
+                return redirect('/cooperative_invalidateError')->with('error','Your Cooperative is not Activated');
             }
         }
         return $next($request);

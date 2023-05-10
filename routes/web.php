@@ -52,6 +52,7 @@ Route::get('/location',[LocationController::class, 'create']);
 Route::post('/location/store',[LocationController::class,'store']);
 Route::get('/',[pageController::class, 'index']);
 Route::get('/invalidateError',[pageController::class,'InvalidError']);
+Route::get('/cooperative_invalidateError',[pageController::class,'InvalidCooperativeError']);
 
 
 
