@@ -11,6 +11,8 @@ use App\Models\Sector;
 use App\Models\Cell;
 use App\Models\Village;
 use App\Models\Bin;
+use App\Models\Cooperative;
+use App\Models\User;
 
 class MemberController extends Controller
 {
@@ -19,9 +21,24 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Cooperative $cooperative ,User $user, Member $menber)
     {
-        //
+        $auth_user=auth()->user()->id;
+        $cooperative_id = DB::table('cooperative_user')
+                         ->where('user_id',$auth_user)
+                         ->value('cooperative_id');
+        $cooperativeInfo=Cooperative::find($cooperative_id);
+
+
+
+
+
+
+
+
+        $Members=Member::where('cooperative_id',$cooperative_id)->get();
+        return view('Cooperative.show',['cooperativeInfo'=>$cooperativeInfo, 'Members'=>$Members])->with('i');
+
     }
 
     /**

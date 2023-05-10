@@ -164,28 +164,17 @@ class CooperativeController extends Controller
      * @param  \App\Models\Cooperative  $cooperative
      * @return \Illuminate\Http\Response
      */
-    public function show(Cooperative $cooperative ,User $user, Member $menber)
+    public function show(Cooperative $cooperative )
     {
 
-        $auth_user=auth()->user()->id;
-        $cooperative_id = DB::table('cooperative_user')
-                         ->where('user_id',$auth_user)
-                         ->value('cooperative_id');
-        $cooperativeInfo=Cooperative::find($cooperative_id);
+        $cooperative_id=$cooperative->id;
+        $total_bins = Bin::where('cooperative_id', $cooperative_id)->count();
+        $total_members = Member::where('cooperative_id', $cooperative_id)->count();
 
 
 
 
-
-
-
-
-        $Members=Member::where('cooperative_id',$cooperative_id)->get();
-
-
-
-
-        return view('Cooperative.show',['cooperativeInfo'=>$cooperativeInfo, 'Members'=>$Members])->with('i');
+      return view('Cooperative.singlecooperative',['cooperative'=>$cooperative,  'total_bins' => $total_bins, 'total_members'=> $total_members]);
     }
 
     /**

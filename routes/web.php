@@ -134,15 +134,18 @@ Route::get('/cooperatives/status_code/{cooperative}/{status_code}', [Cooperative
 
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
 Route::get('/cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
-Route::get('/cooperatives/show',[CooperativeController::class, 'show']);
+
 
 Route::get('/cooperatives/{cooperative}/edit',[CooperativeController::class, 'edit']);
 Route::put('/cooperatives/{cooperative}/update',[CooperativeController::class, 'update']);
 
+Route::get('/cooperatives/{cooperative}/show',[CooperativeController::class, 'show']);
+
+
 
 
 //cooperative members
-
+Route::get('/cooperatives/show',[MemberController::class, 'index']);
 Route::get('/cooperatives_membe/create',[MemberController::class, 'create']);
 Route::post('/cooperatives_membe/post',[MemberController::class, 'store']);
 Route::get('/cooperatives_member/{member}/show',[MemberController::class, 'show']);

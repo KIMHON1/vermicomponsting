@@ -88,7 +88,9 @@
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="order-dropdown-0">
                                                             <div class="py-2">
-
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="/cooperatives/{{$cooperative->id}}/show">view</a>
+                                                                <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item" href="/cooperatives/{{$cooperative->id}}/edit">Edit</a>
                                                                 <div class="dropdown-divider"></div>
                                                                <a class="dropdown-item text-danger" href="cooperatives/{{$cooperative->id}}/delete">Delete</a>
