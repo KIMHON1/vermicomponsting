@@ -29,6 +29,7 @@ class CooperativeController extends Controller
         $userLocation = auth()->user()->location;
         $cooperatives = null; // declare and initialize the variable
 
+
         if(auth()->user()->roles){
             foreach(auth()->user()->roles as $role){
                 if($role->name == 'Admin'){
@@ -38,11 +39,13 @@ class CooperativeController extends Controller
 
                 else if($role->name == 'Sedo'){
                     $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+                    
+                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
                 }
 
-            else {
-                $cooperatives = Cooperative::all();
-            }
+
+
         }
 
 

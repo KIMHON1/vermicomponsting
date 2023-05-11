@@ -126,10 +126,11 @@ Route::get('/worms/{worm}/delete', [WormController::class, 'destroy']);
 
 //cooperative
 Route::get('/cooperatives',[CooperativeController::class, 'index']);
-Route::get('/cooperatives/create',[CooperativeController::class, 'create']);
+Route::get('/cooperatives/create',[CooperativeController::class, 'create'])->middleware('role:Admin');
+
 // ->middleware('role:Sedo');
 
-Route::get('/cooperatives/status_code/{cooperative}/{status_code}', [CooperativeController::class, 'updateStatus'])->name('cooperatives.update.status');
+Route::get('/cooperatives/status_code/{cooperative}/{status_code}', [CooperativeController::class, 'updateStatus'])->name('cooperatives.update.status') ->middleware('role:Admin');
 
 
 Route::post('/cooperatives/post',[CooperativeController::class, 'store']);

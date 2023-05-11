@@ -91,6 +91,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card">
+                            
                             <div class="card-header border-0 pb-0">
                                 <h4 class="fs-20 text-black mb-0">Cooperative name</h4>
 

@@ -202,6 +202,56 @@ class pageController extends Controller
 
 
 
+            $farmers = null;
+            $cooperativebins = null;
+            $cooperative_number = null;
+            $active_cooperative_number = null;
+            $inactive_cooperative_number= null;
+        $userLocation = auth()->user()->location;
+        $cooperatives = null; // declare and initialize the variable
+        $auth_user_id = auth()->user()->id;
+        $auth_user_role = DB::table('users')->where('id',$auth_user_id)->value('Roles');
+
+        if(auth()->user()->roles){
+            foreach(auth()->user()->roles as $role){
+                if($role->name == 'Admin'){
+                    $cooperatives = Cooperative::all();
+
+                }
+
+                else if($role->name == 'Sedo'){
+                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+
+                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
+                    $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
+
+                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
+                }
+
+
+
+        }
+
+
+        }
+
+
+        // dd($userLocation->cell);
+
+
+        $users = User::all();
+
+
 
 
 
@@ -237,7 +287,8 @@ class pageController extends Controller
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
-                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,'data' =>$data, 'worms'=>$worms
+                'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,'data' =>$data, 'worms'=>$worms,  'auth_user_role'=> $auth_user_role,  'cooperative_number'=>  $cooperative_number,
+                'active_cooperative_number'=> $active_cooperative_number, 'inactive_cooperative_number'=> $inactive_cooperative_number, 'cooperativebins'=> $cooperativebins,'farmers'=>  $farmers
             ]);
 
 
