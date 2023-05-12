@@ -39,8 +39,16 @@ class CooperativeController extends Controller
 
                 else if($role->name == 'Sedo'){
                     $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
-                    
+
                     $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
+                }
+
+
+                else if($role->name == 'SectorAgronomy'){
+                    $cooperatives = Cooperative::where('sector', $userLocation->sector)->get();
+
+                    $cooperative_number = Cooperative::where('sector', $userLocation->sector)->count();
 
                 }
 

@@ -238,6 +238,88 @@ class pageController extends Controller
 
                 }
 
+                else if($role->name == 'SectorAgronomy'){
+                    $cooperatives = Cooperative::where('sector', $userLocation->sector)->get();
+
+                    $cooperativebins =Db::table('bins')->where('sector', $userLocation->sector)->count();
+                    $cooperativebinsget =Db::table('bins')->where('sector', $userLocation->sector)->get();
+
+                    $farmers =Db::table('members')->where('sector', $userLocation->sector)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('sector', $userLocation->sector)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('sector', $userLocation->sector)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('sector', $userLocation->sector)->count();
+
+                }
+
+                else if($role->name == 'Sedo'){
+                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+
+                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
+                    $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
+
+                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
+                }
+
+                else if($role->name == 'Sedo'){
+                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+
+                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
+                    $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
+
+                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
+                }
+
+                else if($role->name == 'Sedo'){
+                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
+
+                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
+                    $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
+
+                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+
+                }
+
+
+
+
+
+
+
 
 
         }

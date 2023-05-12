@@ -12,12 +12,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades;
 use Notification;
 use App\Notifications\Vermicomposting;
-
-
+use CanResetPassword;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use DB;
-
 use Illuminate\Support\Arr;
 
 
@@ -397,4 +395,43 @@ public function updateStatus($user_id,$status_code){
      }
 
 }
+
+
+public function showResetForm(Request $request, $token = null)
+{
+    return view('Auth.getmailform', [
+        'token' => $token,
+        'email' => $request->email,
+    ]);
+
+}
+public function reset(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        // Call the Password::reset() method with the user's credentials
+        $response = Password::reset([
+            'email' => $request->email,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+            'token' => $request->token,
+        ], function ($user, $password) {
+            // Update the user's password
+            $user->password = bcrypt($password);
+            $user->save();
+        });
+
+        // Redirect the user to the login page with a success message
+        if ($response === Password::PASSWORD_RESET) {
+            return redirect()->route('login')->with('status', trans($response));
+        }
+
+        // Redirect the user back to the password reset form with an error message
+        return back()->withErrors(['email' => trans($response)]);
+    }
 }

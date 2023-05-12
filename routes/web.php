@@ -77,7 +77,16 @@ Route::get('/register',function(){
  });
 
 
- Route::get('password-reset/', [AuthController::class, 'passwordEmail']);
+ Route::get('password-reset/{token}', [UserController::class, 'showResetForm'])->name('password.reset');
+// Send password reset email
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+// // Show the password reset form
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+// // Reset password
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
 
 
 //  Route::get('/create_bin',function(){

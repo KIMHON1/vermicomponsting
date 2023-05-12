@@ -19,10 +19,47 @@ use App\Notifications\EmailNotification;
 class AuthController extends Controller
 {
 
-    public function passwordEmail(Request $request)
-    {
-        return view('Auth.getmailform');
+   
 
-}
+    public function reset(Request $request)
+    {
+        $request->validate($this->rules(), $this->validationErrorMessages());
+
+        $credentials = $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+
+        $response = Password::reset($credentials, function ($user, $password) {
+            $this->resetPassword($user, $password);
+        });
+
+        return $response == Password::PASSWORD_RESET
+                    ? redirect()->route('/login')->with('status', trans($response))
+                    : back()->withErrors(['email' => trans($response)]);
+    }
+
+
+    protected function resetPassword($user, $password)
+    {
+        $user->password = bcrypt($password);
+
+        $user->save();
+
+        event(new PasswordReset($user));
+    }
+
+    public function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+        ];
+    }
+
+    public function validationErrorMessages()
+    {
+        return [];
+    }
 
 }

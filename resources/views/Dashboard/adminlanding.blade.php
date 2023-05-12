@@ -561,7 +561,7 @@ new Chart("myChart", {
 {{--for sedo--}}
 
 
-@can('view-bins-cell')
+
 
 <div class="row">
 
@@ -753,7 +753,7 @@ new Chart("myChart", {
 
 </div>
 
-@endcan
+
 
 
 
