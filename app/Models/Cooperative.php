@@ -23,7 +23,7 @@ class Cooperative extends Model
 
     ];
 
-    public function user(){
+    public function users(){
         return $this->belongsToMany(User::class);
     }
 

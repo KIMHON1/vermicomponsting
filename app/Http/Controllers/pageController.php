@@ -212,6 +212,13 @@ class pageController extends Controller
         $auth_user_id = auth()->user()->id;
         $auth_user_role = DB::table('users')->where('id',$auth_user_id)->value('Roles');
 
+        foreach($locations as $location)
+        {
+
+
+
+            if ($location) {
+
         if(auth()->user()->roles){
             foreach(auth()->user()->roles as $role){
                 if($role->name == 'Admin'){
@@ -257,7 +264,49 @@ class pageController extends Controller
 
                 }
 
-                else if($role->name == 'Sedo'){
+                else if($role->name == 'DistrictAgronomy'){
+                    $cooperatives = Cooperative::where('district', $userLocation->district)->get();
+
+                    $cooperativebins =Db::table('bins')->where('district', $userLocation->district)->count();
+                    $cooperativebinsget =Db::table('bins')->where('district', $userLocation->district)->get();
+
+                    $farmers =Db::table('members')->where('district', $userLocation->district)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('district', $userLocation->district)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('district', $userLocation->district)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('district', $userLocation->district)->count();
+
+                }
+
+                else if($role->name == 'ProvinceAgronomy'){
+
+
+                    $cooperatives = Cooperative::where('province', $userLocation->province)->get();
+
+                   // dd($cooperatives);
+
+                    $cooperativebins =Db::table('bins')->where('province', $userLocation->province)->count();
+                    $cooperativebinsget =Db::table('bins')->where('province', $userLocation->province)->get();
+
+                    $farmers =Db::table('members')->where('province', $userLocation->province)->count();
+
+
+
+                    $active_cooperative_number = Cooperative::where('province', $userLocation->province)->where('status', $status)->count();
+
+                    $inactive_cooperative_number = Cooperative::where('province', $userLocation->province)->where('status', $statuss)->count();
+
+                   // dd($inactive_cooperative_number);
+                    $cooperative_number = Cooperative::where('province', $userLocation->province)->count();
+
+                }
+
+                else if($role->name == 'RAB'){
                     $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
 
                     $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
@@ -276,7 +325,7 @@ class pageController extends Controller
 
                 }
 
-                else if($role->name == 'Sedo'){
+                else if($role->name == 'RAB'){
                     $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
 
                     $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
@@ -295,24 +344,6 @@ class pageController extends Controller
 
                 }
 
-                else if($role->name == 'Sedo'){
-                    $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
-
-                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
-                    $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
-
-                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
-
-
-
-                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
-
-                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
-
-                   // dd($inactive_cooperative_number);
-                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
-
-                }
 
 
 
@@ -358,12 +389,6 @@ class pageController extends Controller
 
 
 
-        foreach($locations as $location)
-        {
-
-
-
-            if ($location) {
 
 
 

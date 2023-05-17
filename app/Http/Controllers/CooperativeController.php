@@ -43,6 +43,13 @@ class CooperativeController extends Controller
                     $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
 
                 }
+                else if($role->name == 'DistrictAgronomy'){
+                    $cooperatives = Cooperative::where('district', $userLocation->district)->get();
+
+
+
+                }
+
 
 
                 else if($role->name == 'SectorAgronomy'){
@@ -50,6 +57,14 @@ class CooperativeController extends Controller
 
                     $cooperative_number = Cooperative::where('sector', $userLocation->sector)->count();
 
+                }
+
+                else if($role->name == 'ProvinceAgronomy'){
+                    $cooperatives = Cooperative::where('province', $userLocation->province)->get();
+                    $cooperativebins =Db::table('bins')->where('province', $userLocation->province)->count();
+                    $cooperativebinsget =Db::table('bins')->where('province', $userLocation->province)->get();
+
+                    $farmers =Db::table('members')->where('province', $userLocation->province)->count();
                 }
 
 
@@ -220,7 +235,7 @@ class CooperativeController extends Controller
             [
                 'co_operativename'=> 'required',
                 'co_operativemanager' => 'required',
-                'co_operative_email'=>'required',
+                'co_operative_email'=>'required|unique:cooperatives,email',
                 'co_operative_telephone'=>'required',
                 // 'status'=>'required',
                 'starting_date'=>'required',
@@ -273,8 +288,8 @@ class CooperativeController extends Controller
 
 
         $cooperative->update($formfields);
-        $cooperative->user()->detach($manager_id);
-        $cooperative->user()->attach($manager_id);
+        $cooperative->users()->detach($manager_id);
+        $cooperative->users()->attach($manager_id);
         return redirect('/cooperatives');
 
     }

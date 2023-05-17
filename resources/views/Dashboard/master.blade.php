@@ -783,20 +783,21 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
-                    {{-- @can('view-users-admin')
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-networking"></i>
-							<span class="nav-text">Manage Users</span>
-						</a>
-                        <ul aria-expanded="false">
-							<li><a href="/users/create/">Create User</a></li>
-							<li><a href="/vermusers">System Users</a></li>
+
+                    @can('view-users-admin')
+                    <li><a  href="javascript:void()" aria-expanded="false">
+
+                        <a href="/vermusers">
+                            <i class="fa fa-user"></i>
+
+                            <span class="nav-text">Manage Users</span></a>
+    </a>
+                        </li>
+
+@endcan
 
 
 
-						</ul>
-                    </li>
-                @endcan --}}
 @can('view-co-operative')
                 <li><a  href="javascript:void()" aria-expanded="false">
 
@@ -824,18 +825,6 @@
 
 
                         @endcan
-
-                    @can('view-users-admin')
-                    <li><a  href="javascript:void()" aria-expanded="false">
-
-                        <a href="/vermusers">
-                            <i class="flaticon-381-networking"></i>
-
-                            <span class="nav-text">Manage Users</span></a>
-    </a>
-                        </li>
-
-@endcan
 
 
 
@@ -899,7 +888,7 @@
 
 
 
-                    @can('view-co-operative')
+ @can('view-co-operative')
 
 
                     <li><a  href="javascript:void()" aria-expanded="false">
@@ -921,7 +910,7 @@
 
 
                         </li>
-                        @endcan
+     @endcan
 
 
 
