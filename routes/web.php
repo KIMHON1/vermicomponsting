@@ -137,17 +137,15 @@ Route::get('/worms/{worm}/delete', [WormController::class, 'destroy']);
 Route::get('/cooperatives',[CooperativeController::class, 'index']);
 Route::get('/cooperatives/create',[CooperativeController::class, 'create'])->middleware('role:Admin');
 
-// ->middleware('role:Sedo');
-
 Route::get('/cooperatives/status_code/{cooperative}/{status_code}', [CooperativeController::class, 'updateStatus'])->name('cooperatives.update.status') ->middleware('role:Admin');
 
 
-Route::post('/cooperatives/post',[CooperativeController::class, 'store']);
-Route::get('/cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy']);
+Route::post('/cooperatives/post',[CooperativeController::class, 'store'])->middleware('role:Admin');
+Route::get('/cooperatives/{cooperative}/delete',[CooperativeController::class, 'destroy'])->middleware('role:Admin');
 
 
-Route::get('/cooperatives/{cooperative}/edit',[CooperativeController::class, 'edit']);
-Route::put('/cooperatives/{cooperative}/update',[CooperativeController::class, 'update']);
+Route::get('/cooperatives/{cooperative}/edit',[CooperativeController::class, 'edit'])->middleware('role:Admin');
+Route::put('/cooperatives/{coopertive}/update',[CooperativeController::class, 'update'])->middleware('role:Admin');
 
 Route::get('/cooperatives/{cooperative}/show',[CooperativeController::class, 'show']);
 
@@ -155,6 +153,9 @@ Route::get('/cooperatives/{cooperative}/show',[CooperativeController::class, 'sh
 
 
 //cooperative members
+
+
+
 Route::get('/cooperatives/show',[MemberController::class, 'index']);
 Route::get('/cooperatives_membe/create',[MemberController::class, 'create']);
 Route::post('/cooperatives_membe/post',[MemberController::class, 'store']);
@@ -197,7 +198,7 @@ Route::get('/dashboard',[pageController::class, 'dashbord']);
 Route::get('/adminbins',[pageController::class, 'adminbin']);
 
 Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
-// Route::get('/useradmin/{id}',[AdminController::class, 'show']);
+ Route::get('/useradmin/{id}',[AdminController::class, 'show']);
 
 
 
@@ -219,7 +220,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
     Route::get('/delete/{id}',[BinController::class,'destroy']);
     Route::get('/bins',[BinController::class,'index']);
-//    Route::get('/bins',[DistrictController::class,'index']);
+    Route::get('/bins',[DistrictController::class,'index']);
     Route::get('/bin/{id}',[BinController::class,'show']);
 
 
@@ -227,17 +228,16 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
     Route::get('users/create/',[UserController::class,'create_Admin_User'])->middleware('role:Admin');
     Route::post('/users/store',[UserController::class, 'store']);
 
-   // Route::post('/create_vermuser',[UserController::class, 'store']);
+    Route::post('/create_vermuser',[UserController::class, 'store']);
 
-    Route::get('/users/{user}/edit',[UserController::class, 'edit']);
-    Route::put('/users/{user}/update',[UserController::class, 'update']);
+    Route::get('/users/{user}/edit',[UserController::class, 'edit'])->middleware('role:Admin');
+    Route::put('/users/{user}/update',[UserController::class, 'update'])->middleware('role:Admin');
 
 
-    Route::get('/delete_vermuser/{id}',[UserController::class, 'destroy']);
+    Route::get('/delete_vermuser/{id}',[UserController::class, 'destroy'])->middleware('role:Admin');
     Route::get('/logout',[UserController::class,'logout']);
 
-    Route::get('/vermuser/search/{name}',[UserController::class, 'search']);
-    Route::get('/vermuser/{id}',[UserController::class, 'show']);
+    Route::get('/vermuser/{id}',[UserController::class, 'show'])->middleware('role:Admin');
 
 
 
@@ -280,7 +280,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
 
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth','role:Admin']], function() {
     Route::resource('roles', RoleController::class);
 
 });

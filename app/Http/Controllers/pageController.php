@@ -325,22 +325,22 @@ class pageController extends Controller
 
                 }
 
-                else if($role->name == 'RAB'){
+                else if($role->name == 'NAEB'){
                     $cooperatives = Cooperative::where('cell', $userLocation->cell)->get();
 
-                    $cooperativebins =Db::table('bins')->where('cell', $userLocation->cell)->count();
+                    $cooperativebins =Bin::all()->count();
                     $cooperativebinsget =Db::table('bins')->where('cell', $userLocation->cell)->get();
 
-                    $farmers =Db::table('members')->where('cell', $userLocation->cell)->count();
+                    $farmers =Member::all()->count();
 
 
 
-                    $active_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $status)->count();
+                    $active_cooperative_number = Cooperative::where('status', $status)->count();
 
-                    $inactive_cooperative_number = Cooperative::where('cell', $userLocation->cell)->where('status', $statuss)->count();
+                    $inactive_cooperative_number = Cooperative::where('status', $statuss)->count();
 
                    // dd($inactive_cooperative_number);
-                    $cooperative_number = Cooperative::where('cell', $userLocation->cell)->count();
+                    $cooperative_number = Cooperative::all()->count();
 
                 }
 

@@ -67,6 +67,11 @@ class CooperativeController extends Controller
                     $farmers =Db::table('members')->where('province', $userLocation->province)->count();
                 }
 
+                else if($role->name == 'NAEB'){
+                    $cooperatives = Cooperative::all();
+                }
+
+
 
 
         }

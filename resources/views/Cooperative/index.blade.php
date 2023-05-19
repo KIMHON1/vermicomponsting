@@ -91,9 +91,15 @@
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item" href="/cooperatives/{{$cooperative->id}}/show">view</a>
                                                                 <div class="dropdown-divider"></div>
+
+                                                                @can('view-roles-admin')
+
+
                                                                 <a class="dropdown-item" href="/cooperatives/{{$cooperative->id}}/edit">Edit</a>
                                                                 <div class="dropdown-divider"></div>
                                                                <a class="dropdown-item text-danger" href="cooperatives/{{$cooperative->id}}/delete">Delete</a>
+
+                                                               @endcan
 
 
                                                             </div>
