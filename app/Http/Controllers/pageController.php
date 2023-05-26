@@ -12,6 +12,7 @@ use App\Models\Cooperative;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class pageController extends Controller
+
 {
 
 

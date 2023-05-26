@@ -80,7 +80,7 @@ class ProfileController extends Controller
 
         $auth_user=auth()->user()->id;
         $user = User::find($auth_user);
-       
+
         dd( $user);
         // if(auth()->user()->id=$user->user_id){
             return view('Dashboard.profile.show',['user_profile'=>$user_profile,'user'=>$user]);
