@@ -13,7 +13,7 @@
                     @can('view-users-admin')
 					<div class="mr-auto">
 						<h2 class="text-black font-w600">Dashboard</h2>
-						<p class="mb-0">Vermicomposting Admin Dashboard</p>
+						<p class="mb-0">Vermicomposting Admin Dashboar</p>
 					</div>
                     @endcan
 
@@ -95,9 +95,6 @@
 
 
 
-
-
-
                     <div class="col-xl-3  col-sm-6">
 						<div class="card">
 							<div class="card-body">
@@ -116,15 +113,6 @@
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
-
-
-
 
 					<div class="col-xl-3  col-sm-6">
 						<div class="card">
@@ -158,7 +146,7 @@
 					</div>
                     @endcan
 
- @can('view-co-operative')
+                    @can('view-co-operative')
 
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card bg-primary">

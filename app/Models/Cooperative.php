@@ -4,10 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\LogActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Cooperative extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+    protected static $logAttributes = ['name', 'email'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        $logOptions = new LogOptions();
+        $logOptions->logName = 'user_activity';
+        // Customize other options as per your requirements
+
+        return $logOptions;
+    }
+
 
     protected $fillable=[
                 'co_operativename',

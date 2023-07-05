@@ -26,6 +26,7 @@ class UserController extends Controller
 
 
 
+
     // function __construct()
     // {
     //  $this->middleware('permission:view-users-admin|view-roles-admin', ['only' => ['index','store']]);
@@ -263,35 +264,18 @@ return redirect('/vermusers')->with('success','user Created success full');
 
 
     public function register(Request $request){
-
-
         // validating  body request
-
-
         $formFields = $request->validate([
 
             'name'  => ['required','min:3'],
             'email'     => 'required|unique:users,email',
             'password'  => 'required|confirmed',
-
-
         ]);
-
-
 
 // this create user
         $formFields['password']=bcrypt($formFields['password']);
 
         $user = User::create($formFields);
-
-
-
-
-
-
-
-
-
        // $user->assignRole('Admin');
 // user taking key token
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -305,6 +289,9 @@ return redirect('/vermusers')->with('success','user Created success full');
 
         $user->notify(new Vermicomposting($user));
          return redirect('/login');
+
+             activity()->log('hello');
+
 
 
     }
@@ -320,17 +307,11 @@ return redirect('/vermusers')->with('success','user Created success full');
         if (Auth::attempt($credentials)){
 
             $request->session()->regenerate();
-
-
                 return redirect()->intended('/dashboard');
-
         }
-
-
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
-
 
     }
 
@@ -394,6 +375,9 @@ public function updateStatus($user_id,$status_code){
          throw $th;
      }
 
+          $user = User::find($user_id);
+    $activityLogs = $user->activityLogs;
+
 }
 
 
@@ -434,4 +418,6 @@ public function reset(Request $request)
         // Redirect the user back to the password reset form with an error message
         return back()->withErrors(['email' => trans($response)]);
     }
+
+
 }

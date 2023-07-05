@@ -796,6 +796,17 @@
 
 @endcan
 
+@can('view-users-admin')
+                    <li><a  href="javascript:void()" aria-expanded="false">
+
+                        <a href="/activity-logs">
+                            <i class="fa fa-angle-double-right"></i>
+
+                            <span class="nav-text">User Activities</span></a>
+    </a>
+                        </li>
+
+@endcan
 
 
 @can('view-co-operative')

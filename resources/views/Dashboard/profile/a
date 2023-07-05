@@ -1,5 +1,0 @@
- 'phoneNumber'=>'required',
-            'gender'=>'required',
-            'profilePic'=>'required|nullable',
-
-            'Description'

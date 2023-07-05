@@ -19,6 +19,10 @@ use Spatie\Permission\Models\Permission;
 
 class CooperativeController extends Controller
 {
+
+
+
+
     /**
      * Display a listing of the resource.
      *

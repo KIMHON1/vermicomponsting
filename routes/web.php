@@ -17,6 +17,7 @@ use App\Http\Controllers\CooperativeController;
 use App\Http\Controllers\MicrocontrollerController;
 use App\Http\Controllers\WormController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ActivityLogController;
 
 
 
@@ -261,6 +262,8 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
 
     Route::get('/Profile', [LocationController::class, 'show']);
+
+    Route::get('/activity-logs', [ActivityLogController::class, 'index']);
 
 
 
