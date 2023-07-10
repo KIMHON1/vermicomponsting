@@ -16,12 +16,15 @@ class ActivityLogController extends Controller
         // $activityLogs = Activity::all();
 
         // Retrieve the activity logs, along with the user who performed the activity
-        $activityLogs = Activity::with('causer')->latest()->get();
+            $activityLogs = Activity::with('causer')->latest()->get();
 
 
         // Format the timestamp for display
-        $formattedLogs = $activityLogs->map(function ($log) {
+             $formattedLogs = $activityLogs->map(function ($log) {
              $timestamp = $log->created_at->diffForHumans(); // Format the timestamp
+
+             //$subjectModelClass = $subjectModel ? get_class($subjectModel) : $log->subject_type;
+
 
 
             return [
