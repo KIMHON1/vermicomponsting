@@ -30,9 +30,8 @@ class CheckActiveAccount
 
         if (auth()->check() && auth()->user()->hasRole('Manager')) {
             $cooperative = auth()->user()->cooperative->first();
-            //dd($cooperative);
-            if ($cooperative->status == 0) {
-               // Auth::logout();
+       
+            if ($cooperative && $cooperative->status == 0) {
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
 
