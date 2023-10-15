@@ -45,6 +45,7 @@ class pageController extends Controller
         $active_accounts = User::where('status',1)->count();
 
         $locations = Location::where('user_id', auth()->user()->id)->get();
+        $all_cooperatives = Cooperative::all()->count();
 
 
         $auth_user=auth()->user()->id;
@@ -223,6 +224,7 @@ class pageController extends Controller
         if(auth()->user()->roles){
             foreach(auth()->user()->roles as $role){
                 if($role->name == 'Admin'){
+
                     $cooperatives = Cooperative::all();
 
                 }
@@ -262,6 +264,7 @@ class pageController extends Controller
 
                    // dd($inactive_cooperative_number);
                     $cooperative_number = Cooperative::where('sector', $userLocation->sector)->count();
+                    
 
                 }
 
@@ -391,12 +394,13 @@ class pageController extends Controller
 
 
 
-
+        
 
 
                 return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
                 'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,'data' =>$data, 'worms'=>$worms,  'auth_user_role'=> $auth_user_role,  'cooperative_number'=>  $cooperative_number,
-                'active_cooperative_number'=> $active_cooperative_number, 'inactive_cooperative_number'=> $inactive_cooperative_number, 'cooperativebins'=> $cooperativebins,'farmers'=>  $farmers
+                'active_cooperative_number'=> $active_cooperative_number, 'inactive_cooperative_number'=> $inactive_cooperative_number, 'cooperativebins'=> $cooperativebins,'farmers'=>  $farmers,
+                'all_cooperatives'=>$all_cooperatives
             ]);
 
 
