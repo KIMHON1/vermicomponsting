@@ -37,6 +37,11 @@ class pageController extends Controller
     public function dashbord(User $user)
     {
         $users =User::all();
+        $inactive_users = User::where('status',0)->count();
+        $managers = User::where('Roles','Manager')->count();
+        $active_managers = User::where('Roles','Manager')->where('status',1)->count();
+        $inactive_managers = User::where('Roles','Manager')->where('status',0)->count();
+      
         $count = collect($users)->count();
         $bins =Bin::all();
         $bins_number = collect($bins)->count();
@@ -46,6 +51,9 @@ class pageController extends Controller
 
         $locations = Location::where('user_id', auth()->user()->id)->get();
         $all_cooperatives = Cooperative::all()->count();
+        $active_cooperatives = Cooperative::where('status',1)->count();
+        $inactive_cooperatives = Cooperative::where('status',0)->count();
+
 
 
         $auth_user=auth()->user()->id;
@@ -363,8 +371,7 @@ class pageController extends Controller
         }
 
 
-        // dd($userLocation->cell);
-
+  
 
         $users = User::all();
 
@@ -395,12 +402,19 @@ class pageController extends Controller
 
 
         
+       
 
-
-                return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
+                return view('Dashboard.adminlanding',['user'=>$user,'count'=>$count,
+                'active_cooperatives'=>$active_cooperatives,
+                'inactive_cooperatives'=>$inactive_cooperatives,
+                'bins_number'=>$bins_number,'active_accounts'=>$active_accounts,'inactive_accounts'=>$inactive_accounts, 'cooperativeInfo'=>$cooperativeInfo, 'total_bins'=>$total_bins, 'total_members'=>$total_members,'verm_proccess'=>   $verm_proccess,
                 'no_verm_procces'=>$no_verm_procces, 'worm' =>$worm,'microcontrollers'=>$microcontrollers,    'wormsByMonth'=>$wormsByMonth, 'monthCount'=>$monthCount, 'months'=>$months, 'males'=> $males, 'monthsf'=>$monthsf, 'monthCountf'=>$monthCountf, 'females'=>$females,'Age'=>$Age,'active_bins'=>$active_bins,'inactive_bins'=>$inactive_bins,'data' =>$data, 'worms'=>$worms,  'auth_user_role'=> $auth_user_role,  'cooperative_number'=>  $cooperative_number,
                 'active_cooperative_number'=> $active_cooperative_number, 'inactive_cooperative_number'=> $inactive_cooperative_number, 'cooperativebins'=> $cooperativebins,'farmers'=>  $farmers,
-                'all_cooperatives'=>$all_cooperatives
+                'all_cooperatives'=>$all_cooperatives,
+                'managers'=>$managers,
+                'active_managers'=>$active_managers,
+                "inactive_managers"=>$inactive_managers,
+                "inactive_users"=> $inactive_users,
             ]);
 
 
@@ -418,7 +432,17 @@ class pageController extends Controller
     }
 
 
-
+//active manager
+public function managers(){
+    $i=1;
+    $managers = User::where('Roles','Manager')->get();
+   
+    $active_managers = User::where('Roles','Manager')->where('status',1)->get();
+    $inactive_managers = User::where('Roles','Manager')->where('status',0)->get();
+    return view('Admin_landingpage.active_managers',['managers'=>$managers,'i'=>$i]);
+    
+}
+//managers
 
     /**
      * Show the form for creating a new resource.

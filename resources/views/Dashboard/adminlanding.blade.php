@@ -6,185 +6,217 @@
 		<!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+    <div class="content-body">
             <!-- row -->
-			<div class="container-fluid">
-				<div class="form-head d-flex align-items-center mb-sm-4 mb-3">
-                  
-					<div class="mr-auto">
-						<h2 class="text-black font-w600">Dashboard</h2>
-						<p class="mb-0">Vermicomposting {{$auth_user_role}} Dashboard</p>
-					</div>
-
-
-
-                    @if ($cooperativeInfo)
-                    <div class="mr-auto">
-						<h2 class="text-black font-w600">Dashboard</h2>
-						<p class="mb-0">{{$cooperativeInfo->co_operativename}} Manager Dashboard</p>
-					</div>
-                    @endif
-
+		<div class="container-fluid">
+            <!-- heading -->
+			<div class="form-head d-flex align-items-center mb-sm-4 mb-3"> 
+				<div class="mr-auto">
+					<h2 class="text-black font-w600">Vermicomposting</h2>
+					<p class="mb-0">{{$auth_user_role}} Dashboard</p>
 				</div>
-				<div class="row">
+                <!-- for cooperative dashboard -->
+                @if ($cooperativeInfo)
 
-                    @can('view-users-admin')
-					<div class="col-xl-3 col-sm-6">
+                <div class="mr-auto">
+					<p class="mb-0">{{$cooperativeInfo->co_operativename}} Cooperative
 
-						<div class="card">
+                    </p>
+				</div>
+                @endif
 
+			</div>
+            <!-- end of -->
 
-
-							<div class="card-body">
-								<div class="media align-items-center">
-									<div class="media-body mr-3">
-										<h2 class="fs-34 text-black font-w600">{{$inactive_accounts}}</h2>
-										<span>InActive Managers </span>
-									</div>
-                                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-
-                                        <i class="fa fa-user"></i>
-
-                                    </a>
-
-								</div>
-							</div>
-
-
-
-							<div class="progress  rounded-0" style="height:4px;">
-								<div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
-									<span class="sr-only">50% Complete</span>
-								</div>
-							</div>
-						</div>
-
-					</div>
+            <!-- admin dashboard -->
+            <!-- first row -->
+			<div class="row">
+                @can('view-users-admin')
                     <div class="col-xl-3 col-sm-6">
-						<div class="card">
-							<div class="card-body">
-								<div class="media align-items-center">
-									<div class="media-body mr-3">
-										<h2 class="fs-34 text-black font-w600">{{$active_accounts}}</h2>
-										<span>Active Managers</span>
-									</div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body mr-3">
+                                        <h2 class="fs-34 text-black font-w600">{{$inactive_managers}}
+                                        </h2>
+                                        <span>InActive Managers </span>
+                                    </div>
                                     <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-
-                                        <i class="fa fa-user"></i>
-
+                                    <i class="fa fa-user"></i>
                                     </a>
 
-								</div>
-							</div>
-							<div class="progress  rounded-0" style="height:4px;">
-								<div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
-									<span class="sr-only">50% Complete</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-                    <div class="col-xl-3  col-sm-6">
-						<div class="card">
-							<div class="card-body">
-								<div class="media align-items-center">
-									<div class="media-body mr-3">
-										<h2 class="fs-34 text-black font-w600">{{$count}}</h2>
-										<span> Total Managers Acount</span>
-									</div>
-									<i class="fa fa-user" aria-hidden="true"></i>
-								</div>
-							</div>
-							<div class="progress  rounded-0" style="height:4px;">
-								<div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
-									<span class="sr-only">30% Complete</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
+                                </div>
+                            </div>
+                            <div class="progress  rounded-0" style="height:4px;">
+                                <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
+                                    <span class="sr-only">50% Complete</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body mr-3">
+                                        <h2 class="fs-34 text-black font-w600">{{$active_managers}}</h2>
+                                        <span>Active Managers</span>
+                                    </div>
+                                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                        <i class="fa fa-user"></i>
+                                    </a>
 
-                    @endcan		
+                                </div>
+                            </div>
+                            <div class="progress  rounded-0" style="height:4px;">
+                                <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
+                                    <span class="sr-only">50% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3  col-sm-6">
+                        <a href="/managers">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body mr-3">
+                                            <h2 class="fs-34 text-black font-w600">     {{$managers}}
+                                            </h2>
+                                                <span> Total Managers Acount</span>
+                                            </div>
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="progress  rounded-0" style="height:4px;">
+                                        <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
+                                            <span class="sr-only">30% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3  col-sm-6">
+                        <a href="/vermusers">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body mr-3">
+                                            <h2 class="fs-34 text-black font-w600">{{$count}}</h2>
+                                            <span> Total users Account</span>
+                                        </div>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="progress  rounded-0" style="height:4px;">
+                                    <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
+                                        <span class="sr-only">30% Complete
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endcan	
+            </div>	
+             <!--end of  first row -->
+            <!--  second row -->
+            <div class="row">
+                @can('view-users-admin')
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body mr-3">
+                                        <h2 class="fs-34 text-black font-w600">     {{$inactive_cooperatives}}
+                                           
+                                        </h2>
+                                            <span>Inactive Cooperative Acounts</span>
+                                    </div>
+                                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                            <i class="fa fa-user"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="progress  rounded-0" style="height:4px;">
+                                <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
+                                    <span class="sr-only">50% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body mr-3">
+                                            <h2 class="fs-34 text-black font-w600">{{$inactive_cooperatives}}</h2>
+                                            <span>Inactive Cooperative Acounts</span>
+                                        </div>
+                                        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+
+                                        <i class="fa fa-user"></i>
+                                        </a>
+                                    </div>
+                            </div>
+                            <div class="progress  rounded-0" style="height:4px;">
+                                    <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
+                                        <span class="sr-only">50% Complete</span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body mr-3">
+                                        <h2 class="fs-34 text-black font-w600">{{$active_cooperatives}}</h2>
+                                        <span>Active Cooperative Acounts</span>
+                                    </div>
+                                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="progress  rounded-0" style="height:4px;">
+                                <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
+                                    <span class="sr-only">50% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3  col-sm-6">
+                        <a href="/cooperatives">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body mr-3">
+                                            <h2 class="fs-34 text-black font-w600">{{ $inactive_users}}</h2>
+                                            <span> Inactive users Acount</span>
+                                        </div>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="progress  rounded-0" style="height:4px;">
+                                    <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
+                                        <span class="sr-only">30% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endcan	
+            </div>
+                
+            <!--end of  second row -->
                    
-                    <div class="row">
-
-
-                    
-
-
-<div class="col-xl-3 col-sm-6">
-    <div class="card">
-        <div class="card-body">
-            <div class="media align-items-center">
-                <div class="media-body mr-3">
-                    <h2 class="fs-34 text-black font-w600">{{$active_accounts}}</h2>
-                    <span>Inactive Cooperative Acounts</span>
-                </div>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-
-                    <i class="fa fa-user"></i>
-
-                </a>
-
-            </div>
-        </div>
-        <div class="progress  rounded-0" style="height:4px;">
-            <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
-                <span class="sr-only">50% Complete</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-3 col-sm-6">
-    <div class="card">
-        <div class="card-body">
-            <div class="media align-items-center">
-                <div class="media-body mr-3">
-                    <h2 class="fs-34 text-black font-w600">{{$active_accounts}}</h2>
-                    <span>Active Cooperative Acounts</span>
-                </div>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-
-                    <i class="fa fa-user"></i>
-
-                </a>
-
-            </div>
-        </div>
-        <div class="progress  rounded-0" style="height:4px;">
-            <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 50%; height:4px;" role="progressbar">
-                <span class="sr-only">50% Complete</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="col-xl-3  col-sm-6">
-    <div class="card">
-        <div class="card-body">
-            <div class="media align-items-center">
-                <div class="media-body mr-3">
-                    <h2 class="fs-34 text-black font-w600">{{$all_cooperatives}}</h2>
-                    <span> Total Active Cooperative Acounts</span>
-                </div>
-                <i class="fa fa-user" aria-hidden="true"></i>
-            </div>
-        </div>
-        <div class="progress  rounded-0" style="height:4px;">
-            <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
-                <span class="sr-only">30% Complete</span>
-            </div>
-        </div>
-    </div>
-</div>
-</a>
-
+           
                     @can('view-co-operative')
+                <div class="row">
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card bg-primary">
                             <div class="card-body  p-4">
@@ -256,7 +288,8 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
                             <div class="card-body p-4">
@@ -284,82 +317,35 @@
                             </div>
                         </div>
                     </div>
-                 <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class=" widget-stat card bg-secondary">
-                            <div class="card-body p-4">
-                                <h4 class="card-title">Total Microcontrollars Types
-                                <h3>{{$microcontrollers}}</h3>
-
-                            </div>
-                        </div>
-                    </div>
-                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="widget-stat card bg-primary">
-                            <div class="card-body p-4">
-                                <h4 class="card-title">Total Active Bin </h4>
-                                <h3>{{$active_bins}}</h3>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="widget-stat card bg-danger">
+                        <div class=" widget-stat card bg-secondary">
                             <div class="card-body p-4">
-                                <h4 class="card-title">Total In Active Bin</h4>
-                                <h3>{{$inactive_bins}}</h3>
+                                <h4 class="card-title">Total Microcontrollars Types </h4>
+                                    <h3>{{$microcontrollers}}</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="widget-stat card bg-primary">
+                            <div class="card-body p-4">
+                                 <h4 class="card-title">Total Active Bin </h4>
+                                 <h3>{{$active_bins}}</h3>
 
 
 
                             </div>
                         </div>
                     </div>
-
-
-
-
-				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-danger">
+                        <div class="card-body p-4">
+                            <h4 class="card-title">Total In Active Bin</h4>
+                            <h3>{{$inactive_bins}}</h3>
+                        </div>
+                    </div>
+			    </div>
 
                 <div class="row">
                     <div class="col-12">
@@ -478,33 +464,26 @@
 
 
                                         <script>
-    new Chart("myChart3", {
-        type: "scatter",
-        data: {
-            datasets: [{
-                pointRadius: 4,
-                pointBackgroundColor: "rgb(0,0,255)",
-                data: <?php echo json_encode($data); ?>
-            }]
-        },
-        options: {
-            legend: { display: false },
-            scales: {
-                xAxes: [{ ticks: { min: 40, max: 160 } }],
-                yAxes: [{ ticks: { min: 0 } }]
-            }
-        }
-    });
-</script>
+                                            new Chart("myChart3", {
+                                                type: "scatter",
+                                                data: {
+                                                    datasets: [{
+                                                        pointRadius: 4,
+                                                        pointBackgroundColor: "rgb(0,0,255)",
+                                                        data: <?php echo json_encode($data); ?>
+                                                    }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    scales: {
+                                                        xAxes: [{ ticks: { min: 40, max: 160 } }],
+                                                        yAxes: [{ ticks: { min: 0 } }]
+                                                    }
+                                                }
+                                            });
+                                        </script>
 
-
-
-
-
-
-
-
-                                            </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -516,42 +495,40 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Worms conditions chart</h4>
                                     </div>
-                                    <div class="card-body">
+                                        <div class="card-body">
+                                            <canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
+
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+                                                <script>
+                                                    const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+                                                    new Chart("myChart", {
+                                                    type: "line",
+                                                    data: {
+                                                        labels: xValues,
+                                                        datasets: [{
+                                                        data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+                                                        borderColor: "red",
+                                                        fill: false
+                                                        }, {
+                                                        data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+                                                        borderColor: "green",
+                                                        fill: false
+                                                        }, {
+                                                        data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+                                                        borderColor: "blue",
+                                                        fill: false
+                                                        }]
+                                                    },
+                                                    options: {
+                                                        legend: {display: false}
+                                                    }
+                                                    });
+                                                </script>
 
 
-                                    <canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
-
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-                                    <script>
-const xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    }, {
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-      borderColor: "green",
-      fill: false
-    }, {
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-</script>
-
-
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
 
@@ -576,19 +553,21 @@ new Chart("myChart", {
 
 
 
-@endcan
+                @endcan
+        </div>
+
+    </div>
 
 
 
 
 
 
-{{--for sedo--}}
 
 
 
 
-<div class="row">
+
 
 
 
@@ -608,7 +587,6 @@ new Chart("myChart", {
 
 
 
-</div>
 
 
 
@@ -618,8 +596,6 @@ new Chart("myChart", {
 
 
 
-            </div>
-        </div>
         <!--**********************************
             Content body end
         ***********************************-->

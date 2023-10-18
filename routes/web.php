@@ -193,7 +193,7 @@ Route::get('/notification',[pageController::class, 'databaseNoIndex']);
 
 // Route::post('/mark-as-read',[AdminController::class, 'markNotification'])->name('markNotification');
 
-
+Route::get('/managers',[pageController::class, 'managers']);
 Route::get('/dashboard',[pageController::class, 'dashbord']);
 
 Route::get('/adminbins',[pageController::class, 'adminbin']);
