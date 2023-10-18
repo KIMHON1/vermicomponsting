@@ -30,8 +30,9 @@
 
             <!-- admin dashboard -->
             <!-- first row -->
+            @can('view-users-admin')
 			<div class="row">
-                @can('view-users-admin')
+                
                     <div class="col-xl-3 col-sm-6">
                         <div class="card">
                             <div class="card-body">
@@ -75,55 +76,55 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3  col-sm-6">
-                        <a href="/managers">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="media-body mr-3">
-                                            <h2 class="fs-34 text-black font-w600">     {{$managers}}
-                                            </h2>
-                                                <span> Total Managers Acount</span>
-                                            </div>
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                    <div class="progress  rounded-0" style="height:4px;">
-                                        <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
-                                            <span class="sr-only">30% Complete</span>
-                                        </div>
+                   
+                    
+                            
+                    <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <a href="/managers">
+                        <div class="widget-stat card bg-primary">
+                            <div class="card-body  p-4">
+                                <div class="media">
+                                    <span class="mr-3">
+                                        <i class="la la-users"></i>
+                                    </span>
+                                    <div class="media-body text-white">
+                                        <p class="mb-1">Total Managers Acount</p>
+                                        <h3 class="text-white">{{$managers}}</h3>
+
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </a>
                     </div>
+                       
+                   
                     <div class="col-xl-3  col-sm-6">
                         <a href="/vermusers">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <div class="media-body mr-3">
-                                            <h2 class="fs-34 text-black font-w600">{{$count}}</h2>
-                                            <span> Total users Account</span>
-                                        </div>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class="progress  rounded-0" style="height:4px;">
-                                    <div class="progress-bar rounded-0 bg-secondary progress-animated" style="width: 30%; height:4px;" role="progressbar">
-                                        <span class="sr-only">30% Complete
-                                        </span>
+                
+                            <div class="widget-stat card bg-primary">
+                            <div class="card-body  p-4">
+                                <div class="media">
+                                    <span class="mr-3">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="media-body text-white">
+                                        <p class="mb-1">Total users Account</p>
+                                        <h3 class="text-white">{{$count}}</h3>
+
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </a>
                     </div>
-                @endcan	
+               
             </div>	
+            
              <!--end of  first row -->
             <!--  second row -->
             <div class="row">
-                @can('view-users-admin')
+                
                     <div class="col-xl-3 col-sm-6">
                         <div class="card">
                             <div class="card-body">
@@ -209,13 +210,14 @@
                             </div>
                         </a>
                     </div>
-                @endcan	
+               
             </div>
-                
+            @endcan	   
             <!--end of  second row -->
                    
-           
-                    @can('view-co-operative')
+            <!-- dashboard for cooperative  -->
+            @can('view-co-operative')
+            <!-- first row -->
                 <div class="row">
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card bg-primary">
@@ -289,6 +291,8 @@
                         </div>
                     </div>
                 </div>
+            <!--end first row -->
+            <!-- second row -->
                 <div class="row">
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="widget-stat card">
@@ -339,17 +343,20 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
-                    <div class="widget-stat card bg-danger">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Total In Active Bin</h4>
-                            <h3>{{$inactive_bins}}</h3>
+                        <div class="widget-stat card bg-danger">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">Total In Active Bin</h4>
+                                <h3>{{$inactive_bins}}</h3>
+                            </div>
                         </div>
                     </div>
-			    </div>
 
+			    </div>
+            <!-- end of the second row -->
+            
+            <!-- charts -->
                 <div class="row">
                     <div class="col-12">
-
                         <div class="row">
                             <div class="col-xl-6 col-lg-12 col-sm-12">
                                 <div class="card">
@@ -357,7 +364,8 @@
                                         <h4 class="card-title">Gender Bar Chart</h4>
                                     </div>
                                     <div class="card-body">
-                                        <canvas id="myChart1" style="width:100%;max-width:600px;height:400px"></canvas>
+                                        <canvas id="myChart1" style="width:100%;max-width:600px;height:400px">
+                                        </canvas>
                                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
                                         <script>
                                             var xValues = {!! json_encode($months) !!};
@@ -403,7 +411,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-xl-6 col-lg-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -450,8 +457,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="col-xl-6 col-lg-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -486,10 +491,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="col-xl-6 col-lg-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -531,31 +532,11 @@
                                         </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
                         </div>
-
-
-
-
-
-                </div>
                     </div>
                 </div>
-
-
-
-
-                @endcan
+            @endcan
         </div>
-
     </div>
 
 
