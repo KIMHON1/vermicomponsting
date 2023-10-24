@@ -212,6 +212,70 @@
                     </div>
                
             </div>
+            <div class="row">
+                <div class="col-xl-4  col-sm-4">
+                    <canvas id="cooperatives" style="width:100%;max-width:600px"></canvas>
+                </div>
+                <div class="col-xl-8  col-sm-8">
+                    <canvas id="users" style="width:100%;max-width:600px"></canvas>
+                </div>
+            </div>
+                    <script>
+                    const xValues = ["male", "Female"];
+                    const yValues = [55, 80, 0];
+                    const barColors = ["indigo","blue"];
+
+                    new Chart("users", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: "Gender users"
+                        }
+                    }
+                    });
+                    </script>
+
+
+
+                    
+
+                    <script>
+                        const xValuesDoughnut = ["North", "Sourth", "East", "West", "Kigali City"];
+                        const yValuesDoughnut = [55, 49, 44, 24, 15];
+                        const barColorsDoughnut = [
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145"
+                        ];
+
+                        new Chart("cooperatives", {
+                        type: "doughnut",
+                        data: {
+                            labels: xValuesDoughnut,
+                            datasets: [{
+                            backgroundColor: barColorsDoughnut,
+                            data: yValuesDoughnut
+                            }]
+                        },
+                        options: {
+                            title: {
+                            display: true,
+                            text: "Cooperatives"
+                            }
+                        }
+                        });
+                    </script>
             @endcan	   
             <!--end of  second row -->
                    
