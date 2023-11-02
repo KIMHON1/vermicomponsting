@@ -35,9 +35,11 @@ class pageController extends Controller
 
 //dashboard page
     public function dashbord(User $user)
-    {
+    {   $user = auth()->user();
         $users =User::all();
         $inactive_users = User::where('status',0)->count();
+        $female_users = Location::where('gender','female')->count();
+        $male_users = Location::where('gender','male')->count();
         $managers = User::where('Roles','Manager')->count();
         $active_managers = User::where('Roles','Manager')->where('status',1)->count();
         $inactive_managers = User::where('Roles','Manager')->where('status',0)->count();
@@ -415,6 +417,8 @@ class pageController extends Controller
                 'active_managers'=>$active_managers,
                 "inactive_managers"=>$inactive_managers,
                 "inactive_users"=> $inactive_users,
+                'female_users'=>$female_users,
+                'male_users'=>$male_users,
             ]);
 
 

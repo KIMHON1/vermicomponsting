@@ -30,7 +30,7 @@
 
             <!-- admin dashboard -->
             <!-- first row -->
-            @can('view-users-admin')
+            @role('Admin')
 			<div class="row">
                 
                     <div class="col-xl-3 col-sm-6">
@@ -213,17 +213,18 @@
                
             </div>
             <div class="row">
+                <div class="col-xl-6  col-sm-8">
+                    <canvas id="users" style="width:100%;max-width:600px"></canvas>
+                </div>
                 <div class="col-xl-4  col-sm-4">
                     <canvas id="cooperatives" style="width:100%;max-width:600px"></canvas>
                 </div>
-                <div class="col-xl-8  col-sm-8">
-                    <canvas id="users" style="width:100%;max-width:600px"></canvas>
-                </div>
+               
             </div>
                     <script>
                     const xValues = ["male", "Female"];
-                    const yValues = [55, 80, 0];
-                    const barColors = ["indigo","blue"];
+                    const yValues = [{!! json_encode($male_users) !!}, {!! json_encode($female_users) !!}, 0];
+                    const barColors = ["orange","darkgreen"];
 
                     new Chart("users", {
                     type: "bar",
@@ -238,7 +239,7 @@
                         legend: {display: false},
                         title: {
                         display: true,
-                        text: "Gender users"
+                        text: "users"
                         }
                     }
                     });
@@ -276,11 +277,14 @@
                         }
                         });
                     </script>
-            @endcan	   
+            @endrole	   
             <!--end of  second row -->
                    
             <!-- dashboard for cooperative  -->
-            @can('view-co-operative')
+            
+   
+
+            @role('Manager')
             <!-- first row -->
                 <div class="row">
                     <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
@@ -599,7 +603,8 @@
                         </div>
                     </div>
                 </div>
-            @endcan
+           
+            @endrole
         </div>
     </div>
 

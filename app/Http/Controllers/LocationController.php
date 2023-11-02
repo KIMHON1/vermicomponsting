@@ -114,8 +114,9 @@ class LocationController extends Controller
             ->first();
         $name_cell = $cell_details->nameCell;
         $formfields['cell'] = $name_cell;
+        $formFields['user_id']=auth()->user()->id;
 
-
+        
         Location::create($formfields);
         return redirect('/dashboard');
 

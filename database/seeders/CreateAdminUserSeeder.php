@@ -35,6 +35,7 @@ class CreateAdminUserSeeder extends Seeder
         $role = Role::create(['name' => 'Admin']);
 
         $permissions = Permission::pluck('id','id')->all();
+        $permissions = array_diff($permissions, ['view-co-operative']);
 
         $role->syncPermissions($permissions);
 

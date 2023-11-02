@@ -7,7 +7,6 @@ use App\Http\Controllers\pageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BinconditionController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlantingComponstcontroller;
 use App\Http\Controllers\HarvestingCompostController;
@@ -96,11 +95,7 @@ Route::get('/register',function(){
 
 
 
-
-
-
-
-
+Route::get('/Profile/show/{id}', [LocationController::class, 'show']);
 
 
 
@@ -257,11 +252,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
     Route::get('/vermusers/{user}/edit',[UserController::class, 'edit'])->middleware('role:Admin');
     Route::get('/vermusers/status_code/{user_id}/{status_code}', [UserController::class, 'updateStatus'])->name('users.update.status')->middleware('role:Admin');
 
-    Route::get('/Profile/create', [ProfileController::class, 'create']);
-    Route::post('/Profile/store', [ProfileController::class, 'store']);
 
-
-    Route::get('/Profile', [LocationController::class, 'show']);
 
     Route::get('/activity-logs', [ActivityLogController::class, 'index']);
 
