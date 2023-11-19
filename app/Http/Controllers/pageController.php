@@ -43,6 +43,19 @@ class pageController extends Controller
         $managers = User::where('Roles','Manager')->count();
         $active_managers = User::where('Roles','Manager')->where('status',1)->count();
         $inactive_managers = User::where('Roles','Manager')->where('status',0)->count();
+
+        //cooperatives locations
+
+        $north_cooperatives = Cooperative::where('province','North Provice')->count();
+        $sourth_cooperatives = Cooperative::where('province','South Provice')->count();
+        $east_cooperatives = Cooperative::where('province','East Provice')->count();
+        $west_cooperatives = Cooperative::where('province','Wester Provice')->count();
+        $kigali_cooperatives = Cooperative::where('province','Kigali City')->count();
+       
+
+        
+
+
       
         $count = collect($users)->count();
         $bins =Bin::all();
@@ -419,6 +432,11 @@ class pageController extends Controller
                 "inactive_users"=> $inactive_users,
                 'female_users'=>$female_users,
                 'male_users'=>$male_users,
+                'north_cooperatives'=> $north_cooperatives,
+                'sourth_cooperatives' => $sourth_cooperatives,
+                'east_cooperatives' => $east_cooperatives,
+                'west_cooperatives' => $west_cooperatives,
+                'kigali_cooperatives' =>$kigali_cooperatives
             ]);
 
 

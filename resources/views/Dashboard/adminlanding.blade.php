@@ -251,7 +251,7 @@
 
                     <script>
                         const xValuesDoughnut = ["North", "Sourth", "East", "West", "Kigali City"];
-                        const yValuesDoughnut = [55, 49, 44, 24, 15];
+                        const yValuesDoughnut = [{!! json_encode($north_cooperatives) !!}, {!! json_encode($sourth_cooperatives) !!}, {!! json_encode($east_cooperatives) !!}, {!! json_encode($west_cooperatives) !!}, {!! json_encode($kigali_cooperatives) !!}];
                         const barColorsDoughnut = [
                         "#b91d47",
                         "#00aba9",
