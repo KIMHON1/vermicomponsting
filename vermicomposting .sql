@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 30, 2023 at 07:03 PM
+-- Generation Time: Nov 28, 2023 at 02:56 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Vermicomposting`
+-- Database: `vermicomposting`
 --
 
 -- --------------------------------------------------------
@@ -51,7 +51,25 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_type`, `ev
 (2, 'user_activity', 'deleted', 'App\\Models\\User', 'deleted', 8, 'App\\Models\\User', 7, '[]', NULL, '2023-07-05 16:42:53', '2023-07-05 16:42:53'),
 (3, 'user_activity', 'created', 'App\\Models\\User', 'created', 9, 'App\\Models\\User', 7, '[]', NULL, '2023-07-05 17:09:42', '2023-07-05 17:09:42'),
 (4, 'user_activity', 'created', 'App\\Models\\Cooperative', 'created', 1, 'App\\Models\\User', 7, '[]', NULL, '2023-07-05 17:24:40', '2023-07-05 17:24:40'),
-(5, 'user_activity', 'created', 'App\\Models\\Cooperative', 'created', 2, 'App\\Models\\User', 7, '[]', NULL, '2023-07-06 19:04:03', '2023-07-06 19:04:03');
+(5, 'user_activity', 'created', 'App\\Models\\Cooperative', 'created', 2, 'App\\Models\\User', 7, '[]', NULL, '2023-07-06 19:04:03', '2023-07-06 19:04:03'),
+(6, 'user_activity', 'updated', 'App\\Models\\Cooperative', 'updated', 2, 'App\\Models\\User', 7, '[]', NULL, '2023-11-19 16:29:01', '2023-11-19 16:29:01'),
+(7, 'user_activity', 'updated', 'App\\Models\\Cooperative', 'updated', 1, 'App\\Models\\User', 7, '[]', NULL, '2023-11-19 16:29:04', '2023-11-19 16:29:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `binconditions`
+--
+
+CREATE TABLE `binconditions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bin_id` int(10) UNSIGNED NOT NULL,
+  `temperature` int(11) NOT NULL,
+  `humidity` varchar(255) NOT NULL,
+  `acidity` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -74,6 +92,13 @@ CREATE TABLE `bins` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bins`
+--
+
+INSERT INTO `bins` (`id`, `member_id`, `cooperative_id`, `code`, `status`, `microcontroller_type`, `worm_type`, `province`, `district`, `sector`, `cell`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '001-Agricultural-BIN-2023-1123', 1, '1', '1', 'Kigali City', 'KICUKIRO', 'Masaka', 'Gako', '2023-11-23 20:16:03', '2023-11-23 20:16:16');
 
 -- --------------------------------------------------------
 
@@ -2685,8 +2710,8 @@ CREATE TABLE `cooperatives` (
 --
 
 INSERT INTO `cooperatives` (`id`, `co_operativename`, `co_operativemanager`, `co_operative_email`, `co_operative_telephone`, `status`, `starting_date`, `province`, `district`, `sector`, `cell`, `created_at`, `updated_at`) VALUES
-(1, 'Agricultural', 'JohnDoe', 'agricultural@gmail.com', 783325515, 0, '2023-07-20', 'Kigali City', 'NYARUGENGE', 'Nyarugenge', 'Agatare', '2023-07-05 17:24:40', '2023-07-05 17:24:40'),
-(2, 'Agronomy', 'JohnDoe', 'honore.kimenyi5855@gmail.com', 783325515, 0, '2023-07-26', 'South Provice', 'NYAMAGABE', 'Mushubi', 'Cyobe', '2023-07-06 19:04:03', '2023-07-06 19:04:03');
+(1, 'Agricultural', 'JohnDoe', 'agricultural@gmail.com', 783325515, 1, '2023-07-20', 'Kigali City', 'NYARUGENGE', 'Nyarugenge', 'Agatare', '2023-07-05 17:24:40', '2023-11-19 16:29:04'),
+(2, 'Agronomy', 'JohnDoe', 'honore.kimenyi5855@gmail.com', 783325515, 1, '2023-07-26', 'South Provice', 'NYAMAGABE', 'Mushubi', 'Cyobe', '2023-07-06 19:04:03', '2023-11-19 16:29:01');
 
 -- --------------------------------------------------------
 
@@ -2820,7 +2845,8 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `firstname`, `secondname`, `profilePic`, `phonenumber`, `gender`, `province`, `district`, `sector`, `cell`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, 'Kimenyi', 'Honore', 'profiles/65oKbegY37QxYkcBjeV7HDD7LINBwleRWwN7de3k.jpg', 987654321, 'Male', 'South Provice', 'HUYE', 'Ruhashya', 'Ruhashya', 7, '2023-07-03 13:59:02', '2023-07-03 13:59:02');
+(3, 'Kimenyi', 'Honore', 'profiles/65oKbegY37QxYkcBjeV7HDD7LINBwleRWwN7de3k.jpg', 987654321, 'Male', 'South Provice', 'HUYE', 'Ruhashya', 'Ruhashya', 7, '2023-07-03 13:59:02', '2023-07-03 13:59:02'),
+(4, 'John', 'Doe', 'profiles/amaknx8uAfreBDqfBZ4ZoKkDuFDGDr8e4iC7ByXg.png', 435678654, 'Male', 'North Provice', 'MUSANZE', 'Nkotsi', 'Mubago', 9, '2023-11-19 16:31:53', '2023-11-19 16:31:53');
 
 -- --------------------------------------------------------
 
@@ -2844,6 +2870,13 @@ CREATE TABLE `members` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `firstname`, `secondname`, `email`, `phonenumber`, `gender`, `age`, `province`, `district`, `sector`, `cell`, `cooperative_id`, `created_at`, `updated_at`) VALUES
+(1, 'John', 'Doe', 'jamba@gmail.com', 987654345, 'Male', '2023-11-14 00:00:00', 'Kigali City', 'GASABO', 'Nduba', 'Sha', 1, '2023-11-23 20:13:22', '2023-11-23 20:13:22');
 
 -- --------------------------------------------------------
 
@@ -2881,6 +2914,13 @@ CREATE TABLE `microcontrollers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `microcontrollers`
+--
+
+INSERT INTO `microcontrollers` (`id`, `cooperative_id`, `name`, `manufacturer`, `architecture`, `clock_speed`, `flash_memory_size`, `ram_size`, `pin_count`, `price`, `stock`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Node', 'Mcu', '45dja', 19, 19, 4, 12, 123.00, 12, '2023-11-23 20:14:27', '2023-11-23 20:14:27');
 
 -- --------------------------------------------------------
 
@@ -3705,6 +3745,13 @@ CREATE TABLE `worms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `worms`
+--
+
+INSERT INTO `worms` (`id`, `cooperative_id`, `name`, `description`, `population`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 'redwiretg', 'redwrigel', 8, 123.00, '2023-11-23 20:15:10', '2023-11-23 20:15:10');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -3716,6 +3763,12 @@ ALTER TABLE `activity_log`
   ADD KEY `subject` (`subject_type`,`subject_id`),
   ADD KEY `causer` (`causer_type`,`causer_id`),
   ADD KEY `activity_log_log_name_index` (`log_name`);
+
+--
+-- Indexes for table `binconditions`
+--
+ALTER TABLE `binconditions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bins`
@@ -3916,13 +3969,19 @@ ALTER TABLE `worms`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `binconditions`
+--
+ALTER TABLE `binconditions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bins`
 --
 ALTER TABLE `bins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cells`
@@ -3958,13 +4017,13 @@ ALTER TABLE `harvestings`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -3976,7 +4035,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `microcontrollers`
 --
 ALTER TABLE `microcontrollers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -4042,7 +4101,7 @@ ALTER TABLE `vilages`
 -- AUTO_INCREMENT for table `worms`
 --
 ALTER TABLE `worms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

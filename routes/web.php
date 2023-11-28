@@ -216,7 +216,7 @@ Route::get('/admsinglebin/{bin}',[BinconditionController::class, 'show']);
 
     Route::get('/delete/{id}',[BinController::class,'destroy']);
     Route::get('/bins',[BinController::class,'index']);
-    Route::get('/bins',[DistrictController::class,'index']);
+   // Route::get('/bins',[DistrictController::class,'index']);
     Route::get('/bin/{id}',[BinController::class,'show']);
 
 
