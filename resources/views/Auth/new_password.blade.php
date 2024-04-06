@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -43,16 +41,28 @@
                                     <div class="alert alert-success">{{session('success')}}</div>
                                 @endif
 
-                                    <h4 class="text-center mb-4 text-white">We will send you A link</h4>
-                                    <form action="{{route('forget_password_post')}}"  method="POST">
+                                    <h4 class="text-center mb-4 text-white">Forgot Password</h4>
+                                    <form action="{{route('reset_password_post')}}"  method="POST">
                                         @csrf
+                                        <input type="text" name="token" hidden value="{{$token}}">
+
                                         <div class="form-group">
-                                            <label class="text-white"><strong>Enter your Email</strong></label>
-                                            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                            <label class="text-white"><strong>Email</strong></label>
+                                            <input type="email" class="form-control" name="email" >
                                         </div>
-                                        @error('email')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+
+                                        <div class="form-group">
+                                            <label class="text-white"><strong>Enter New Password</strong></label>
+                                            <input type="password" class="form-control" name="password" >
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="text-white"><strong>Confirm New Password</strong></label>
+                                            <input type="password" class="form-control" name="password_confirmation" >
+                                        </div>
+
                                         <div class="text-center">
                                             <button type="submit" class="btn bg-white text-primary btn-block">SUBMIT</button>
                                         </div>
