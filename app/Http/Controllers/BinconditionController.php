@@ -92,7 +92,10 @@ class BinconditionController extends Controller
             $plantingstatus=1;
         }
 
+        $i =1;
+
         $conditions=$bin->binconditions;
+
         $initialcompost= $bin->planting;
 
         $plantingsresults = DB::table('plantings')->where('bin_id',$bin->id)->where('status', 1)->get();
@@ -105,15 +108,11 @@ class BinconditionController extends Controller
             ->whereIn('planting_id', $planting_ids)
             ->get();
 
+            //starting of chat function
 
+            $binData = Bincondition::select('created_at', 'temperature', 'humidity', 'acidity','soil_moisture')->get();
 
-
-
-
-
-
-
-        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus, 'plantingsresults'=>$plantingsresults, 'harvestingsresults'=>$harvestingsresults])->with('i');
+        return view('Normal.singleBin',['bin'=>$bin,'conditions'=>$conditions,  'initialcompost'=>$initialcompost  ,'plantingstatus'=>$plantingstatus, 'plantingsresults'=>$plantingsresults, 'harvestingsresults'=>$harvestingsresults, 'i'=>$i,'binData'=>$binData]);
     }
 
     /**

@@ -19,11 +19,12 @@ return new class extends Migration
         Schema::create('binconditions', function (Blueprint $table) {
             $table->id();
             $table->unsignedinteger('bin_id');
-            $table->integer("temperature");
-            $table->string("humidity");
-            $table->string("acidity");
-            $table->timestamps();
+            $table->float("temperature");
+            $table->float("humidity");
+            $table->float("soil_moisture");
+            $table->float("acidity");
             $table->foreign('bin_id')->references('id')->on('bins')->onDelete("cascade");
+            $table->timestamps();
         });}
     }
 

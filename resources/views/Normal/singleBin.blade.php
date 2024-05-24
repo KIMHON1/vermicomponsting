@@ -1,4 +1,3 @@
-
 @extends('Dashboard.master')
 @section('content')
         <!--**********************************
@@ -79,112 +78,110 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
+                                                <h1>Bin Chat</h1>
+                                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                                <script type="text/javascript">
+                                                  google.charts.load('current', {'packages':['corechart']});
+                                                  google.charts.setOnLoadCallback(drawChart);
+                                            
+                                                  function drawChart() {
+                                                    var data = google.visualization.arrayToDataTable([
+                                                      ['Year', 'Sales', 'Expenses'],
+                                                      ['2004',  1000,      400],
+                                                      ['2005',  1170,      460],
+                                                      ['2006',  660,       1120],
+                                                      ['2007',  1030,      540]
+                                                    ]);
+                                            
+                                                    var options = {
+                                                      title: 'Company Performance',
+                                                      curveType: 'function',
+                                                      legend: { position: 'bottom' }
+                                                    };
+                                            
+                                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                            
+                                                    chart.draw(data, options);
+                                                  }
+                                                </script>
+                                              </head>
+                                              <body>
+                                                <div id="curve_chart" style="width: 900px; height: 500px"></div>
+                                              </body>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="about-me" class="tab-pane fade">
 
-
-
                                     <div class="profile-personal-info">
                                         <h4 class="text-primary mb-4">binConditions</h4>
+                                           <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
+                                                            <thead>
+                                                                <tr>
+                            
+                                                                    <th class="align-middle pr-7"> No
+                                                                    </th>
+        
+                                                                    <th class="align-middle pr-7"> Time
+                                                                    </th>
+                            
+                                                                    <th class="align-middle pr-7"> Temperature
+                                                                    </th>
+                                                                    <th class="align-middle pr-7"> Humidity</th>
+                                                                    <th class="align-middle minw200">Soil Moisture</th>
+                            
+                                                                    <th class="align-middle minw200">pH value/acidity</th>
+                            
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="orders">
+                                                                
 
-                                            @if(!empty($conditions))
-                                            <div class="card-body">
-                                                <div class="table-responsive">
+                                                                 @if(!empty($conditions))
+                                                                 @foreach ($conditions as $condition) 
+                                                                     
+                                                                                                                                                        <tr class="btn-reveal-trigger">
+                                                                                                        
+                                                                                                                                                            <td class="py-2">
+                                                                                                                                                                <div> {{$i++}}</div>
+                                                                                                                                                            </td>
 
-
-                                                    <div class="d-flex">
-                                                        <a href="/conditions/{{$bin->id}}/edit" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pen"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                                                                                                                            <td class="py-2">
+                                                                                                                                                                <div> {{$condition->created_at}}</div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="py-2">
+                                                                                                                                                                <div>
+                                                                                                                                                        {{$condition->temperature}} ℃</div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="py-2">
+                                                                                                                                                                {{$condition->humidity}} %
+                                                                                                                                                            </td>
+                                                                                                        
+                                                                                                                                                            <td class="py-2">
+                                                                                                            
+                                                                                                            
+                                                                                                                                                                <div> {{$condition->soil_moisture}} %</div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="py-2">
+                                                                                                            
+                                                                                                            
+                                                                                                                                                                <div> {{$condition->acidity}}</div>
+                                                                                                                                                            </td>
+                                                                                                                                                            @endforeach
+                                                                                                                                                        @endif
+                                                                                                            
+                                                                                                                                                        </tr>
+                                                            </tbody>
+                                                        </table>
+                            
                                                     </div>
-
-
-
-
-                                                    <table class="table table-responsive-md">
-                                                        <thead>
-                                                            <tr>
-
-
-                                                                <th><strong>Conditions</strong></th>
-                                                                <th><strong>Values</strong></th>
-
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-
-                                                                <td><strong>
-                                                                    <ul>
-                                                                        <li>Temperature</li>
-
-                                                                    </ul>
-                                                                    </strong></td>
-
-
-
-                                                                <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->temperature}}</div></td>
-
-
-
-                                                                <td>
-
-                                                                </td>
-                                                            </tr>
-
-                                                            <td><strong>
-                                                                <ul>
-
-                                                                    <li>PH </li>
-
-                                                                </ul>
-                                                                </strong></td>
-
-
-
-                                                            <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->acidity}}</div></td>
-                                                        </tr>
-                                                        <td><strong>
-                                                            <ul>
-                                                                <li>Humidity </li>
-                                                            </ul>
-                                                            </strong></td>
-
-
-
-                                                        <td><div class="d-flex align-items-center"><i class="fa fa-circle text-success mr-1"></i> {{$conditions->temperature}}</div></td>
-
-
-
-                                                    </tr>
-
-
-                                                        </tbody>
-                                                    </table>
                                                 </div>
-                                           </div>
-
-
-                                            @else
-
-                                                <h3>opps there is no Current condition for bin {{$bin->number}} </h3>
-
-
-                                                <div class="mt-4">
-
-                                                    <a href="/conditions/{{$bin->id}}/create" class="btn btn-primary mb-1">Create conditions</a>
-                                                </div>
-
-                                            @endif
-
-
-
-
-
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="profile-settings" class="tab-pane fade">
@@ -214,11 +211,6 @@
                                                     </div>
 
                                                 @endif
-
-
-
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -252,126 +244,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-sm mb-0 table-responsive-lg text-black" id="bins">
-                                <thead>
-                                    <tr>
-
-
-                                        <th class="align-middle pr-7"> Date
-                                        </th>
-
-                                        <th class="align-middle pr-7"> Initial
-                                            worm population
-                                        </th>
-                                        <th class="align-middle pr-7"> Initial waste</th>
-                                        <th class="align-middle minw200">Expected Compost</th>
-
-                                        <th class="align-middle minw200">Date</th>
-
-                                        <th class="align-middle minw200">harvested Worm Quantity</th>
-
-                                        <th class="align-middle minw200">harvested Compost Quantity</th>
-
-                                         <th class="align-middle text-right">Results</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="orders">
-                                    @php
-                                        $total_gain = 0;
-                                        $total_loss = 0;
-                                    @endphp
-                                  @foreach ($plantingsresults as $index => $plantingsresult)
-                                        {{-- <p>Planting {{$index + 1}}:</p> --}}
-                                            <tr class="btn-reveal-trigger">
-
-
-
-
-
-                                                <td class="py-2">
-                                                    <div>{{ $plantingsresult->created_at }}</div>
-                                                </td>
-
-
-
-                                                <td class="py-2">
-                                                    <div>
-                                                        {{$plantingsresult->wormQuantity}}
-                                                    </div>
-                                                </td>
-                                                <td class="py-2">
-                                                    {{$plantingsresult->WasteQuantity}} Kg
-                                                </td>
-
-
-
-
-
-
-
-
-                                                <td class="py-2">
-
-
-                                                    <div> {{$plantingsresult->ExpectedCompostQuantity}} Kg</div>
-                                                </td>
-                                    @if (isset($harvestingsresults[$index]))
-                                                 {{-- {{$index + 1}} --}}
-                                                <td class="py-2">
-
-
-                                                    <div> {{$harvestingsresults[$index]->created_at}} Kg</div>
-                                                </td>
-                                                <td class="py-2">
-
-
-                                                    <div>  {{$harvestingsresults[$index]->wormQuantity}} </div>
-                                                </td>
-                                                <td class="py-2">
-
-
-                                                    <div> {{$harvestingsresults[$index]->harvestCompostQuantity}} Kg</div>
-                                                </td>
-
-                                                <td class="py-2">
-
-
-                                                    <div>
-                                                    @php
-                                                        $difference = $harvestingsresults[$index]->harvestCompostQuantity-$plantingsresult->ExpectedCompostQuantity;
-                                                        if ($difference < 0) {
-                                                            $total_loss += abs($difference);
-                                                                                }
-                                                        else {
-                                                            $total_gain += $difference;
-                                                            }
-
-
-
-                                                    @endphp
-
-                                                    @if ($difference < 0)
-                                                    <span class="text-danger"> {{ abs($difference) }}  Kg  Lost</span>
-
-                                                    @else
-                                                     {{ $difference }}
-                                                     <span class="text-success"> {{ $difference }} Kg Gained</span>
-                                                    @endif
-
-
-                                                        </div>
-                                                </td>
-
-
-
-
-                                    @endif
-
-                                            </tr>
-                                     @endforeach
-                                </tbody>
-                            </table>
+                            
 
                         </div>
                     </div>
@@ -381,22 +254,7 @@
 
 
 
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            @if ($total_gain > $total_loss)
-                                <p>Overall   </p>
-                                <span class="text-success"> Gain:  {{$total_gain - $total_loss}} Kg </span>
-                            @elseif ($total_loss > $total_gain)
-
-                                <span class="text-danger">Loss: {{$total_loss - $total_gain}} Kg</span>
-                            @else
-                                <p>No overall gain or loss</p>
-                            @endif
-                        </div>
-                    </div>
-
-                </div>
+               
 
         </div>
             </div>

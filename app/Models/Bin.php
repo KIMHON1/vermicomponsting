@@ -26,7 +26,7 @@ class Bin extends Model
 
     public function binconditions(){
 
-        return $this->hasOne(Bincondition::class,'bin_id','id');
+        return $this->hasMany(Bincondition::class,'bin_id','id');
     }
 
 
