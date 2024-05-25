@@ -18,6 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger("member_id");
             $table->unsignedBigInteger("cooperative_id");
             $table->string("code")->unique();
+            $table->string("container_type")->nullable();
+            $table->float("container_size")->nullable();
+            $table->string("bedding_material")->nullable();
+            $table->float("food_waste_input")->nullable();
+            $table->float("population_density")->nullable();
+            $table->integer("composting_duration")->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string("microcontroller_type");
             $table->string("worm_type");
